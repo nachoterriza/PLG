@@ -12,4 +12,9 @@ public class GreaterThan extends ExpresionBinaria {
 		return TipoE.GT;
 	}
 
+	public Tipo getTipo() throws UnsuportedOperation {
+		if(op1.getTipo()==new Int() && op2.getTipo()==new Int())
+			return new Bool();
+		else throw new UnsuportedOperation("Desigualdad con no enteros(>).");
+	}
 }

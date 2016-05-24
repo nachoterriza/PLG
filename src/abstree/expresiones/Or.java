@@ -11,5 +11,11 @@ public class Or extends ExpresionBinaria {
 	public TipoE tipo() {
 		return TipoE.OR;
 	}
+	
+	public Tipo getTipo() throws UnsuportedOperation {
+		if(op1.getTipo()==new Bool() && op2.getTipo()==new Bool())
+			return new Bool();
+		else throw new UnsuportedOperation("OR sin Booleanos.");
+	}
 
 }

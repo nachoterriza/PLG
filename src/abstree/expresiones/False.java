@@ -9,4 +9,7 @@ public class False extends Expresion {
 		return TipoE.FALSE;
 	}
 
+	public Tipo getTipo() throws UnsuportedOperation {
+		return new Bool();
+	}
 }

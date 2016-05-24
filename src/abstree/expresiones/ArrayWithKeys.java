@@ -26,5 +26,9 @@ public class ArrayWithKeys extends Expresion {
 	}
 	
 	private LinkedList<Expresion> array;
+	
+	public Tipo getTipo() {
+		
+	}
 
 }

@@ -12,4 +12,9 @@ public class Div extends ExpresionBinaria {
 		return TipoE.DIV;
 	}
 
+	public Tipo getTipo() throws UnsuportedOperation {
+		if(op1.getTipo()==new Int() && op2.getTipo()==new Int())
+			return new Int();
+		else throw new UnsuportedOperation("División con no enteros.")
+	}
 }

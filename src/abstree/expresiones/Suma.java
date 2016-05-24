@@ -11,5 +11,11 @@ public class Suma extends ExpresionBinaria {
 	public TipoE tipo() {
 		return TipoE.SUMA;
 	}
+	
+	public Tipo getTipo() throws UnsuportedOperation {
+		if(op1.getTipo()==new Int() && op2.getTipo()==new Int())
+			return new Int();
+		else throw new UnsuportedOperation("Suma con no enteros.");
+	}
 
 }

@@ -10,5 +10,11 @@ public class NotEqual extends ExpresionBinaria{
 	public TipoE tipo() {
 		return TipoE.NEQ;
 	}
+	
+	public Tipo getTipo() throws UnsuportedOperation {
+		if(op1.getTipo()==new Bool())
+			return new Bool();
+		else throw new UnsuportedOperation("Negación sin Booleanos.");
+	}
 
 }

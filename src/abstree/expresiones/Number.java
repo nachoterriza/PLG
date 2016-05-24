@@ -19,4 +19,8 @@ public class Number extends Expresion {
 	}
 
 	private int num;
+	
+	public Tipo getTipo() throws UnsuportedOperation {
+		return new Int();
+	}
 }

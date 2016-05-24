@@ -8,5 +8,9 @@ public class True extends Expresion {
 	public TipoE tipo() {
 		return TipoE.TRUE;
 	}
+	
+	public Tipo getTipo() throws UnsuportedOperation {
+			return new Bool();
+	}
 
 }

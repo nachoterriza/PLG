@@ -25,8 +25,12 @@ public class AllTo extends Expresion{
 		return TipoE.ALLTO;
 	}
 	
-	public TipoV getTipo() {
-		return TipoV.ARRAYOF;
+	public Tipo getTipo() throws UnsuportedOperation {
+		if(op1.getTipo()==new Int())
+			return new ArrayOf(num,new Int());
+		else if (op1.getTipo()==new Bool())
+			return new ArrayOf(num,new Bool());
+		else throw new UnsuportedOperation("Configuracion de array con tipo erróneo.");
 	}
 
 	private Expresion op1;
