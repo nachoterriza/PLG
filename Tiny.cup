@@ -1,0 +1,190 @@
+package asint;
+
+
+import java_cup.runtime.*;
+import alex.AnalizadorLexicoTiny;
+import alex.UnidadLexica;
+import errors.GestionErroresTiny;
+import abstree.*;
+import abstree.expresiones.*;
+import abstree.expresiones.Number;
+import abstree.sentencias.*;
+import abstree.tipos.*;
+import java.util.LinkedList;
+import java.util.Hashtable;
+
+scan with {: return getScanner().next_token(); :};
+parser code {: 
+   private GestionErroresTiny errores;
+   public void syntax_error(Symbol unidadLexica) {
+     errores.errorSintactico((UnidadLexica)unidadLexica);
+   }
+:};
+init with {: 
+   errores = new GestionErroresTiny();
+   AnalizadorLexicoTiny alex = (AnalizadorLexicoTiny)getScanner();
+   alex.fijaGestionErrores(errores);
+:};
+
+
+terminal     START, END, METHOD, INPUT, OUTPUT, MAKES, RETURN,
+			IF, THEN, ELSE, WHILE, DO, DONE,
+			CONSIDERING, CHOOSE, VALUE, CHOSEN,
+			CALL, WITH, RECEIVING,
+			
+			ALL, TO, LLAVEA, LLAVEC, COMA, AT,
+			OR, AND, NOT, TRUE, FALSE,
+			EQ, NEQ, LT, GT, LE, GE,
+			MAS, MENOS, POR, DIV, PAP, PCIERRE,
+			IGUAL, SEMICOLON;
+
+terminal	int NUM;
+
+terminal Tipo				INT, BOOL, ARRAYOF;
+terminal String				ID;
+
+non terminal Codigo 		Codigo;
+non terminal Programa 		Programa, Main;
+non terminal Funcion 		Funcion;
+non terminal 
+	LinkedList<Funcion> 	FunList;
+	
+non terminal Declaracion	Declaracion;
+non terminal 
+	LinkedList<Declaracion> Entrada, DeclList;
+	
+non terminal Sentencia 		Sentencia;
+non terminal
+	LinkedList<Sentencia>	SentList;
+	
+non terminal Expresion		E0, E1, E2, E3, E4, E5, E6, E7, E8, Var, Elem;
+non terminal
+	LinkedList<Expresion>	Vars, Array;
+	
+non terminal Tipo			Tipo;
+
+non terminal Hashtable
+	<Integer,Programa> 		Casos;
+			
+
+
+Codigo ::= FunList: fl Main: main			{: RESULT = new Codigo(main, fl); :}
+		;
+FunList ::= Funcion: f FunList: fl			{: fl.add(f); RESULT = fl; :}
+		| /*epsilon*/						{: RESULT = new LinkedList<Funcion>(); :}
+		;
+Main ::= START Programa: p END				{: RESULT = p; :}
+		;
+Funcion ::= METHOD ID: id 
+			INPUT Entrada: entrada 
+			OUTPUT Declaracion: d DeclList: salida 
+			MAKES Programa: prog RETURN 
+											{: salida.add(d); 
+											   RESULT = new Funcion(id, entrada,
+											   				 salida, prog); :}
+		;
+	
+Entrada ::= Tipo: t ID: id SEMICOLON Entrada: dl 	
+											{: dl.add(new Declaracion(t, id, null)); 
+											   RESULT = dl; :}
+		| Tipo: t ID: id SEMICOLON 			{: RESULT = new LinkedList<Declaracion>(); 
+				 							   RESULT.add(new Declaracion(t, id, null)); :}
+		;
+
+
+Programa ::= DeclList: dl SentList: sl 		{: RESULT = new Programa(dl, sl); :}
+		;
+DeclList ::= Declaracion: d DeclList: dl 	{: dl.add(d); RESULT = dl; :}
+		| /*epsilon*/ 						{: RESULT = new LinkedList<Declaracion>(); :}
+		;
+SentList ::= Sentencia: s SentList: sl		{: sl.add(s); RESULT = sl; :}
+		| Sentencia: s						{: RESULT = new LinkedList<Sentencia>(); 
+											   RESULT.add(s); :}
+		;
+Declaracion ::= Tipo: t ID: id IGUAL E0: exp SEMICOLON 
+											{: RESULT = new Declaracion(t, id, exp); :}
+		;
+		
+		
+Tipo ::= INT 								{: RESULT = new Int(); :}
+	| BOOL  								{: RESULT = new Bool(); :}
+	| ARRAYOF NUM: tam Tipo: tipo 			{: RESULT = new ArrayOf(tam, tipo); :}
+	;
+Sentencia ::= Var: var IGUAL E0: e SEMICOLON 		
+											{: RESULT = new Asignacion(var, e); :}
+			| IF E0: cond THEN Programa: codeif DONE 		
+											{: RESULT = new IfThenElse(cond, codeif, null); :}
+			| IF E0: cond THEN Programa: codeif
+			  ELSE Programa: codeelse DONE 
+											{: RESULT = new IfThenElse(cond, codeif, codeelse); :}
+			| CONSIDERING Var: var CHOOSE Casos: casos CHOSEN 
+											{: RESULT = new Choose(var, casos); :}
+			| WHILE E0: cond DO Programa: code DONE 	
+											{: RESULT = new While(cond, code); :}
+			| CALL ID: id WITH Vars: entrada
+			  RECEIVING Vars: salida SEMICOLON 
+											{: RESULT = new Call(id, entrada, salida); :}
+			;
+Casos ::= VALUE NUM: num DO Programa: p DONE Casos: casos
+												{: casos.put(num,p); RESULT = casos; :}
+		| VALUE NUM: num DO Programa: p DONE	{: RESULT = new Hashtable<Integer,Programa>();
+												   RESULT.put(num,p); :}
+		;
+
+Vars ::= Var: v COMA Vars: vl 					{: vl.add(v); 
+												   RESULT = vl; :}
+	| Var:v 									{: RESULT = new LinkedList<Expresion>(); 
+				 								   RESULT.add(v); :}
+	;
+Var ::= ID: id									{: RESULT = new Identificador(id); :}
+	| Var: var AT E8: e 						{: RESULT = new AccessAt(var,e); :}
+	;
+	
+Array ::= Elem: e COMA Array: array 			{: array.add(e); 
+												   RESULT = array; :}
+	| Elem: e 									{: RESULT = new LinkedList<Expresion>(); 
+				 								   RESULT.add(e); :}
+	;
+Elem ::= NUM: num 								{: RESULT = new Number(num); :}
+	| TRUE 										{: RESULT = new True(); :}
+	| FALSE 									{: RESULT = new False(); :}
+	| LLAVEA Array: e LLAVEC 					{: RESULT = new ArrayWithKeys(e); :}
+	;
+
+E0 ::= ALL NUM: num TO E0: e			 		{: RESULT = new AllTo(e, num); :}
+	| E1: e										{: RESULT = e; :}
+	| LLAVEA Array: e LLAVEC 					{: RESULT = new ArrayWithKeys(e); :}
+	;
+E1 ::= E1: e1 OR E2: e2							{: RESULT = new Or(e1,e2); :} 
+	| E2: e										{: RESULT = e; :}
+	;
+E2 ::= E2: e1 AND E3: e2						{: RESULT = new And(e1, e2); :}
+	| E3: e										{: RESULT = e; :}
+	;
+E3 ::= NOT E3: e								{: RESULT = new Not(e); :}
+	| E4: e										{: RESULT = e; :}
+	;
+E4 ::= TRUE 									{: RESULT = new True(); :}
+	| FALSE 									{: RESULT = new False(); :}
+	| E5: e1 EQ E5: e2 							{: RESULT = new Equal(e1,e2); :}
+	| E5: e1 NEQ E5: e2 						{: RESULT = new NotEqual(e1,e2); :}
+	| E5: e1 LT E5: e2 							{: RESULT = new LowerThan(e1,e2); :}
+	| E5: e1 GT E5: e2 							{: RESULT = new GreaterThan(e1,e2); :}
+	| E5: e1 LE E5: e2 							{: RESULT = new LowerOrEqual(e1,e2); :}
+	| E5: e1 GE E5: e2 							{: RESULT = new GreaterOrEqual(e1,e2); :}
+	| E5: e										{: RESULT = e; :}
+	;
+E5 ::= E5: e1 MAS E6: e2 						{: RESULT = new Suma(e1,e2); :}
+	| E5: e1 MENOS E6: e2						{: RESULT = new Resta(e1,e2); :}
+	| E6: e										{: RESULT = e; :}
+	;
+E6 ::= E6: e1 DIV E7: e2 						{: RESULT = new Div(e1,e2); :}
+	| E7: e										{: RESULT = e; :}
+	;
+E7 ::= E7: e1 POR E8: e2 						{: RESULT = new Mult(e1,e2); :}
+	| E8: e										{: RESULT = e; :}
+	;
+E8 ::= NUM: num 								{: RESULT = new Number(num); :}
+	| Var: e 									{: RESULT = e; :}
+	| PAP E0: e PCIERRE							{: RESULT = e; :} 
+	;

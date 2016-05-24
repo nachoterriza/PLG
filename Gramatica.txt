@@ -1,0 +1,85 @@
+===== Terminals =====
+[0]EOF [1]error [2]START [3]END [4]METHOD 
+[5]INPUT [6]OUTPUT [7]MAKES [8]RETURN [9]IF 
+[10]THEN [11]ELSE [12]WHILE [13]DO [14]DONE 
+[15]CONSIDERING [16]CHOOSE [17]VALUE [18]CHOSEN [19]CALL 
+[20]WITH [21]RECEIVING [22]ALL [23]TO [24]LLAVEA 
+[25]LLAVEC [26]COMA [27]AT [28]OR [29]AND 
+[30]NOT [31]TRUE [32]FALSE [33]EQ [34]NEQ 
+[35]LT [36]GT [37]LE [38]GE [39]MAS 
+[40]MENOS [41]POR [42]DIV [43]PAP [44]PCIERRE 
+[45]IGUAL [46]SEMICOLON [47]NUM [48]INT [49]BOOL 
+[50]ARRAYOF [51]ID 
+
+===== Non terminals =====
+[0]Codigo [1]Programa [2]Main [3]Funcion [4]FunList 
+[5]Declaracion [6]Entrada [7]DeclList [8]Sentencia [9]SentList 
+[10]E0 [11]E1 [12]E2 [13]E3 [14]E4 
+[15]E5 [16]E6 [17]E7 [18]E8 [19]Var 
+[20]Elem [21]Vars [22]Array [23]Tipo [24]Casos 
+
+
+===== Productions =====
+[0] Codigo ::= FunList Main 
+[1] $START ::= Codigo EOF 
+[2] FunList ::= Funcion FunList 
+[3] FunList ::= 
+[4] Main ::= START Programa END 
+[5] Funcion ::= METHOD ID INPUT Entrada OUTPUT Declaracion DeclList MAKES Programa RETURN 
+[6] Entrada ::= Tipo ID SEMICOLON Entrada 
+[7] Entrada ::= Tipo ID SEMICOLON 
+[8] Programa ::= DeclList SentList 
+[9] DeclList ::= Declaracion DeclList 
+[10] DeclList ::= 
+[11] SentList ::= Sentencia SentList 
+[12] SentList ::= Sentencia 
+[13] Declaracion ::= Tipo ID IGUAL E0 SEMICOLON 
+[14] Tipo ::= INT 
+[15] Tipo ::= BOOL 
+[16] Tipo ::= ARRAYOF NUM Tipo 
+[17] Sentencia ::= Var IGUAL E0 SEMICOLON 
+[18] Sentencia ::= IF E0 THEN Programa DONE 
+[19] Sentencia ::= IF E0 THEN Programa ELSE Programa DONE 
+[20] Sentencia ::= CONSIDERING Var CHOOSE Casos CHOSEN 
+[21] Sentencia ::= WHILE E0 DO Programa DONE 
+[22] Sentencia ::= CALL ID WITH Vars RECEIVING Vars SEMICOLON 
+[23] Casos ::= VALUE NUM DO Programa DONE Casos 
+[24] Casos ::= VALUE NUM DO Programa DONE 
+[25] Vars ::= Var COMA Vars 
+[26] Vars ::= Var 
+[27] Var ::= ID 
+[28] Var ::= Var AT E8 
+[29] Array ::= Elem COMA Array 
+[30] Array ::= Elem 
+[31] Elem ::= NUM 
+[32] Elem ::= TRUE 
+[33] Elem ::= FALSE 
+[34] Elem ::= LLAVEA Array LLAVEC 
+[35] E0 ::= ALL NUM TO E0 
+[36] E0 ::= E1 
+[37] E0 ::= LLAVEA Array LLAVEC 
+[38] E1 ::= E1 OR E2 
+[39] E1 ::= E2 
+[40] E2 ::= E2 AND E3 
+[41] E2 ::= E3 
+[42] E3 ::= NOT E3 
+[43] E3 ::= E4 
+[44] E4 ::= TRUE 
+[45] E4 ::= FALSE 
+[46] E4 ::= E5 EQ E5 
+[47] E4 ::= E5 NEQ E5 
+[48] E4 ::= E5 LT E5 
+[49] E4 ::= E5 GT E5 
+[50] E4 ::= E5 LE E5 
+[51] E4 ::= E5 GE E5 
+[52] E4 ::= E5 
+[53] E5 ::= E5 MAS E6 
+[54] E5 ::= E5 MENOS E6 
+[55] E5 ::= E6 
+[56] E6 ::= E6 DIV E7 
+[57] E6 ::= E7 
+[58] E7 ::= E7 POR E8 
+[59] E7 ::= E8 
+[60] E8 ::= NUM 
+[61] E8 ::= Var 
+[62] E8 ::= PAP E0 PCIERRE 

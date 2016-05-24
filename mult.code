@@ -1,0 +1,51 @@
+method mult
+takes input
+	array of 10 array of 10 int a;
+	array of 10 array of 10 int b;
+declares output
+	array of 10 array of 10 int c = all 10 to all 10 to 0;
+makes
+	int i = 0;
+	while i < 10 do
+		int j = 0;
+		while j < 10 do
+			int k =0;
+			while k < 10 do
+				c @ i @ j = c@i@j + a@i@k * b@k@j;
+				k = k+1;
+			done;
+			j = j+1;
+		done;
+		i = i + 1;
+	done;
+returns output;
+
+main start
+	array of 10 array of 10 int a = {
+		{5,4,8,10,0,3,8,5,6,9},
+		{5,4,8,10,0,3,8,5,6,9},
+		{5,4,8,10,0,3,8,5,6,9},
+		{5,4,8,10,0,3,8,5,6,9},
+		{5,4,8,10,0,3,8,5,6,9},
+		{5,4,8,10,89,45,2,5,6,9},
+		{5,4,8,10,0,3,8,5,6,9},
+		{5,4,8,10,0,3,8,5,6,9},
+		{5,4,8,10,0,4,8,333,6,9},
+		{5,4,8,10,0,3,8,5,6,9}
+	};
+	array of 10 array of 10 int b = {
+		{5,4,8,10,0,3,8,5,6,9},
+		{5,4,8,10,0,3,8,5,6,9},
+		{5,4,8,10,0,3,8,5,6,9},
+		{5,4,8,10,89,45,2,5,6,9},
+		{5,4,8,10,0,4,8,333,6,9},
+		{5,4,8,10,0,3,8,5,6,9},
+		{5,4,8,10,0,3,8,5,6,9},
+		{5,4,8,10,0,3,8,5,6,9},
+		{5,4,8,10,0,3,8,5,6,9},
+		{5,4,8,10,0,3,8,5,6,9}
+	};
+	array of 10 array of 10 int c = all 10 to all 10 to 0;
+	
+	call mult with a,b receiving c;
+end;
