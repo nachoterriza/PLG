@@ -1,5 +1,9 @@
 package abstree.expresiones;
 
+import abstree.tipos.Bool;
+import abstree.tipos.Tipo;
+import errors.UnsuportedOperation;
+
 
 public class Or extends ExpresionBinaria {
 
@@ -10,6 +14,12 @@ public class Or extends ExpresionBinaria {
 	@Override
 	public TipoE tipo() {
 		return TipoE.OR;
+	}
+	
+	public Tipo getTipo() throws UnsuportedOperation {
+		if(op1.getTipo()==new Bool() && op2.getTipo()==new Bool())
+			return new Bool();
+		else throw new UnsuportedOperation("OR sin Booleanos.");
 	}
 
 }

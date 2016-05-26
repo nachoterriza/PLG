@@ -1,5 +1,6 @@
 package abstree.sentencias;
 
+import resolid.Visitante;
 import abstree.Programa;
 import abstree.expresiones.Expresion;
 import errors.UnsuportedOperation;
@@ -37,6 +38,15 @@ public class IfThenElse extends Sentencia{
 		}
 	}
 	
+	@Override
+	public void accept(Visitante v) {
+		v.visit(this);
+		cond.accept(v);
+		codeif.accept(v);
+		if (codeelse != null)
+			codeelse.accept(v);		
+	}
+
 	private Expresion cond;
 	private Programa codeif;
 	private Programa codeelse;

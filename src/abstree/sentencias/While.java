@@ -1,5 +1,6 @@
 package abstree.sentencias;
 
+import resolid.Visitante;
 import abstree.Programa;
 import abstree.expresiones.Expresion;
 import errors.UnsuportedOperation;
@@ -29,6 +30,13 @@ public class While extends Sentencia {
 		else 	throw new UnsuportedOperation("code "+i);
 	}
 	
+	@Override
+	public void accept(Visitante v) {
+		v.visit(this);
+		cond.accept(v);
+		cond.accept(v);
+	}
+
 	private Expresion cond;
 	private Programa code;
 

@@ -2,11 +2,12 @@ package abstree.sentencias;
 
 import java.util.LinkedList;
 
+import resolid.Anfitrion;
 import abstree.Programa;
 import abstree.expresiones.Expresion;
 import errors.UnsuportedOperation;
 
-public abstract class Sentencia {
+public abstract class Sentencia implements Anfitrion{
 	
 	public abstract TipoS tipo();
 	/**Devuelve el lado izquierdo de la asignacion o del considering del choose*/

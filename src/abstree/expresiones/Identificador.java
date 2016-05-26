@@ -1,6 +1,8 @@
 package abstree.expresiones;
 
+import resolid.Visitante;
 import abstree.Declaracion;
+import abstree.tipos.Tipo;
 import errors.UnsuportedOperation;
 
 //Hay que inicializar la referencia
@@ -26,6 +28,15 @@ public class Identificador extends Expresion {
 		return TipoE.ID;
 	}
 
+	@Override
+	public Tipo getTipo() throws UnsuportedOperation {
+		return ref.getTipo();
+	}
+
 	private String id;
 	private Declaracion ref;
+	@Override
+	public void accept(Visitante v) {
+		v.visit(this);
+	}
 }

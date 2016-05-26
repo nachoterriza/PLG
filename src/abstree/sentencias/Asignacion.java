@@ -1,5 +1,6 @@
 package abstree.sentencias;
 
+import resolid.Visitante;
 import abstree.expresiones.Expresion;
 import errors.UnsuportedOperation;
 
@@ -24,4 +25,11 @@ public class Asignacion extends Sentencia {
 	
 	private Expresion varleft;
 	private Expresion expright;
+	
+	@Override
+	public void accept(Visitante v) {
+		varleft.accept(v);
+		v.visit(this);
+		expright.accept(v);
+	}
 }

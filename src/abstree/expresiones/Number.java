@@ -1,5 +1,8 @@
 package abstree.expresiones;
 
+import resolid.Visitante;
+import abstree.tipos.Int;
+import abstree.tipos.Tipo;
 import errors.UnsuportedOperation;
 
 public class Number extends Expresion {
@@ -19,4 +22,13 @@ public class Number extends Expresion {
 	}
 
 	private int num;
+	
+	public Tipo getTipo() throws UnsuportedOperation {
+		return new Int();
+	}
+
+	@Override
+	public void accept(Visitante v) {
+		v.visit(this);
+	}
 }

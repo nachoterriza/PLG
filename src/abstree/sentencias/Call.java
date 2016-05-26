@@ -2,6 +2,7 @@ package abstree.sentencias;
 
 import java.util.LinkedList;
 
+import resolid.Visitante;
 import abstree.expresiones.Expresion;
 import errors.UnsuportedOperation;
 
@@ -30,6 +31,16 @@ public class Call extends Sentencia {
 	}
 
 	
+	@Override
+	public void accept(Visitante v) {
+		v.visit(this);
+		for(Expresion e: entrada)
+			e.accept(v);
+		for(Expresion e: salida)
+			e.accept(v);
+	}
+
+
 	private String id;
 	private LinkedList<Expresion> entrada;
 	private LinkedList<Expresion> salida;

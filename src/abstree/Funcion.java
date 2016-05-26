@@ -2,7 +2,7 @@ package abstree;
 
 import java.util.LinkedList;
 
-public class Funcion {
+public class Funcion implements Anfitrion{
 	
 	public Funcion(String id, LinkedList<Declaracion> entrada, 
 			LinkedList<Declaracion> salida, Programa programa) {

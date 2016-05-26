@@ -2,6 +2,8 @@ package abstree.expresiones;
 
 import java.util.LinkedList;
 
+import resolid.Visitante;
+import abstree.tipos.Tipo;
 import errors.UnsuportedOperation;
 
 public class ArrayWithKeys extends Expresion {
@@ -26,5 +28,14 @@ public class ArrayWithKeys extends Expresion {
 	}
 	
 	private LinkedList<Expresion> array;
+	
+	public Tipo getTipo() {
+		
+	}
+	@Override
+	public void accept(Visitante v) {
+		for(Expresion e:array)
+			e.accept(v);
+	}
 
 }

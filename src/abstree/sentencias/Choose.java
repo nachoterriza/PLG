@@ -3,6 +3,7 @@ package abstree.sentencias;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+import resolid.Visitante;
 import abstree.Programa;
 import abstree.expresiones.Expresion;
 import errors.UnsuportedOperation;
@@ -44,6 +45,19 @@ public class Choose extends Sentencia {
 			return code;
 	}
 	
+
+	@Override
+	public void accept(Visitante v) {
+		v.visit(this);
+		var.accept(v);
+		Enumeration<Programa> list = casos.elements();
+		Programa p;
+		while(list.hasMoreElements()) {
+			p = list.nextElement();
+			p.accept(v);
+		}
+	}
+
 
 	private Expresion var;
 	private Hashtable<Integer,Programa> casos;

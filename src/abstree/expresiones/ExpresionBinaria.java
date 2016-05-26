@@ -1,5 +1,6 @@
 package abstree.expresiones;
 
+import resolid.Visitante;
 import errors.UnsuportedOperation;
 
 public abstract class ExpresionBinaria extends Expresion{
@@ -18,6 +19,19 @@ public abstract class ExpresionBinaria extends Expresion{
 		return op2;
 	}
 	
-	private Expresion op1;
-	private Expresion op2;
+	@Override
+	public void accept(Visitante v) {
+		op1.accept(v);
+		v.visit(this);
+		op2.accept(v);
+		
+	}
+	
+	//public abstract String getOperator();
+	public  String getOperator(){
+		return tipo().toString();
+	}
+	
+	protected Expresion op1;
+	protected Expresion op2;
 }
