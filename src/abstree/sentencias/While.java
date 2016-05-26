@@ -29,6 +29,12 @@ public class While extends Sentencia {
 		else 	throw new UnsuportedOperation("code "+i);
 	}
 	
+	public boolean checkTipo() throws UnsuportedOperation {
+		if(cond.getTipo()==new Bool())
+			return true;
+		else throw new UnsuportedOperation("Condición no booleana en bucle while.")
+	}
+	
 	private Expresion cond;
 	private Programa code;
 

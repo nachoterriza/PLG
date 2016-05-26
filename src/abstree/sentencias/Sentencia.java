@@ -14,7 +14,7 @@ public abstract class Sentencia {
 	/**Devuelve la expresion de la derecha de la asignacion, o de la condicion del if o while*/
 	public Expresion exp() throws UnsuportedOperation {throw new UnsuportedOperation("exp");}
 	/**
-	 * Devuelve el código del programa, ya sea para if, while o choose
+	 * Devuelve el cï¿½digo del programa, ya sea para if, while o choose
 	 * @param i 
 	 * <ul>
 	 * <li>0 = codigo del if y del while
@@ -22,14 +22,15 @@ public abstract class Sentencia {
 	 * <li>n = codigo de "value n do" del choose
 	 * </ul>
 	 * @return
-	 * @throws UnsuportedOperation En caso de que la operacion no esté soportada o
-	 * el parámetro no sea correcto
+	 * @throws UnsuportedOperation En caso de que la operacion no estï¿½ soportada o
+	 * el parï¿½metro no sea correcto
 	 */
 	public Programa codeAt(int i) throws UnsuportedOperation {throw new UnsuportedOperation("code "+i);}
-	/**Devuelve el maximo valor de n en los casos del choose (0 es el mínimo siempre)*/
+	/**Devuelve el maximo valor de n en los casos del choose (0 es el mï¿½nimo siempre)*/
 	public int codeNum() throws UnsuportedOperation {throw new UnsuportedOperation("codenum");}
 	
 	public String functionID() throws UnsuportedOperation {throw new UnsuportedOperation("functionID");}
+	
 	public LinkedList<Expresion> entrada() throws UnsuportedOperation {throw new UnsuportedOperation("entrada");}
 	public LinkedList<Expresion> salida() throws UnsuportedOperation {throw new UnsuportedOperation("salida");}
 }

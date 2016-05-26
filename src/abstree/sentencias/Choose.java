@@ -44,6 +44,19 @@ public class Choose extends Sentencia {
 			return code;
 	}
 	
+	public boolean checkTipo() throws UnsuportedOperation {
+		if(var.getTipo()==new Int()) {
+			Enumeration pCasos = casos.keys();
+			boolean correct = true:
+			while(pCasos.hasMoreElements()) {
+				Programa codigo = pCasos.NextElement();
+				correct = correct && casos.get(codigo).checkTipo();
+			}
+			if(correct)
+				return true;
+			else throw new UnsuportedOperation("Error en el código de CHOOSE.");
+		} else throw new UnsuportedOperation("CHOOSE de índice no entero.");
+	}
 
 	private Expresion var;
 	private Hashtable<Integer,Programa> casos;

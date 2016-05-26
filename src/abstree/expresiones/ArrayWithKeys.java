@@ -27,8 +27,8 @@ public class ArrayWithKeys extends Expresion {
 	
 	private LinkedList<Expresion> array;
 	
-	public Tipo getTipo() {
-		
+	public Tipo getTipo() throws UnsuportedOperation {
+		return Expresion.getTipo();
 	}
 
 }

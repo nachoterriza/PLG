@@ -14,4 +14,8 @@ public class Declaracion {
 	private Tipo tipo;
 	private String id;
 	private Expresion valor;
+	
+	public Expresion getValor() {
+		return valor;
+	}
 }

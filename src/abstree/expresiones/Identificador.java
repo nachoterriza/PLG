@@ -25,6 +25,10 @@ public class Identificador extends Expresion {
 	public TipoE tipo() {
 		return TipoE.ID;
 	}
+	
+	public getTipo() throws UnsuportedOperation {
+		return ref().getTipo();
+	}
 
 	private String id;
 	private Declaracion ref;
