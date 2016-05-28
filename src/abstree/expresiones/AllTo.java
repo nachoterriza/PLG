@@ -36,6 +36,7 @@ public class AllTo extends Expresion{
 		else if (op1.getTipo()==new Bool())
 			return new ArrayOf(num,new Bool());
 		else throw new UnsuportedOperation("Configuracion de array con tipo erróneo.");
+
 	}
 
 	@Override

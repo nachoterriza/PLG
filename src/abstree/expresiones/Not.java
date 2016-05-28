@@ -22,9 +22,11 @@ public class Not extends ExpresionUnaria {
 		else throw new UnsuportedOperation("Not sin booleanos.");
 	}
 
+
 	@Override
 	public String getOperator() {
 		return "NOT";
 	}
+
 
 }

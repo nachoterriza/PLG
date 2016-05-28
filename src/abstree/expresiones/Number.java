@@ -27,8 +27,10 @@ public class Number extends Expresion {
 		return new Int();
 	}
 
+
 	@Override
 	public void accept(Visitante v) {
 		v.visit(this);
 	}
+
 }

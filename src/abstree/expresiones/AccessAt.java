@@ -31,9 +31,4 @@ public class AccessAt extends ExpresionBinaria {
 			throw new UnsuportedOperation("Array de tipo erroneo.");
 	}
 
-	@Override
-	public String getOperator() {
-		return "@";
-	}
-
 }
