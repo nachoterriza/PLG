@@ -2,6 +2,9 @@ package abstree.sentencias;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import resolid.Visitante;
 import abstree.Programa;
@@ -48,14 +51,16 @@ public class Choose extends Sentencia {
 
 	@Override
 	public void accept(Visitante v) {
-		v.visit(this);
+		v.previsit(this);
 		var.accept(v);
-		Enumeration<Programa> list = casos.elements();
-		Programa p;
-		while(list.hasMoreElements()) {
-			p = list.nextElement();
-			p.accept(v);
+		Iterator<Entry<Integer,Programa>> it = casos.entrySet().iterator();
+		Entry<Integer,Programa> e;
+		while(it.hasNext()) {
+			e = it.next();
+			v.visit(e.getKey());
+			e.getValue().accept(v);
 		}
+		v.postvisit(this);
 	}
 
 

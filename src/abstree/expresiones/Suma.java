@@ -1,6 +1,5 @@
 package abstree.expresiones;
 
-import resolid.Visitante;
 import abstree.tipos.Int;
 import abstree.tipos.Tipo;
 import errors.UnsuportedOperation;

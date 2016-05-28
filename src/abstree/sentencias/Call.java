@@ -33,11 +33,13 @@ public class Call extends Sentencia {
 	
 	@Override
 	public void accept(Visitante v) {
-		v.visit(this);
+		v.previsit(this);
+		v.visit(id);
 		for(Expresion e: entrada)
 			e.accept(v);
 		for(Expresion e: salida)
 			e.accept(v);
+		v.postvisit(this);
 	}
 
 

@@ -1,0 +1,69 @@
+method suma
+takes input int a; int b;
+declares output int c = 0;
+makes
+	c = c + a;
+	c = c + b;
+	c = (c + a + b)*0;
+	c = a + b;
+returns output;
+
+method getAt
+takes input array of 3 int a;
+			array of 3 bool b;
+			array of 3 array of 3 int c;
+			array of 3 array of 3 bool d;
+			int get; int getbis;
+declares output int x = 10; 
+				bool y = FALSE; 
+				int z = getbis + get * c@((getbis+get)/2)@(c@get@getbis); 
+				bool w = d@(a@get)@(c@0@0) AND NOT b@0 OR d@2 AND NOT b@2;
+makes
+	int aux = 0;
+	int auxb = 45 + x;
+	considering get choose
+		value 0 do x = x + z + a@0; done;
+		value 1 do
+				int aux = 55;
+				int auxc = a@1;
+				x = aux + auxb - auxc;
+			done;
+		value 2 do 
+				int auxd = auxb - x;
+				int auxe = aux;
+				while auxd > 0 do
+					aux = aux + x;
+					auxd = auxd -auxe;
+				done;
+				x = auxd + auxe +aux + c@2@2;
+			done;
+	chosen;
+	call suma with z, x receiving z;
+returns output;
+
+main start
+	array of 3 int a = {0,1,2};
+	array of 3 bool b = all 3 to TRUE;
+	array of 3 array of 3 int c = { {1,2,3},
+									{4,5,6},
+									{7,8,9} };
+	array of 3 array of 3 bool d = all 3 to all 3 to FALSE;
+	int get = 0;
+	int getbis = a@1;
+	
+	while c@2@2 > 0 do
+		c@2@2 = c@2@2 - c@1@1;
+		a@1 = a@1 + c@0@0;
+	done;
+	
+	call suma with a@1, a@2 receiving c@0@2;
+	call getAt with a,b, c,d,get,getbis receiving a@1, b@0, c@(get-1)@0, d@(a@0)@((get+getbis-1)/2);
+	
+	if b@0 then
+		a@1 = 0;
+	else
+		a@2 = 0;
+	done;
+end;
+		
+		

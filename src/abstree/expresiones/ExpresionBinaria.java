@@ -21,9 +21,11 @@ public abstract class ExpresionBinaria extends Expresion{
 	
 	@Override
 	public void accept(Visitante v) {
+		v.previsit(this);
 		op1.accept(v);
-		v.visit(this);
+		
 		op2.accept(v);
+		v.postvisit(this);
 		
 	}
 	

@@ -40,11 +40,12 @@ public class IfThenElse extends Sentencia{
 	
 	@Override
 	public void accept(Visitante v) {
-		v.visit(this);
+		v.previsit(this);
 		cond.accept(v);
 		codeif.accept(v);
 		if (codeelse != null)
-			codeelse.accept(v);		
+			codeelse.accept(v);	
+		v.postvisit(this);
 	}
 
 	private Expresion cond;

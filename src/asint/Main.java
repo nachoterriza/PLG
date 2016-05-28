@@ -9,12 +9,12 @@ import alex.AnalizadorLexicoTiny;
 
 public class Main {
    public static void main(String[] args) throws Exception {
-     Reader input = new InputStreamReader(new FileInputStream("maximo.code"));
+     Reader input = new InputStreamReader(new FileInputStream("absurdo.code"));
 	 AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
 	 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
 	 asint.setScanner(alex);
 	 Symbol s = asint.parse();
-	 System.out.println(""+ s.left
+	/* System.out.println(""+ s.left
 			 + s.right
 			 + s.sym
 			 + s.parse_state
@@ -24,7 +24,7 @@ public class Main {
 			 + terminalNames[s.sym]
 			 + terminalNames[s.parse_state]
 			 + s.value);
-	 
+	 */
 	 
    }
    

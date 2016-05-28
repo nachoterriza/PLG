@@ -32,9 +32,10 @@ public class While extends Sentencia {
 	
 	@Override
 	public void accept(Visitante v) {
-		v.visit(this);
+		v.previsit(this);
 		cond.accept(v);
-		cond.accept(v);
+		code.accept(v);
+		v.postvisit(this);
 	}
 
 	private Expresion cond;

@@ -15,8 +15,9 @@ public abstract class ExpresionUnaria extends Expresion{
 	
 	@Override
 	public void accept(Visitante v) {
-		v.visit(this);	
+		v.previsit(this);	
 		op1.accept(v);
+		v.postvisit(this);
 	}
 	
 	public abstract String getOperator();

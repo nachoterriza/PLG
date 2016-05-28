@@ -38,12 +38,15 @@ public class AllTo extends Expresion{
 		else throw new UnsuportedOperation("Configuracion de array con tipo erróneo.");
 	}
 
-	private Expresion op1;
-	private int num;
 	@Override
 	public void accept(Visitante v) {
-		// TODO Auto-generated method stub
-		
+		v.previsit(this);
+		v.visit(num);
+		op1.accept(v);
+		v.postvisit(this);
 	}
+
+	private Expresion op1;
+	private int num;
 
 }

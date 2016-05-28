@@ -28,8 +28,9 @@ public class Asignacion extends Sentencia {
 	
 	@Override
 	public void accept(Visitante v) {
+		v.previsit(this);
 		varleft.accept(v);
-		v.visit(this);
 		expright.accept(v);
+		v.postvisit(this);
 	}
 }
