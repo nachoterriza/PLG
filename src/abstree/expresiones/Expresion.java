@@ -12,5 +12,5 @@ public abstract class Expresion {
 	/**Devuelve la referencia a la declaracion de la variable*/
 	public Declaracion ref() throws UnsuportedOperation {throw new UnsuportedOperation("ref");}
 	public Expresion elemAt(int i) throws UnsuportedOperation {throw new UnsuportedOperation("elemAt" +i);}
-	public abstract Tipo getTipo() throws UnsuportedOperation {throw new UnsoportedOperation();}
+	public abstract Tipo getTipo() throws UnsuportedOperation {throw new UnsoportedOperation("Error de tipo");}
 }

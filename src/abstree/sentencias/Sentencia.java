@@ -31,6 +31,8 @@ public abstract class Sentencia {
 	
 	public String functionID() throws UnsuportedOperation {throw new UnsuportedOperation("functionID");}
 	
+	public abstract boolean checkTipo() throws UnsuportedOperation {throw new UnsuportedOperation("Tipos incorrectos.");
+	
 	public LinkedList<Expresion> entrada() throws UnsuportedOperation {throw new UnsuportedOperation("entrada");}
 	public LinkedList<Expresion> salida() throws UnsuportedOperation {throw new UnsuportedOperation("salida");}
 }
