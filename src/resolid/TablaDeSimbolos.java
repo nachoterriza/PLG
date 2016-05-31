@@ -6,19 +6,21 @@ import java.util.Stack;
 
 import errors.IdentifyingIdException;
 import abstree.Declaracion;
+import abstree.Funcion;
 
 public class TablaDeSimbolos {
 
 	public TablaDeSimbolos(){
 		this.ptBloques = new Stack<Hashtable<String,Declaracion>>();
 		this.tpIds = new Hashtable<String,Stack<Declaracion>>();
+		this.tFunciones = new Hashtable<String,Funcion>();
 	}
 	
-	public void abreBloque(){
+	public void abreBloqueV(){
 		this.ptBloques.add(new Hashtable<String,Declaracion>());
 	}
 	
-	public void cierraBloque(){
+	public void cierraBloqueV(){
 		Enumeration<String> idlist = ptBloques.peek().keys();
 		String id;
 		while(idlist.hasMoreElements()){
@@ -28,25 +30,45 @@ public class TablaDeSimbolos {
 		ptBloques.pop();
 	}
 	
-	public void insertaId(String id, Declaracion decl) throws IdentifyingIdException {
+	public void insertaIdV(String id, Declaracion decl) throws IdentifyingIdException {
 		if(ptBloques.peek().contains(id)){
-			throw new IdentifyingIdException("Identificador "+ id 
-					+ " ya declarado");
+			throw new IdentifyingIdException("Variable "+ id 
+					+ " ya declarada");
 		}
 		else {
 			ptBloques.peek().put(id, decl);
 			Stack<Declaracion> stack = tpIds.get(id);
+			if (stack == null)
+				stack = new Stack<Declaracion>();
 			stack.push(decl);
 			tpIds.put(id, stack);
 		}			
 	}
 	
-	public Declaracion buscaId(int id) throws IdentifyingIdException {
+	public void insertaIdF(String id, Funcion decl) throws IdentifyingIdException {
+		if(tFunciones.contains(id)){
+			throw new IdentifyingIdException("Funcion "+ id 
+					+ " ya declarada");
+		}
+		else {
+			tFunciones.put(id, decl);
+		}			
+	}
+	
+	public Declaracion buscaIdV(String id) throws IdentifyingIdException {
 		if(tpIds.containsKey(id))
 			return tpIds.get(id).peek();
 		else 
-			throw new IdentifyingIdException("Identificador "+ id 
-					+ " no declarado");
+			throw new IdentifyingIdException("Variable "+ id 
+					+ " no declarada");
+	}
+	
+	public Funcion buscaIdF(String id) throws IdentifyingIdException {
+		if(tFunciones.containsKey(id))
+			return tFunciones.get(id);
+		else 
+			throw new IdentifyingIdException("Funcion "+ id 
+					+ " no declarada");
 	}
 	
 	/**Pila de tablas <id,referencia al arbol abstracto>.
@@ -59,4 +81,14 @@ public class TablaDeSimbolos {
 	 * siendo la cima el bloque mas interno
 	 */
 	private Hashtable<String,Stack<Declaracion>> tpIds;
+	
+	/** Tabla de <id, Funcion>. Al estar todas las funciones en el nivel
+	 * 0, no es necesario crear una tabla de plias o una plia de tablas.
+	 * Además, las declaraciones de funciones no se pueden mezclar con las 
+	 * de variables (las funciones siempre están en el bloque 0 y las
+	 * variables del 1 en adelante. Se podría integrar esta tabla en las otras
+	 * pero evitamos así mezclar ambas cosas
+	 * 
+	 */
+	private Hashtable<String,Funcion> tFunciones;
 }

@@ -25,9 +25,11 @@ import abstree.tipos.Int;
 public class PrettyPrinter implements Visitante {
 	
 	private int depth;
+	private boolean printDeclaraciones;
 
-	public PrettyPrinter(){
+	public PrettyPrinter(boolean printDeclaraciones){
 		this.depth = 0;
+		this.printDeclaraciones = printDeclaraciones;
 	}
 	
 	private void printDepth(){
@@ -146,9 +148,16 @@ public class PrettyPrinter implements Visitante {
 
 	@Override
 	public void visit(Identificador node) {
-		printDepth();
 		try {
+			printDepth();
 			System.out.println(node.id());
+			if (printDeclaraciones) {
+				depth++;
+				printDepth();
+				System.out.println("<REF>");
+				node.ref().accept(this);
+				depth--;
+			}
 		} catch (UnsuportedOperation e) {
 			e.printStackTrace();
 		}
@@ -173,8 +182,19 @@ public class PrettyPrinter implements Visitante {
 
 	@Override
 	public void previsit(Call node) {
-		printDepth();
-		System.out.println("Call");
+		try {
+			printDepth();
+			System.out.println("Call");
+			if (printDeclaraciones) {
+				depth++;
+				printDepth();
+				System.out.println("<REF>");
+				node.getRef().accept(this);
+				depth--;
+			}
+		} catch (UnsuportedOperation e) {
+			e.printStackTrace();
+		}
 		depth++;
 	}
 

@@ -3,6 +3,7 @@ package abstree.sentencias;
 import java.util.LinkedList;
 
 import resolid.Visitante;
+import abstree.Funcion;
 import abstree.expresiones.Expresion;
 import errors.UnsuportedOperation;
 
@@ -29,6 +30,13 @@ public class Call extends Sentencia {
 	public LinkedList<Expresion> salida() throws UnsuportedOperation {
 		return salida;
 	}
+	
+	public Funcion getRef() throws UnsuportedOperation {
+		return ref;
+	}
+	public void setRef(Funcion ref) throws UnsuportedOperation {
+		this.ref = ref;
+	}
 
 	
 	@Override
@@ -46,5 +54,6 @@ public class Call extends Sentencia {
 	private String id;
 	private LinkedList<Expresion> entrada;
 	private LinkedList<Expresion> salida;
+	private Funcion ref;
 
 }

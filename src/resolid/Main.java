@@ -11,7 +11,7 @@ import asint.AnalizadorSintacticoTiny;
 
 public class Main {
    public static void main(String[] args) throws Exception {
-     Reader input = new InputStreamReader(new FileInputStream("absurdo.code"));
+     Reader input = new InputStreamReader(new FileInputStream("anidar.code"));
 	 AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
 	 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
 	 asint.setScanner(alex);
@@ -19,7 +19,11 @@ public class Main {
 	 
 	 
 	 Codigo codetree = (Codigo) s.value;
-	 PrettyPrinter pp = new PrettyPrinter();
+
+	 ResolID resolid = new ResolID();
+	 codetree.accept(resolid);
+	 System.out.println(" - resolucion de identificadores completada - ");
+	 PrettyPrinter pp = new PrettyPrinter(true);
 	 codetree.accept(pp);
    }
 

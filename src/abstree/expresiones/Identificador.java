@@ -21,6 +21,11 @@ public class Identificador extends Expresion {
 	public Declaracion ref() throws UnsuportedOperation {
 		return ref;
 	}
+	
+	@Override
+	public void setRef(Declaracion ref) throws UnsuportedOperation {
+		this.ref = ref;
+	}
 
 	
 	@Override
@@ -33,10 +38,11 @@ public class Identificador extends Expresion {
 		return ref.getTipo();
 	}
 
-	private String id;
-	private Declaracion ref;
 	@Override
 	public void accept(Visitante v) {
 		v.visit(this);
 	}
+
+	private String id;
+	private Declaracion ref;
 }

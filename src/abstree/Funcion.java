@@ -15,6 +15,10 @@ public class Funcion implements Anfitrion{
 		this.programa = programa;
 	}
 
+	public String getId() {
+		return id;
+	}
+	
 	@Override
 	public void accept(Visitante v) {
 		v.previsit(this);

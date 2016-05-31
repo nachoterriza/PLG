@@ -13,6 +13,7 @@ public abstract class Expresion implements Anfitrion{
 	public String id() throws UnsuportedOperation {throw new UnsuportedOperation("id");}
 	/**Devuelve la referencia a la declaracion de la variable*/
 	public Declaracion ref() throws UnsuportedOperation {throw new UnsuportedOperation("ref");}
+	public void setRef(Declaracion ref) throws UnsuportedOperation {throw new UnsuportedOperation("setRef");}
 	public Expresion elemAt(int i) throws UnsuportedOperation {throw new UnsuportedOperation("elemAt" +i);}
 	public abstract Tipo getTipo() throws UnsuportedOperation;
 }

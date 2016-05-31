@@ -18,7 +18,7 @@ public class And extends ExpresionBinaria {
 	
 	public Tipo getTipo() throws UnsuportedOperation {
 
-		if(op1.getTipo()==TipoV.BOOL && op2.getTipo()==TipoV.BOOL)
+		if(op1.getTipo()== new Bool() && op2.getTipo()== new Bool())
 			return new Bool();
 		else throw new UnsuportedOperation("Operacion AND entre tipos no Booleanos.");
 	}

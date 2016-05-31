@@ -24,8 +24,14 @@ import abstree.tipos.Int;
 
 /** Esta clase permite aplicar operaciones sobre los nodos del
  * arbol abstracto, despreocupandose de su estructura.
- * sería el anfotión el que se preocupe de recorrer el arbol
- * mediante accept()
+ * sería el anfitrión el que se preocupe de recorrer el arbol
+ * mediante accept()<br>
+ * El arbol se recorre en profundidad, de manera que para cada nodo
+ * <ul>
+ * <li> Si es un nodo hoja, se hace un visit() del nodo
+ * <li> Si es un nodo interno, se hace un previsit() del nodo,
+ * se visitan todos sus hijos y despues se hace un postvisit() del nodo
+ * </ul>
  */
 public interface Visitante {
 	
