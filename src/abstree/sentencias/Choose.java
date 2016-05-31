@@ -2,7 +2,11 @@ package abstree.sentencias;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
 
+import resolid.Visitante;
 import abstree.Programa;
 import abstree.expresiones.Expresion;
 import errors.UnsuportedOperation;
@@ -57,6 +61,21 @@ public class Choose extends Sentencia {
 			else throw new UnsuportedOperation("Error en el código de CHOOSE.");
 		} else throw new UnsuportedOperation("CHOOSE de índice no entero.");
 	}
+
+	@Override
+	public void accept(Visitante v) {
+		v.previsit(this);
+		var.accept(v);
+		Iterator<Entry<Integer,Programa>> it = casos.entrySet().iterator();
+		Entry<Integer,Programa> e;
+		while(it.hasNext()) {
+			e = it.next();
+			v.visit(e.getKey());
+			e.getValue().accept(v);
+		}
+		v.postvisit(this);
+	}
+
 
 	private Expresion var;
 	private Hashtable<Integer,Programa> casos;

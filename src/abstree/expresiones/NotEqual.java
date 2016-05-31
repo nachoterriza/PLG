@@ -1,5 +1,9 @@
 package abstree.expresiones;
 
+import abstree.tipos.Bool;
+import abstree.tipos.Tipo;
+import errors.UnsuportedOperation;
+
 public class NotEqual extends ExpresionBinaria{
 
 	public NotEqual(Expresion op1, Expresion op2) {

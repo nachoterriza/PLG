@@ -1,5 +1,9 @@
 package abstree.expresiones;
 
+import abstree.tipos.Bool;
+import abstree.tipos.Tipo;
+import errors.UnsuportedOperation;
+
 
 public class Or extends ExpresionBinaria {
 

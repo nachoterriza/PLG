@@ -1,5 +1,7 @@
 package abstree.tipos;
 
-public abstract class Tipo {
+import resolid.Anfitrion;
+
+public abstract class Tipo implements Anfitrion{
 
 }

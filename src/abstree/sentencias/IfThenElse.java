@@ -1,5 +1,6 @@
 package abstree.sentencias;
 
+import resolid.Visitante;
 import abstree.Programa;
 import abstree.expresiones.Expresion;
 import errors.UnsuportedOperation;
@@ -37,6 +38,17 @@ public class IfThenElse extends Sentencia{
 		}
 	}
 	
+	@Override
+	public void accept(Visitante v) {
+		v.previsit(this);
+		cond.accept(v);
+		codeif.accept(v);
+		if (codeelse != null)
+			codeelse.accept(v);	
+		v.postvisit(this);
+	}
+
+
 	public boolean checkTipo() throws UnsuportedOperation {
 		if(codeif.checkTipo() && codeelse.checkTipo())
 			if(cond.getTipo()==new Bool()) {
@@ -45,6 +57,7 @@ public class IfThenElse extends Sentencia{
 		else return false;
 	}
 	
+
 	private Expresion cond;
 	private Programa codeif;
 	private Programa codeelse;

@@ -1,5 +1,6 @@
 package abstree.expresiones;
 
+import resolid.Visitante;
 import errors.UnsuportedOperation;
 
 public abstract class ExpresionUnaria extends Expresion{
@@ -12,5 +13,14 @@ public abstract class ExpresionUnaria extends Expresion{
 		return op1;
 	}
 	
-	private Expresion op1;
+	@Override
+	public void accept(Visitante v) {
+		v.previsit(this);	
+		op1.accept(v);
+		v.postvisit(this);
+	}
+	
+	public abstract String getOperator();
+	
+	protected Expresion op1;
 }

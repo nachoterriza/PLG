@@ -2,11 +2,13 @@ package abstree.sentencias;
 
 import java.util.LinkedList;
 
+import resolid.Anfitrion;
+import abstree.Funcion;
 import abstree.Programa;
 import abstree.expresiones.Expresion;
 import errors.UnsuportedOperation;
 
-public abstract class Sentencia {
+public abstract class Sentencia implements Anfitrion{
 	
 	public abstract TipoS tipo();
 	/**Devuelve el lado izquierdo de la asignacion o del considering del choose*/
@@ -28,6 +30,10 @@ public abstract class Sentencia {
 	public Programa codeAt(int i) throws UnsuportedOperation {throw new UnsuportedOperation("code "+i);}
 	/**Devuelve el maximo valor de n en los casos del choose (0 es el m�nimo siempre)*/
 	public int codeNum() throws UnsuportedOperation {throw new UnsuportedOperation("codenum");}
+	
+	
+	public Funcion getRef() throws UnsuportedOperation {throw new UnsuportedOperation("functionRef");}
+	public void setRef(Funcion ref) throws UnsuportedOperation {throw new UnsuportedOperation("functionRef");}
 	
 	public String functionID() throws UnsuportedOperation {throw new UnsuportedOperation("functionID");}
 	

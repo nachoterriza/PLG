@@ -1,5 +1,9 @@
 package abstree.expresiones;
 
+import abstree.tipos.Int;
+import abstree.tipos.Tipo;
+import errors.UnsuportedOperation;
+
 
 public class Resta extends ExpresionBinaria {
 

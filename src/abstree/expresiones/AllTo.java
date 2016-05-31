@@ -1,5 +1,10 @@
 package abstree.expresiones;
 
+import resolid.Visitante;
+import abstree.tipos.ArrayOf;
+import abstree.tipos.Bool;
+import abstree.tipos.Int;
+import abstree.tipos.Tipo;
 import errors.UnsuportedOperation;
 
 public class AllTo extends Expresion{
@@ -31,6 +36,15 @@ public class AllTo extends Expresion{
 		else if (op1.getTipo()==new Bool())
 			return new ArrayOf(num,new Bool());
 		else throw new UnsuportedOperation("Configuracion de array con tipo erróneo.");
+
+	}
+
+	@Override
+	public void accept(Visitante v) {
+		v.previsit(this);
+		v.visit(num);
+		op1.accept(v);
+		v.postvisit(this);
 	}
 
 	private Expresion op1;

@@ -1,5 +1,9 @@
 package abstree.expresiones;
 
+import abstree.tipos.Bool;
+import abstree.tipos.Tipo;
+import errors.UnsuportedOperation;
+
 
 public class Not extends ExpresionUnaria {
 
@@ -17,5 +21,12 @@ public class Not extends ExpresionUnaria {
 			return new Bool();
 		else throw new UnsuportedOperation("Not sin booleanos.");
 	}
+
+
+	@Override
+	public String getOperator() {
+		return "NOT";
+	}
+
 
 }

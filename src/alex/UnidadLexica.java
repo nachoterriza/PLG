@@ -2,6 +2,7 @@ package alex;
 
 import java_cup.runtime.Symbol;
 
+
 public class UnidadLexica extends Symbol {
    private int fila;
    public UnidadLexica(int fila, int clase, String lexema) {

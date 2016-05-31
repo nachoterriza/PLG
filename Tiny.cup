@@ -12,6 +12,7 @@ import abstree.sentencias.*;
 import abstree.tipos.*;
 import java.util.LinkedList;
 import java.util.Hashtable;
+import java.lang.Integer;
 
 scan with {: return getScanner().next_token(); :};
 parser code {: 
@@ -38,7 +39,7 @@ terminal     START, END, METHOD, INPUT, OUTPUT, MAKES, RETURN,
 			MAS, MENOS, POR, DIV, PAP, PCIERRE,
 			IGUAL, SEMICOLON;
 
-terminal	int NUM;
+terminal	String NUM;
 
 terminal Tipo				INT, BOOL, ARRAYOF;
 terminal String				ID;
@@ -70,7 +71,7 @@ non terminal Hashtable
 
 Codigo ::= FunList: fl Main: main			{: RESULT = new Codigo(main, fl); :}
 		;
-FunList ::= Funcion: f FunList: fl			{: fl.add(f); RESULT = fl; :}
+FunList ::= Funcion: f FunList: fl			{: fl.addFirst(f); RESULT = fl; :}
 		| /*epsilon*/						{: RESULT = new LinkedList<Funcion>(); :}
 		;
 Main ::= START Programa: p END				{: RESULT = p; :}
@@ -79,27 +80,27 @@ Funcion ::= METHOD ID: id
 			INPUT Entrada: entrada 
 			OUTPUT Declaracion: d DeclList: salida 
 			MAKES Programa: prog RETURN 
-											{: salida.add(d); 
+											{: salida.addFirst(d); 
 											   RESULT = new Funcion(id, entrada,
 											   				 salida, prog); :}
 		;
 	
 Entrada ::= Tipo: t ID: id SEMICOLON Entrada: dl 	
-											{: dl.add(new Declaracion(t, id, null)); 
+											{: dl.addFirst(new Declaracion(t, id, null)); 
 											   RESULT = dl; :}
 		| Tipo: t ID: id SEMICOLON 			{: RESULT = new LinkedList<Declaracion>(); 
-				 							   RESULT.add(new Declaracion(t, id, null)); :}
+				 							   RESULT.addFirst(new Declaracion(t, id, null)); :}
 		;
 
 
 Programa ::= DeclList: dl SentList: sl 		{: RESULT = new Programa(dl, sl); :}
 		;
-DeclList ::= Declaracion: d DeclList: dl 	{: dl.add(d); RESULT = dl; :}
+DeclList ::= Declaracion: d DeclList: dl 	{: dl.addFirst(d); RESULT = dl; :}
 		| /*epsilon*/ 						{: RESULT = new LinkedList<Declaracion>(); :}
 		;
-SentList ::= Sentencia: s SentList: sl		{: sl.add(s); RESULT = sl; :}
+SentList ::= Sentencia: s SentList: sl		{: sl.addFirst(s); RESULT = sl; :}
 		| Sentencia: s						{: RESULT = new LinkedList<Sentencia>(); 
-											   RESULT.add(s); :}
+											   RESULT.addFirst(s); :}
 		;
 Declaracion ::= Tipo: t ID: id IGUAL E0: exp SEMICOLON 
 											{: RESULT = new Declaracion(t, id, exp); :}
@@ -108,7 +109,7 @@ Declaracion ::= Tipo: t ID: id IGUAL E0: exp SEMICOLON
 		
 Tipo ::= INT 								{: RESULT = new Int(); :}
 	| BOOL  								{: RESULT = new Bool(); :}
-	| ARRAYOF NUM: tam Tipo: tipo 			{: RESULT = new ArrayOf(tam, tipo); :}
+	| ARRAYOF NUM: tam Tipo: tipo 			{: RESULT = new ArrayOf(Integer.parseInt(tam), tipo); :}
 	;
 Sentencia ::= Var: var IGUAL E0: e SEMICOLON 		
 											{: RESULT = new Asignacion(var, e); :}
@@ -126,32 +127,32 @@ Sentencia ::= Var: var IGUAL E0: e SEMICOLON
 											{: RESULT = new Call(id, entrada, salida); :}
 			;
 Casos ::= VALUE NUM: num DO Programa: p DONE Casos: casos
-												{: casos.put(num,p); RESULT = casos; :}
+												{: casos.put(Integer.parseInt(num),p); RESULT = casos; :}
 		| VALUE NUM: num DO Programa: p DONE	{: RESULT = new Hashtable<Integer,Programa>();
-												   RESULT.put(num,p); :}
+												   RESULT.put(Integer.parseInt(num),p); :}
 		;
 
-Vars ::= Var: v COMA Vars: vl 					{: vl.add(v); 
+Vars ::= Var: v COMA Vars: vl 					{: vl.addFirst(v); 
 												   RESULT = vl; :}
 	| Var:v 									{: RESULT = new LinkedList<Expresion>(); 
-				 								   RESULT.add(v); :}
+				 								   RESULT.addFirst(v); :}
 	;
 Var ::= ID: id									{: RESULT = new Identificador(id); :}
 	| Var: var AT E8: e 						{: RESULT = new AccessAt(var,e); :}
 	;
 	
-Array ::= Elem: e COMA Array: array 			{: array.add(e); 
+Array ::= Elem: e COMA Array: array 			{: array.addFirst(e); 
 												   RESULT = array; :}
 	| Elem: e 									{: RESULT = new LinkedList<Expresion>(); 
-				 								   RESULT.add(e); :}
+				 								   RESULT.addFirst(e); :}
 	;
-Elem ::= NUM: num 								{: RESULT = new Number(num); :}
+Elem ::= NUM: num 								{: RESULT = new Number(Integer.parseInt(num)); :}
 	| TRUE 										{: RESULT = new True(); :}
 	| FALSE 									{: RESULT = new False(); :}
 	| LLAVEA Array: e LLAVEC 					{: RESULT = new ArrayWithKeys(e); :}
 	;
 
-E0 ::= ALL NUM: num TO E0: e			 		{: RESULT = new AllTo(e, num); :}
+E0 ::= ALL NUM: num TO E0: e			 		{: RESULT = new AllTo(e, Integer.parseInt(num)); :}
 	| E1: e										{: RESULT = e; :}
 	| LLAVEA Array: e LLAVEC 					{: RESULT = new ArrayWithKeys(e); :}
 	;
@@ -184,7 +185,7 @@ E6 ::= E6: e1 DIV E7: e2 						{: RESULT = new Div(e1,e2); :}
 E7 ::= E7: e1 POR E8: e2 						{: RESULT = new Mult(e1,e2); :}
 	| E8: e										{: RESULT = e; :}
 	;
-E8 ::= NUM: num 								{: RESULT = new Number(num); :}
+E8 ::= NUM: num 								{: RESULT = new Number(Integer.parseInt(num)); :}
 	| Var: e 									{: RESULT = e; :}
 	| PAP E0: e PCIERRE							{: RESULT = e; :} 
 	;

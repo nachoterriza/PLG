@@ -1,5 +1,6 @@
 package abstree.sentencias;
 
+import resolid.Visitante;
 import abstree.Programa;
 import abstree.expresiones.Expresion;
 import errors.UnsuportedOperation;
@@ -29,6 +30,15 @@ public class While extends Sentencia {
 		else 	throw new UnsuportedOperation("code "+i);
 	}
 	
+	@Override
+	public void accept(Visitante v) {
+		v.previsit(this);
+		cond.accept(v);
+		code.accept(v);
+		v.postvisit(this);
+	}
+
+
 	public boolean checkTipo() throws UnsuportedOperation {
 		if(cond.getTipo()==new Bool())
 			return true;

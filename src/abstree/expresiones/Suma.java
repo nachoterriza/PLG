@@ -1,5 +1,9 @@
 package abstree.expresiones;
 
+import abstree.tipos.Int;
+import abstree.tipos.Tipo;
+import errors.UnsuportedOperation;
+
 
 public class Suma extends ExpresionBinaria {
 
@@ -16,6 +20,13 @@ public class Suma extends ExpresionBinaria {
 		if(op1.getTipo()==new Int() && op2.getTipo()==new Int())
 			return new Int();
 		else throw new UnsuportedOperation("Suma con no enteros.");
+	}
+
+
+	@Override
+	public String getOperator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

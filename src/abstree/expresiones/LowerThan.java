@@ -1,5 +1,10 @@
 package abstree.expresiones;
 
+import abstree.tipos.Bool;
+import abstree.tipos.Int;
+import abstree.tipos.Tipo;
+import errors.UnsuportedOperation;
+
 public class LowerThan extends ExpresionBinaria {
 
 	public LowerThan(Expresion op1, Expresion op2) {
