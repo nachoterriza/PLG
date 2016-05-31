@@ -29,15 +29,19 @@ public class ArrayWithKeys extends Expresion {
 	
 	private LinkedList<Expresion> array;
 	
-	public Tipo getTipo() {
-		return null; //TODO
-	}
+
+
 	@Override
 	public void accept(Visitante v) {
 		v.previsit(this);
 		for(Expresion e:array)
 			e.accept(v);
 		v.postvisit(this);
+	}
+
+	public Tipo getTipo() throws UnsuportedOperation {
+		return Expresion.getTipo();
+
 	}
 
 }

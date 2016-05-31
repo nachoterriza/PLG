@@ -32,6 +32,10 @@ public class Identificador extends Expresion {
 	public TipoE tipo() {
 		return TipoE.ID;
 	}
+	
+	public getTipo() throws UnsuportedOperation {
+		return ref().getTipo();
+	}
 
 	@Override
 	public Tipo getTipo() throws UnsuportedOperation {

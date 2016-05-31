@@ -10,8 +10,8 @@ public class IfThenElse extends Sentencia{
 	/**
 	 * Crea sentencias <code>if-then-done</code> e <code>if-then-else-done</code>
 	 * @param cond condicion del if
-	 * @param codeif código del if
-	 * @param codeelse código del else (null en caso de <code>if-then-done</code>)
+	 * @param codeif cï¿½digo del if
+	 * @param codeelse cï¿½digo del else (null en caso de <code>if-then-done</code>)
 	 */
 	public IfThenElse(Expresion cond, Programa codeif, Programa codeelse){
 		this.cond = cond;
@@ -47,6 +47,16 @@ public class IfThenElse extends Sentencia{
 			codeelse.accept(v);	
 		v.postvisit(this);
 	}
+
+
+	public boolean checkTipo() throws UnsuportedOperation {
+		if(codeif.checkTipo() && codeelse.checkTipo())
+			if(cond.getTipo()==new Bool()) {
+				return true;
+			else throw new UnsuportedOperation("If de condiciÃ³n no booleana.");}
+		else return false;
+	}
+	
 
 	private Expresion cond;
 	private Programa codeif;

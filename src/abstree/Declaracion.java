@@ -30,6 +30,16 @@ public class Declaracion implements Anfitrion{
 			valor.accept(v);
 		v.postvisit(this);
 	}
+	
+	public boolean checkTipo() throws UnsuportedOperation {
+		if(valor.getTipo()==tipo)
+			return true;
+		else throw new UnsuportedOperation("Declaracion con error de tipos.")
+	}
+	
+	public Expresion getValor() {
+		return valor;
+	}
 
 	private Tipo tipo;
 	private String id;

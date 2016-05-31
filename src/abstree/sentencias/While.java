@@ -38,6 +38,13 @@ public class While extends Sentencia {
 		v.postvisit(this);
 	}
 
+
+	public boolean checkTipo() throws UnsuportedOperation {
+		if(cond.getTipo()==new Bool())
+			return true;
+		else throw new UnsuportedOperation("Condición no booleana en bucle while.")
+	}
+	
 	private Expresion cond;
 	private Programa code;
 

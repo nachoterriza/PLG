@@ -23,6 +23,12 @@ public class Asignacion extends Sentencia {
 		return expright;
 	}
 	
+	public boolean checkTipo() throws UnsuportedOperation {
+		if(varleft.getTipo()==expright.getTipo())
+			return true;
+		else throw new UnsuportedOperation("Asignación errónea.");
+	}
+	
 	private Expresion varleft;
 	private Expresion expright;
 	
