@@ -1,11 +1,11 @@
-package abstree.expresiones;
+package src.abstree.expresiones;
 
-import resolid.Visitante;
-import abstree.tipos.ArrayOf;
-import abstree.tipos.Bool;
-import abstree.tipos.Int;
-import abstree.tipos.Tipo;
-import errors.UnsuportedOperation;
+import src.resolid.Visitante;
+import src.abstree.tipos.ArrayOf;
+import src.abstree.tipos.Bool;
+import src.abstree.tipos.Int;
+import src.abstree.tipos.Tipo;
+import src.errors.UnsuportedOperation;
 
 public class AllTo extends Expresion{
 

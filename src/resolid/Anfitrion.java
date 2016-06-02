@@ -1,4 +1,4 @@
-package resolid;
+package src.resolid;
 
 
 /**

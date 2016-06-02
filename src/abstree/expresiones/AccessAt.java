@@ -1,10 +1,11 @@
-package abstree.expresiones;
+package src.abstree.expresiones;
 
-import abstree.tipos.ArrayOf;
-import abstree.tipos.Bool;
-import abstree.tipos.Int;
-import abstree.tipos.Tipo;
-import errors.UnsuportedOperation;
+import src.abstree.tipos.ArrayOf;
+import src.abstree.tipos.Bool;
+import src.abstree.tipos.Int;
+import src.abstree.tipos.Tipo;
+import src.errors.UnsuportedOperation;
+import src.resolid.Visitante;
 
 
 public class AccessAt extends ExpresionBinaria {
@@ -29,6 +30,12 @@ public class AccessAt extends ExpresionBinaria {
 		}
 		else 
 			throw new UnsuportedOperation("Array de tipo erroneo.");
+	}
+
+	@Override
+	public void accept(Visitante v) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

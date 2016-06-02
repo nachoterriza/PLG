@@ -1,12 +1,12 @@
-package resolid;
+package src.resolid;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Stack;
 
-import errors.IdentifyingIdException;
-import abstree.Declaracion;
-import abstree.Funcion;
+import src.errors.IdentifyingIdException;
+import src.abstree.Declaracion;
+import src.abstree.Funcion;
 
 public class TablaDeSimbolos {
 
@@ -84,10 +84,10 @@ public class TablaDeSimbolos {
 	
 	/** Tabla de <id, Funcion>. Al estar todas las funciones en el nivel
 	 * 0, no es necesario crear una tabla de plias o una plia de tablas.
-	 * Además, las declaraciones de funciones no se pueden mezclar con las 
-	 * de variables (las funciones siempre están en el bloque 0 y las
-	 * variables del 1 en adelante. Se podría integrar esta tabla en las otras
-	 * pero evitamos así mezclar ambas cosas
+	 * Ademï¿½s, las declaraciones de funciones no se pueden mezclar con las 
+	 * de variables (las funciones siempre estï¿½n en el bloque 0 y las
+	 * variables del 1 en adelante. Se podrï¿½a integrar esta tabla en las otras
+	 * pero evitamos asï¿½ mezclar ambas cosas
 	 * 
 	 */
 	private Hashtable<String,Funcion> tFunciones;

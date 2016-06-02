@@ -1,4 +1,4 @@
-package ejemplos;
+package src.ejemplos;
 
 interface ICarElementVisitor {
     void visit(Wheel wheel);

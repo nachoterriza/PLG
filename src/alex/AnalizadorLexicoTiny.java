@@ -1,5 +1,5 @@
-package alex;
-import errors.GestionErroresTiny;
+package src.alex;
+import src.errors.GestionErroresTiny;
 
 
 public class AnalizadorLexicoTiny implements java_cup.runtime.Scanner {

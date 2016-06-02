@@ -1,8 +1,8 @@
-package abstree.expresiones;
+package src.abstree.expresiones;
 
-import abstree.tipos.Int;
-import abstree.tipos.Tipo;
-import errors.UnsuportedOperation;
+import src.abstree.tipos.Int;
+import src.abstree.tipos.Tipo;
+import src.errors.UnsuportedOperation;
 
 
 public class Div extends ExpresionBinaria {

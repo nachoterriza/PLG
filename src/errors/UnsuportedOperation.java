@@ -1,4 +1,4 @@
-package errors;
+package src.errors;
 
 public class UnsuportedOperation extends Exception {
 

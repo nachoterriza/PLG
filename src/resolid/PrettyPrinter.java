@@ -1,26 +1,26 @@
-package resolid;
+package src.resolid;
 
-import errors.UnsuportedOperation;
-import abstree.Codigo;
-import abstree.Declaracion;
-import abstree.Funcion;
-import abstree.Programa;
-import abstree.expresiones.AllTo;
-import abstree.expresiones.ArrayWithKeys;
-import abstree.expresiones.ExpresionBinaria;
-import abstree.expresiones.ExpresionUnaria;
-import abstree.expresiones.False;
-import abstree.expresiones.Identificador;
-import abstree.expresiones.Number;
-import abstree.expresiones.True;
-import abstree.sentencias.Asignacion;
-import abstree.sentencias.Call;
-import abstree.sentencias.Choose;
-import abstree.sentencias.IfThenElse;
-import abstree.sentencias.While;
-import abstree.tipos.ArrayOf;
-import abstree.tipos.Bool;
-import abstree.tipos.Int;
+import src.errors.UnsuportedOperation;
+import src.abstree.sentencias.Choose;
+import src.abstree.Codigo;
+import src.abstree.Declaracion;
+import src.abstree.Funcion;
+import src.abstree.Programa;
+import src.abstree.expresiones.AllTo;
+import src.abstree.expresiones.ArrayWithKeys;
+import src.abstree.expresiones.ExpresionBinaria;
+import src.abstree.expresiones.ExpresionUnaria;
+import src.abstree.expresiones.False;
+import src.abstree.expresiones.Identificador;
+import src.abstree.expresiones.Number;
+import src.abstree.expresiones.True;
+import src.abstree.sentencias.Asignacion;
+import src.abstree.sentencias.Call;
+import src.abstree.sentencias.IfThenElse;
+import src.abstree.sentencias.While;
+import src.abstree.tipos.ArrayOf;
+import src.abstree.tipos.Bool;
+import src.abstree.tipos.Int;
 
 public class PrettyPrinter implements Visitante {
 	
@@ -280,5 +280,4 @@ public class PrettyPrinter implements Visitante {
 		System.out.println("Int");
 	}
 
-	
 }

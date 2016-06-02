@@ -1,9 +1,10 @@
-package abstree;
+package src.abstree;
 
-import resolid.Anfitrion;
-import resolid.Visitante;
-import abstree.expresiones.Expresion;
-import abstree.tipos.Tipo;
+import src.resolid.Anfitrion;
+import src.resolid.Visitante;
+import src.errors.UnsuportedOperation;
+import src.abstree.expresiones.Expresion;
+import src.abstree.tipos.Tipo;
 
 public class Declaracion implements Anfitrion{
 	
@@ -34,7 +35,7 @@ public class Declaracion implements Anfitrion{
 	public boolean checkTipo() throws UnsuportedOperation {
 		if(valor.getTipo()==tipo)
 			return true;
-		else throw new UnsuportedOperation("Declaracion con error de tipos.")
+		else throw new UnsuportedOperation("Declaracion con error de tipos.");
 	}
 	
 	public Expresion getValor() {

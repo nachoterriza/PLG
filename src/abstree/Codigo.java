@@ -1,9 +1,9 @@
-package abstree;
+package src.abstree;
 
 import java.util.LinkedList;
 
-import resolid.Anfitrion;
-import resolid.Visitante;
+import src.resolid.Anfitrion;
+import src.resolid.Visitante;
 
 public class Codigo implements Anfitrion{
 

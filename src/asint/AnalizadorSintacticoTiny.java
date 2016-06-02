@@ -4,17 +4,18 @@
 // Sat May 28 20:59:01 CEST 2016
 //----------------------------------------------------
 
-package asint;
+package src.asint;
 
 import java_cup.runtime.*;
-import alex.AnalizadorLexicoTiny;
-import alex.UnidadLexica;
-import errors.GestionErroresTiny;
-import abstree.*;
-import abstree.expresiones.*;
-import abstree.expresiones.Number;
-import abstree.sentencias.*;
-import abstree.tipos.*;
+import src.abstree.sentencias.Choose;
+import src.alex.AnalizadorLexicoTiny;
+import src.alex.UnidadLexica;
+import src.errors.GestionErroresTiny;
+import src.abstree.*;
+import src.abstree.expresiones.*;
+import src.abstree.expresiones.Number;
+import src.abstree.sentencias.*;
+import src.abstree.tipos.*;
 
 import java.util.LinkedList;
 import java.util.Hashtable;

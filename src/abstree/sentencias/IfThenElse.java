@@ -1,9 +1,10 @@
-package abstree.sentencias;
+package src.abstree.sentencias;
 
-import resolid.Visitante;
-import abstree.Programa;
-import abstree.expresiones.Expresion;
-import errors.UnsuportedOperation;
+import src.resolid.Visitante;
+import src.abstree.Programa;
+import src.abstree.expresiones.Expresion;
+import src.abstree.tipos.Bool;
+import src.errors.UnsuportedOperation;
 
 public class IfThenElse extends Sentencia{
 
@@ -50,8 +51,8 @@ public class IfThenElse extends Sentencia{
 
 
 	public boolean checkTipo() throws UnsuportedOperation {
-		if(codeif.checkTipo() && codeelse.checkTipo())
-			if(cond.getTipo()==new Bool()) {
+		if(codeif.checkTipo() && codeelse.checkTipo()){
+			if(cond.getTipo()==new Bool())
 				return true;
 			else throw new UnsuportedOperation("If de condición no booleana.");}
 		else return false;

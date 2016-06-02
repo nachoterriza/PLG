@@ -1,11 +1,12 @@
-package abstree.sentencias;
+package src.abstree.sentencias;
 
 import java.util.LinkedList;
 
-import resolid.Visitante;
-import abstree.Funcion;
-import abstree.expresiones.Expresion;
-import errors.UnsuportedOperation;
+import src.resolid.Visitante;
+import src.abstree.Declaracion;
+import src.abstree.Funcion;
+import src.abstree.expresiones.Expresion;
+import src.errors.UnsuportedOperation;
 
 public class Call extends Sentencia {
 
@@ -40,16 +41,16 @@ public class Call extends Sentencia {
 
 	public boolean checkTipo() throws UnsuportedOperation {
 		LinkedList<Expresion> params = entrada;
-		for(int i=1;i<=entrada.size();i++) {
-			Declaracion dec = entrada.get(i).ref();
-			if(dec.getTipo()!=entrada.get(i).getTipo())
+		for(int i=1;i<=params.size();i++) {
+			Declaracion dec = params.get(i).ref();
+			if(dec.getTipo()!=params.get(i).getTipo())
 				throw new UnsuportedOperation("Parámetros de entrada mal declarados en CALL.");
 			
 		}
 		LinkedList<Expresion> vars = salida;
-		for(int i=1;i<=salida.size();i++) {
-			Declaracion dec = salida.get(i).ref();
-			if(dec.getTipo()!=salida.get(i).getTipo())
+		for(int i=1;i<=vars.size();i++) {
+			Declaracion dec = vars.get(i).ref();
+			if(dec.getTipo()!=vars.get(i).getTipo())
 				throw new UnsuportedOperation("Parámetros de salida mal declarados en CALL.");
 			
 		}

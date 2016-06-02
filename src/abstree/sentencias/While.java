@@ -1,9 +1,10 @@
-package abstree.sentencias;
+package src.abstree.sentencias;
 
-import resolid.Visitante;
-import abstree.Programa;
-import abstree.expresiones.Expresion;
-import errors.UnsuportedOperation;
+import src.resolid.Visitante;
+import src.abstree.tipos.Bool;
+import src.abstree.Programa;
+import src.abstree.expresiones.Expresion;
+import src.errors.UnsuportedOperation;
 
 public class While extends Sentencia {
 
@@ -42,7 +43,7 @@ public class While extends Sentencia {
 	public boolean checkTipo() throws UnsuportedOperation {
 		if(cond.getTipo()==new Bool())
 			return true;
-		else throw new UnsuportedOperation("Condición no booleana en bucle while.")
+		else throw new UnsuportedOperation("Condición no booleana en bucle while.");
 	}
 	
 	private Expresion cond;

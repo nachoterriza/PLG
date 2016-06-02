@@ -1,12 +1,12 @@
-package abstree.sentencias;
+package src.abstree.sentencias;
 
 import java.util.LinkedList;
 
-import resolid.Anfitrion;
-import abstree.Funcion;
-import abstree.Programa;
-import abstree.expresiones.Expresion;
-import errors.UnsuportedOperation;
+import src.resolid.Anfitrion;
+import src.abstree.Funcion;
+import src.abstree.Programa;
+import src.abstree.expresiones.Expresion;
+import src.errors.UnsuportedOperation;
 
 public abstract class Sentencia implements Anfitrion{
 	
@@ -37,7 +37,7 @@ public abstract class Sentencia implements Anfitrion{
 	
 	public String functionID() throws UnsuportedOperation {throw new UnsuportedOperation("functionID");}
 	
-	public abstract boolean checkTipo() throws UnsuportedOperation {throw new UnsuportedOperation("Tipos incorrectos.");
+	public boolean checkTipo() throws UnsuportedOperation {throw new UnsuportedOperation("Tipos incorrectos.");};
 	
 	public LinkedList<Expresion> entrada() throws UnsuportedOperation {throw new UnsuportedOperation("entrada");}
 	public LinkedList<Expresion> salida() throws UnsuportedOperation {throw new UnsuportedOperation("salida");}

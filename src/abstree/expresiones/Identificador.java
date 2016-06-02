@@ -1,9 +1,9 @@
-package abstree.expresiones;
+package src.abstree.expresiones;
 
-import resolid.Visitante;
-import abstree.Declaracion;
-import abstree.tipos.Tipo;
-import errors.UnsuportedOperation;
+import src.resolid.Visitante;
+import src.abstree.Declaracion;
+import src.abstree.tipos.Tipo;
+import src.errors.UnsuportedOperation;
 
 //Hay que inicializar la referencia
 public class Identificador extends Expresion {
@@ -33,9 +33,6 @@ public class Identificador extends Expresion {
 		return TipoE.ID;
 	}
 	
-	public getTipo() throws UnsuportedOperation {
-		return ref().getTipo();
-	}
 
 	@Override
 	public Tipo getTipo() throws UnsuportedOperation {

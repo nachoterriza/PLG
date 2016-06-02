@@ -1,4 +1,4 @@
-package abstree.sentencias;
+package src.abstree.sentencias;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -6,10 +6,11 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import resolid.Visitante;
-import abstree.Programa;
-import abstree.expresiones.Expresion;
-import errors.UnsuportedOperation;
+import src.abstree.tipos.Int;
+import src.resolid.Visitante;
+import src.abstree.Programa;
+import src.abstree.expresiones.Expresion;
+import src.errors.UnsuportedOperation;
 
 public class Choose extends Sentencia {
 
@@ -17,7 +18,6 @@ public class Choose extends Sentencia {
 		this.var = var;
 		this.casos = casos;
 	}
-	@Override
 	public TipoS tipo() {
 		return TipoS.CHOOSE;
 	}
@@ -51,9 +51,9 @@ public class Choose extends Sentencia {
 	public boolean checkTipo() throws UnsuportedOperation {
 		if(var.getTipo()==new Int()) {
 			Enumeration pCasos = casos.keys();
-			boolean correct = true:
+			boolean correct = true;
 			while(pCasos.hasMoreElements()) {
-				Programa codigo = pCasos.NextElement();
+				Programa codigo = (Programa) pCasos.nextElement();
 				correct = correct && casos.get(codigo).checkTipo();
 			}
 			if(correct)

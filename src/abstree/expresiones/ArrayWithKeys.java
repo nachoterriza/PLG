@@ -1,10 +1,10 @@
-package abstree.expresiones;
+package src.abstree.expresiones;
 
 import java.util.LinkedList;
 
-import resolid.Visitante;
-import abstree.tipos.Tipo;
-import errors.UnsuportedOperation;
+import src.resolid.Visitante;
+import src.abstree.tipos.Tipo;
+import src.errors.UnsuportedOperation;
 
 public class ArrayWithKeys extends Expresion {
 
@@ -40,7 +40,7 @@ public class ArrayWithKeys extends Expresion {
 	}
 
 	public Tipo getTipo() throws UnsuportedOperation {
-		return Expresion.getTipo();
+		return array.get(1).getTipo();
 
 	}
 

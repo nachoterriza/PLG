@@ -1,9 +1,9 @@
-package abstree.expresiones;
+package src.abstree.expresiones;
 
-import resolid.Anfitrion;
-import abstree.Declaracion;
-import abstree.tipos.Tipo;
-import errors.UnsuportedOperation;
+import src.resolid.Anfitrion;
+import src.abstree.Declaracion;
+import src.abstree.tipos.Tipo;
+import src.errors.UnsuportedOperation;
 
 public abstract class Expresion implements Anfitrion{
 	public abstract TipoE tipo();
@@ -16,6 +16,6 @@ public abstract class Expresion implements Anfitrion{
 	public void setRef(Declaracion ref) throws UnsuportedOperation {throw new UnsuportedOperation("setRef");}
 	public Expresion elemAt(int i) throws UnsuportedOperation {throw new UnsuportedOperation("elemAt" +i);}
 
-	public Tipo getTipo() throws UnsuportedOperation {throw new UnsoportedOperation("Error de tipo");}
+	public Tipo getTipo() throws UnsuportedOperation {throw new UnsuportedOperation("Error de tipo");};
 
 }
