@@ -2,6 +2,7 @@ package src.abstree;
 
 import java.util.LinkedList;
 
+import src.errors.UnsuportedOperation;
 import src.resolid.Anfitrion;
 import src.resolid.Visitante;
 
@@ -30,6 +31,24 @@ public class Funcion implements Anfitrion{
 		programa.accept(v);
 		v.postvisit(this);
 	}
+
+    public boolean checkTipo() throws UnsuportedOperation {
+        LinkedList<Declaracion> ent = entrada;
+        for(int i=0;i<ent.size();i++) {
+            if(!ent.get(i).checkTipo())
+                throw new UnsuportedOperation("Error de tipo en funcion (entrada).");
+        }
+        
+        LinkedList<Declaracion> sal = salida;
+        for(int j=0;j<sal.size();j++) {
+            if(!sal.get(j).checkTipo())
+                throw new UnsuportedOperation("Error de tipo en funcion (salida).");
+        }
+        
+        if(!programa.checkTipo())
+            throw new UnsuportedOperation("Error de tipo en funcion (programa).");
+        return true;
+    }
 
 	private String id;
 	private LinkedList<Declaracion> entrada;

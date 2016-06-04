@@ -12,7 +12,7 @@ import src.asint.AnalizadorSintacticoTiny;
 
 public class Main {
    public static void main(String[] args) throws Exception {
-     Reader input = new InputStreamReader(new FileInputStream("anidar.code"));
+     Reader input = new InputStreamReader(new FileInputStream("maximo.code"));
 	 AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
 	 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
 	 asint.setScanner(alex);

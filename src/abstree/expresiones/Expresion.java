@@ -17,5 +17,5 @@ public abstract class Expresion implements Anfitrion{
 	public Expresion elemAt(int i) throws UnsuportedOperation {throw new UnsuportedOperation("elemAt" +i);}
 
 	public Tipo getTipo() throws UnsuportedOperation {throw new UnsuportedOperation("Error de tipo");};
-
+	
 }

@@ -17,7 +17,7 @@ public class Suma extends ExpresionBinaria {
 	}
 	
 	public Tipo getTipo() throws UnsuportedOperation {
-		if(op1.getTipo()==new Int() && op2.getTipo()==new Int())
+		if(op1.getTipo().equalsT(new Int()) && op2.getTipo().equalsT(new Int()))
 			return new Int();
 		else throw new UnsuportedOperation("Suma con no enteros.");
 	}
