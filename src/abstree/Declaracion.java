@@ -1,10 +1,10 @@
-package src.abstree;
+package abstree;
 
-import src.resolid.Anfitrion;
-import src.resolid.Visitante;
-import src.errors.UnsuportedOperation;
-import src.abstree.expresiones.Expresion;
-import src.abstree.tipos.Tipo;
+import abstree.expresiones.Expresion;
+import abstree.tipos.Tipo;
+import resolid.Anfitrion;
+import resolid.Visitante;
+import errors.UnsuportedOperation;
 
 public class Declaracion implements Anfitrion{
 	

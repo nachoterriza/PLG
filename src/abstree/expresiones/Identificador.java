@@ -1,9 +1,9 @@
-package src.abstree.expresiones;
+package abstree.expresiones;
 
-import src.resolid.Visitante;
-import src.abstree.Declaracion;
-import src.abstree.tipos.Tipo;
-import src.errors.UnsuportedOperation;
+import resolid.Visitante;
+import abstree.Declaracion;
+import abstree.tipos.Tipo;
+import errors.UnsuportedOperation;
 
 //Hay que inicializar la referencia
 public class Identificador extends Expresion {

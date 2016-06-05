@@ -1,10 +1,10 @@
-package src.abstree.sentencias;
+package abstree.sentencias;
 
-import src.resolid.Visitante;
-import src.abstree.Programa;
-import src.abstree.expresiones.Expresion;
-import src.abstree.tipos.Bool;
-import src.errors.UnsuportedOperation;
+import resolid.Visitante;
+import abstree.Programa;
+import abstree.expresiones.Expresion;
+import abstree.tipos.Bool;
+import errors.UnsuportedOperation;
 
 public class IfThenElse extends Sentencia{
 

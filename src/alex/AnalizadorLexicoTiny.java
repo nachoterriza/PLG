@@ -1,7 +1,7 @@
-package src.alex;
-import src.errors.GestionErroresTiny;
+package alex;
+import errors.GestionErroresTiny;
 
-
+@SuppressWarnings("unused")
 public class AnalizadorLexicoTiny implements java_cup.runtime.Scanner {
 	private final int YY_BUFFER_SIZE = 512;
 	private final int YY_F = -1;

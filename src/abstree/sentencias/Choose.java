@@ -1,16 +1,15 @@
-package src.abstree.sentencias;
+package abstree.sentencias;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map.Entry;
-import java.util.Set;
 
-import src.abstree.tipos.Int;
-import src.resolid.Visitante;
-import src.abstree.Programa;
-import src.abstree.expresiones.Expresion;
-import src.errors.UnsuportedOperation;
+import resolid.Visitante;
+import abstree.Programa;
+import abstree.expresiones.Expresion;
+import abstree.tipos.Int;
+import errors.UnsuportedOperation;
 
 public class Choose extends Sentencia {
 
@@ -50,10 +49,10 @@ public class Choose extends Sentencia {
 	
 	public boolean checkTipo() throws UnsuportedOperation {
 		if(var.getTipo()==new Int()) {
-			Enumeration pCasos = casos.keys();
+			Enumeration<Programa> pCasos = casos.elements();
 			boolean correct = true;
 			while(pCasos.hasMoreElements()) {
-				Programa codigo = (Programa) pCasos.nextElement();
+				Programa codigo = pCasos.nextElement();
 				correct = correct && casos.get(codigo).checkTipo();
 			}
 			if(correct)

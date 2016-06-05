@@ -1,7 +1,7 @@
-package src.abstree.expresiones;
+package abstree.expresiones;
 
-import src.resolid.Visitante;
-import src.errors.UnsuportedOperation;
+import resolid.Visitante;
+import errors.UnsuportedOperation;
 
 public abstract class ExpresionBinaria extends Expresion{
 	public ExpresionBinaria(Expresion op1, Expresion op2){

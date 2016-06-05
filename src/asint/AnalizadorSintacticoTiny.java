@@ -4,22 +4,50 @@
 // Sat May 28 20:59:01 CEST 2016
 //----------------------------------------------------
 
-package src.asint;
+package asint;
 
-import java_cup.runtime.*;
-import src.abstree.sentencias.Choose;
-import src.alex.AnalizadorLexicoTiny;
-import src.alex.UnidadLexica;
-import src.errors.GestionErroresTiny;
-import src.abstree.*;
-import src.abstree.expresiones.*;
-import src.abstree.expresiones.Number;
-import src.abstree.sentencias.*;
-import src.abstree.tipos.*;
-
-import java.util.LinkedList;
 import java.util.Hashtable;
-import java.lang.Integer;
+import java.util.LinkedList;
+
+import java_cup.runtime.Symbol;
+import abstree.Codigo;
+import abstree.Declaracion;
+import abstree.Funcion;
+import abstree.Programa;
+import abstree.expresiones.AccessAt;
+import abstree.expresiones.AllTo;
+import abstree.expresiones.And;
+import abstree.expresiones.ArrayWithKeys;
+import abstree.expresiones.Div;
+import abstree.expresiones.Equal;
+import abstree.expresiones.Expresion;
+import abstree.expresiones.False;
+import abstree.expresiones.GreaterOrEqual;
+import abstree.expresiones.GreaterThan;
+import abstree.expresiones.Identificador;
+import abstree.expresiones.LowerOrEqual;
+import abstree.expresiones.LowerThan;
+import abstree.expresiones.Mult;
+import abstree.expresiones.Not;
+import abstree.expresiones.NotEqual;
+import abstree.expresiones.Or;
+import abstree.expresiones.Resta;
+import abstree.expresiones.Suma;
+import abstree.expresiones.True;
+import abstree.expresiones.Number;
+import abstree.sentencias.Asignacion;
+import abstree.sentencias.Call;
+import abstree.sentencias.Choose;
+import abstree.sentencias.IfThenElse;
+import abstree.sentencias.Sentencia;
+import abstree.sentencias.While;
+import abstree.tipos.ArrayOf;
+import abstree.tipos.Bool;
+import abstree.tipos.Int;
+import abstree.tipos.Tipo;
+import alex.AnalizadorLexicoTiny;
+import alex.UnidadLexica;
+import errors.GestionErroresTiny;
 
 /** CUP v0.11b beta 20140220 generated parser.
   * @version Sat May 28 20:59:01 CEST 2016

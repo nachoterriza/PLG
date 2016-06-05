@@ -1,12 +1,12 @@
-package src.abstree.sentencias;
+package abstree.sentencias;
 
 import java.util.LinkedList;
 
-import src.resolid.Anfitrion;
-import src.abstree.Funcion;
-import src.abstree.Programa;
-import src.abstree.expresiones.Expresion;
-import src.errors.UnsuportedOperation;
+import resolid.Anfitrion;
+import abstree.Funcion;
+import abstree.Programa;
+import abstree.expresiones.Expresion;
+import errors.UnsuportedOperation;
 
 public abstract class Sentencia implements Anfitrion{
 	

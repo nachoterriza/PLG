@@ -1,12 +1,12 @@
-package src.abstree.sentencias;
+package abstree.sentencias;
 
 import java.util.LinkedList;
 
-import src.resolid.Visitante;
-import src.abstree.Declaracion;
-import src.abstree.Funcion;
-import src.abstree.expresiones.Expresion;
-import src.errors.UnsuportedOperation;
+import resolid.Visitante;
+import abstree.Declaracion;
+import abstree.Funcion;
+import abstree.expresiones.Expresion;
+import errors.UnsuportedOperation;
 
 public class Call extends Sentencia {
 

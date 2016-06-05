@@ -47,6 +47,7 @@ local.properties
 .externalToolBuilders/
 *.launch
 *.jar
+bin/
 
 ## NetBeans
 **/nbproject/private/
