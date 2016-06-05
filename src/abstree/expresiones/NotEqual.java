@@ -16,7 +16,8 @@ public class NotEqual extends ExpresionBinaria{
 	}
 	
 	public Tipo getTipo() throws UnsuportedOperation {
-		if(op1.getTipo()==new Bool())
+		Bool test = new Bool();
+		if(op1.getTipo().valorT()==test.valorT())
 			return new Bool();
 		else throw new UnsuportedOperation("Negación sin Booleanos.");
 	}

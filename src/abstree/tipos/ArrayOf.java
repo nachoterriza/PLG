@@ -16,6 +16,11 @@ public class ArrayOf extends Tipo{
 		v.postvisit(this);
 		
 	}
+	
+	public int valorT() {
+		return 2;
+	}
+	
 	private int tam;
 	private Tipo tipoElem;
 }

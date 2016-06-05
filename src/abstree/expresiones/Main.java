@@ -1,28 +1,43 @@
 package src.abstree.expresiones;
 
-import src.abstree.Declaracion;
+import java.util.LinkedList;
+
 import src.abstree.tipos.*;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
-		//Int a = new Int();
-		//Identificador id = new Identificador("primero");
-		Number tres = new Number(3);
-		Number cuatro = new Number(4);
+		Expresion tres = new Number(3);
+		Expresion cuatro = new Number(4);
 		System.out.println(cuatro.toString());
-		//Expresion Entero = new (Expresion) (ExpresionUnaria) Int();
-		//Expresion Entero;
-		//Declaracion dec = new Declaracion(new Int(),"primero",Entero);
-
 		Expresion Suma;
-		//Expresion OtroEntero;
-		//Declaracion dec2 = new Declaracion(new Int(),"segundo",OtroEntero);
-		//OtroEntero.setRef(dec2);
 		Suma = new Suma(tres, cuatro);
 		System.out.println(Suma.getTipo().toString());
-		if(Suma.getTipo()==new Int())
+		Int test = new Int();
+		if(Suma.getTipo().valorT()==test.valorT())
 			System.out.println("Bien");
 		else System.out.println("mal");
+		
+		Expresion tr = new True();
+		Expresion fs = new False();
+		Expresion and;
+		and = new And(tr, fs);
+		Bool test2 = new Bool();
+		if(and.getTipo().valorT()==test2.valorT())
+			System.out.println("Bien");
+		else System.out.println("Mal");
+		
+		LinkedList<Expresion> testA = new LinkedList<Expresion>();
+		testA.add(tres);
+		testA.add(cuatro);
+		ArrayWithKeys array = new ArrayWithKeys(testA);
+		ArrayOf test3 = new ArrayOf(testA.size(),cuatro.getTipo());
+		//System.out.println(testA.get(0).toString());
+		if(array.getTipo().valorT()==test3.valorT())
+			System.out.println("Bien");
+		else System.out.println("Mal");
+		
+		
+		
 	}
 }
 

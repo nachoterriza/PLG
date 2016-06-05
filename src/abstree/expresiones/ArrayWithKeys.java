@@ -3,6 +3,7 @@ package src.abstree.expresiones;
 import java.util.LinkedList;
 
 import src.resolid.Visitante;
+import src.abstree.tipos.ArrayOf;
 import src.abstree.tipos.Tipo;
 import src.errors.UnsuportedOperation;
 
@@ -40,8 +41,12 @@ public class ArrayWithKeys extends Expresion {
 	}
 
 	public Tipo getTipo() throws UnsuportedOperation {
-		return array.get(1).getTipo();
-
+		Tipo test = array.get(0).getTipo();
+		for(int i=1;i<array.size();i++)
+			if(test.valorT()!=array.get(i).getTipo().valorT())
+				throw new UnsuportedOperation("Constructor de array inconsistente.");
+			
+		return new ArrayOf(array.size(),test);
 	}
 
 }

@@ -31,9 +31,11 @@ public class AllTo extends Expresion{
 	}
 	
 	public Tipo getTipo() throws UnsuportedOperation {
-		if(op1.getTipo()==new Int())
+		Int test = new Int();
+		Bool testB = new Bool();
+		if(op1.getTipo().valorT()==test.valorT())
 			return new ArrayOf(num,new Int());
-		else if (op1.getTipo()==new Bool())
+		else if (op1.getTipo().valorT()==testB.valorT())
 			return new ArrayOf(num,new Bool());
 		else throw new UnsuportedOperation("Configuracion de array con tipo erróneo.");
 

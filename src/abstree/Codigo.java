@@ -25,7 +25,7 @@ public class Codigo implements Anfitrion{
 	public boolean checkTipo() throws UnsuportedOperation {
 		LinkedList<Funcion> funcs = funciones;
 		if(main.checkTipo()){
-			for(int i=1;i<=funcs.size();i++) {
+			for(int i=0;i<funcs.size();i++) {
 				if(!funcs.get(i).checkTipo())
 					throw new UnsuportedOperation("Error de tipos en el codigo (funciones).");
 			}

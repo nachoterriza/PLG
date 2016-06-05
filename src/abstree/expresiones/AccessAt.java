@@ -20,10 +20,13 @@ public class AccessAt extends ExpresionBinaria {
 	}
 	
 	public Tipo getTipo() throws UnsuportedOperation {
-		if(op2.getTipo()==new Int()) {
-			if(op1.getTipo()==new ArrayOf(op2.num(),new Int()))
+		Int test = new Int();
+		ArrayOf testIntArray = new ArrayOf(1,new Int());
+		ArrayOf testBoolArray = new ArrayOf(1,new Bool());
+		if(op2.getTipo().valorT()==test.valorT()) {
+			if(op1.getTipo().valorT()==testIntArray.valorT())
 				return new Int();
-			else if(op1.getTipo()==new ArrayOf(op2.num(),new Bool()))
+			else if(op1.getTipo().valorT()==testBoolArray.valorT())
 				return new Bool();
 			else 
 				throw new UnsuportedOperation("Array de tipo erroneo.");

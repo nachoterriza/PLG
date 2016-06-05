@@ -17,7 +17,8 @@ public class Not extends ExpresionUnaria {
 	}
 	
 	public Tipo getTipo() throws UnsuportedOperation {
-		if(op1.getTipo()==new Bool())
+		Bool test = new Bool();
+		if(op1.getTipo().valorT()==test.valorT())
 			return new Bool();
 		else throw new UnsuportedOperation("Not sin booleanos.");
 	}

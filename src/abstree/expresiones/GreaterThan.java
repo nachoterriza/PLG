@@ -18,7 +18,8 @@ public class GreaterThan extends ExpresionBinaria {
 	}
 
 	public Tipo getTipo() throws UnsuportedOperation {
-		if(op1.getTipo()==new Int() && op2.getTipo()==new Int())
+		Int test = new Int();
+		if(op1.getTipo().valorT()==test.valorT() && op2.getTipo().valorT()==test.valorT())
 			return new Bool();
 		else throw new UnsuportedOperation("Desigualdad con no enteros(>).");
 	}

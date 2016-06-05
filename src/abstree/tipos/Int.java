@@ -10,4 +10,8 @@ public class Int extends Tipo{
 	public void accept(Visitante v) {
 		v.visit(this);
 	}
+	
+	public int valorT() {
+		return 0;
+	}
 }

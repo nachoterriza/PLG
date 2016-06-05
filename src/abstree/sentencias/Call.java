@@ -41,14 +41,14 @@ public class Call extends Sentencia {
 
 	public boolean checkTipo() throws UnsuportedOperation {
 		LinkedList<Expresion> params = entrada;
-		for(int i=1;i<=params.size();i++) {
+		for(int i=0;i<params.size();i++) {
 			Declaracion dec = params.get(i).ref();
 			if(dec.getTipo()!=params.get(i).getTipo())
 				throw new UnsuportedOperation("Parámetros de entrada mal declarados en CALL.");
 			
 		}
 		LinkedList<Expresion> vars = salida;
-		for(int i=1;i<=vars.size();i++) {
+		for(int i=0;i<vars.size();i++) {
 			Declaracion dec = vars.get(i).ref();
 			if(dec.getTipo()!=vars.get(i).getTipo())
 				throw new UnsuportedOperation("Parámetros de salida mal declarados en CALL.");
