@@ -8,6 +8,12 @@ public class ArrayOf extends Tipo{
 		this.tam = tam;
 		this.tipoElem = tipoElem;
 	}
+	public int getTam() {
+		return tam;
+	}
+	public Tipo getTipoElem() {
+		return tipoElem;
+	}
 	@Override
 	public void accept(Visitante v) {
 		v.previsit(this);

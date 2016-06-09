@@ -10,6 +10,7 @@ public class IR {
 	public static String sub(){return "sub;";}
 	public static String mul(){return "mul;";}
 	public static String div(){return "div;";}
+	public static String neg(){return "neg;";}
 	
 	public static String and(){return "and;";}
 	public static String or(){return "or;";}
@@ -32,6 +33,7 @@ public class IR {
 	public static String condj(int dir){return "fjp "+dir+";";}
 	public static String casej(int dir){return "ixj "+dir+";";}
 	
+	public static String access(int tam){return "ixa "+tam+";";}
 	public static String stop(){return "stp;";}
 	
 	public static String binary(TipoE t) throws CompilingException{
@@ -75,7 +77,11 @@ public class IR {
 		int dir;
 		for (String instr: code){
 			s = (String) instr.subSequence(0, 4);
-			if (s.equalsIgnoreCase("ujp ") || s.equalsIgnoreCase("fjp ")){
+			if (s.equalsIgnoreCase("ujp ") 
+					|| s.equalsIgnoreCase("fjp ")
+					|| s.equalsIgnoreCase("ixj ")
+				)
+			{
 				dir = Integer.parseInt(instr.substring(4, instr.length()-1));
 				dir = dir + i;
 				instr = s+dir+';';

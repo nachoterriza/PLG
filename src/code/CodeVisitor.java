@@ -106,7 +106,14 @@ public class CodeVisitor implements Visitante {
 	public void postvisit(ExpresionBinaria node) {
 		try {
 			if (node instanceof AccessAt){
-				// TODO Auto-generated method stub
+				LinkedList<String> rigth = codeStack.popCodeR();
+				LinkedList<String> left = codeStack.popCodeL();
+				DimensionVisitor dimv = new DimensionVisitor();
+				((ArrayOf) node.op1().getTipo()).getTipoElem().accept(dimv);
+				int dsuper = dimv.getDsuper();
+				left.addAll(rigth);
+				left.add(IR.access(dsuper));
+				codeStack.pushCodeL(left);
 			}
 			else {
 				LinkedList<String> rigth = codeStack.popCodeR();
@@ -115,7 +122,7 @@ public class CodeVisitor implements Visitante {
 				left.add(IR.binary(node.tipo()));
 				codeStack.pushCodeR(left);
 			}
-		} catch (CompilingException e){
+		} catch (CompilingException | UnsuportedOperation e){
 			e.printStackTrace();
 		}
 	}
@@ -201,7 +208,7 @@ public class CodeVisitor implements Visitante {
 	@Override
 	public boolean previsit(Choose node) {
 
-		LinkedList<String> caso;
+		LinkedList<String> caso, varcode;
 		LinkedList<String> codechoose = new LinkedList<String>();
 		int n;
 		try{
@@ -210,13 +217,15 @@ public class CodeVisitor implements Visitante {
 			e.printStackTrace();
 			return false;
 		}
+		
+		//Código de los casos
 		for(int i=n;i>=0;i--){
 			try {
 				//Apila el codigo del caso i. Si no hay caso i, salta al catch
 				node.codeAt(i).accept(this); 
 				caso = codeStack.popCodeC();
 				//salto al final (tras el codigo del case i
-				caso.add(IR.uncondj(codechoose.size())+i+1);
+				caso.add(IR.uncondj(codechoose.size()+i+2));
 				caso.addAll(codechoose);
 				//salto al codigo del case i (entrada de la tabla)
 				caso.add(IR.uncondj(-caso.size()));
@@ -226,17 +235,25 @@ public class CodeVisitor implements Visitante {
 				codechoose.add(IR.uncondj(i+1)); 
 			} catch (CompilingException e) {
 				e.printStackTrace();
+				return false;
 			}
 			
 		}
 		
+		//Código de la variable selectora
+		try {
+			node.var().accept(this);
+			varcode = codeStack.popCodeR();
+			varcode.add(IR.neg());
+			varcode.add(IR.casej(codechoose.size()));
+			varcode.addAll(codechoose);
+			codeStack.pushCodeC(varcode);
+		} catch (UnsuportedOperation | CompilingException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
 		return false;
-	}
-
-	@Override
-	public void previsit(While node) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -299,7 +316,17 @@ public class CodeVisitor implements Visitante {
 
 	@Override
 	public void postvisit(While node) {
-		// TODO Auto-generated method stub
+		try {
+			LinkedList<String> code = codeStack.popCodeC();
+			LinkedList<String> cond = codeStack.popCodeR();
+			cond.add(IR.condj(code.size()+2));
+			cond.addAll(code);
+			cond.add(IR.uncondj(-cond.size()));
+			codeStack.pushCodeC(cond);
+		} catch (CompilingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -350,5 +377,8 @@ public class CodeVisitor implements Visitante {
 
 	@Override
 	public void previsit(Programa node) {}
+
+	@Override
+	public void previsit(While node) {}
 
 }
