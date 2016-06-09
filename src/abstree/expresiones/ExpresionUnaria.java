@@ -20,7 +20,5 @@ public abstract class ExpresionUnaria extends Expresion{
 		v.postvisit(this);
 	}
 	
-	public abstract String getOperator();
-	
 	protected Expresion op1;
 }

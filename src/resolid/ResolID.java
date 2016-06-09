@@ -36,8 +36,7 @@ public class ResolID implements Visitante {
 		try {
 			tabla.insertaIdV(node.getId(), node);
 		} catch (IdentifyingIdException e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -47,8 +46,7 @@ public class ResolID implements Visitante {
 			tabla.insertaIdF(node.getId(), node);
 			tabla.abreBloqueV();
 		} catch (IdentifyingIdException e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -73,8 +71,7 @@ public class ResolID implements Visitante {
 			Declaracion ref = tabla.buscaIdV(node.id());
 			node.setRef(ref);
 		} catch (IdentifyingIdException e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (UnsuportedOperation e) {
 			e.printStackTrace();
 		}
@@ -86,8 +83,7 @@ public class ResolID implements Visitante {
 			Funcion ref = tabla.buscaIdF(node.functionID());
 			node.setRef(ref);
 		} catch (IdentifyingIdException e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (UnsuportedOperation e) {
 			e.printStackTrace();
 		}
@@ -108,7 +104,7 @@ public class ResolID implements Visitante {
 	@Override public void visit(False node) {}
 	@Override public void visit(Number node) {}
 	@Override public void previsit(Asignacion node) {}
-	@Override public void previsit(Choose node) {}
+	@Override public boolean previsit(Choose node) {return true;}
 	@Override public void previsit(IfThenElse node) {}
 	@Override public void previsit(While node) {}
 	@Override public void postvisit(Asignacion node) {}

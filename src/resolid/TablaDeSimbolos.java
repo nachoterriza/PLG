@@ -31,7 +31,7 @@ public class TablaDeSimbolos {
 	}
 	
 	public void insertaIdV(String id, Declaracion decl) throws IdentifyingIdException {
-		if(ptBloques.peek().contains(id)){
+		if(ptBloques.peek().containsKey(id)){
 			throw new IdentifyingIdException("Variable "+ id 
 					+ " ya declarada");
 		}

@@ -35,10 +35,4 @@ public class AccessAt extends ExpresionBinaria {
 			throw new UnsuportedOperation("Array de tipo erroneo.");
 	}
 
-	@Override
-	public void accept(Visitante v) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

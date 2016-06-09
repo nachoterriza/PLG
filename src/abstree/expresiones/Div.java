@@ -22,9 +22,4 @@ public class Div extends ExpresionBinaria {
 			return new Int();
 		else throw new UnsuportedOperation("Division con no enteros.");
 	}
-
-	@Override
-	public String getOperator() {
-		return "/";
-	}
 }

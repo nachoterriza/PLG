@@ -199,10 +199,11 @@ public class PrettyPrinter implements Visitante {
 	}
 
 	@Override
-	public void previsit(Choose node) {
+	public boolean previsit(Choose node) {
 		printDepth();
 		System.out.println("Choose");
 		depth++;
+		return true;
 	}
 
 	@Override

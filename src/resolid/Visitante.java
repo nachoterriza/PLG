@@ -64,7 +64,7 @@ public interface Visitante {
 	//Sentencias
 	void previsit(Asignacion node);
 	void previsit(Call node);
-	void previsit(Choose node);
+	boolean previsit(Choose node);
 	void previsit(IfThenElse node);
 	void previsit(While node);
 	

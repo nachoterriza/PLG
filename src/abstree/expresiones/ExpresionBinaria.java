@@ -29,11 +29,6 @@ public abstract class ExpresionBinaria extends Expresion{
 		
 	}
 	
-	//public abstract String getOperator();
-	public  String getOperator(){
-		return tipo().toString();
-	}
-	
 	protected Expresion op1;
 	protected Expresion op2;
 }

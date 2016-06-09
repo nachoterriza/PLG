@@ -63,7 +63,9 @@ public class Choose extends Sentencia {
 
 	@Override
 	public void accept(Visitante v) {
-		v.previsit(this);
+		boolean cont =  v.previsit(this);
+		if (!cont) return;
+		
 		var.accept(v);
 		Iterator<Entry<Integer,Programa>> it = casos.entrySet().iterator();
 		Entry<Integer,Programa> e;

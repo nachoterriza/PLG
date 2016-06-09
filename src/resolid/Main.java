@@ -23,8 +23,9 @@ public class Main {
 	 ResolID resolid = new ResolID();
 	 codetree.accept(resolid);
 	 System.out.println(" - resolucion de identificadores completada - ");
-	 PrettyPrinter pp = new PrettyPrinter(true);
-	 codetree.accept(pp);
+	 codetree.checkTipo();
+	// PrettyPrinter pp = new PrettyPrinter(false);
+//	 codetree.accept(pp);
    }
 
 }   

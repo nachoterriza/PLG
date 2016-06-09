@@ -23,11 +23,4 @@ public class Suma extends ExpresionBinaria {
 		else throw new UnsuportedOperation("Suma con no enteros.");
 	}
 
-
-	@Override
-	public String getOperator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

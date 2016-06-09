@@ -1,11 +1,12 @@
+
 method ordenar
-takes input array of tam int lista;
-declares output //jkhdajhfdjkhkjhk
+takes input array of 10 int lista;
+declares output array of 10 int listabis;
 makes
 int temp = 0;
 int i = 1;
 int j = 0;
-while i < tam do
+while i < 10 do
 	temp = lista @ i;
 	j = i - 1;
 	while lista @ j > temp AND j >= 0 do

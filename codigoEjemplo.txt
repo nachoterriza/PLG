@@ -1,0 +1,31 @@
+{ 
+    pequeño programa-P  
+
+    generado a mano por Ricardo Peña
+
+    3 de junio de 2014
+}
+
+{ Pueden usarse los comentarios de bloque para numerar las instrucciones }
+
+
+                  \\ comienza expresión aritmética
+{0}  ldc 5;       
+{1}  ldc 6;
+{2}  ind;
+{3}  ldc 6;
+{4}  ind;
+{5}  ldc 7;
+{6}  ind  
+          ;       \\ puede haber blancos/fin-de-línea entre la operación y el ';'
+{7}  mul  ;
+{8}  add;
+{9}  sto; 
+                  \\ comienza expresión lógica
+{10} ldc true;     
+{11} ldc false;   \\ nótese que ldc puede usarse con enteros y booleanos
+{12} or ;           
+
+                  \\ la última instrucción ejecutable debe ser stp (stop)
+     
+{10} stp;
