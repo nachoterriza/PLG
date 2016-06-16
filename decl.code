@@ -1,0 +1,10 @@
+main start
+	int a = 0;
+	int b = a + 55;
+	bool c = FALSE;
+	array of 3 int d = all 3 to 3;
+	if NOT c then
+		a = b;
+		d@1= a-b;
+	done;
+end;

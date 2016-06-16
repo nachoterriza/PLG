@@ -23,6 +23,7 @@ public class IR {
 	public static String gt(){return "grt;";}
 	public static String neq(){return "neq;";}
 	
+	public static String ldcAddr(int c){return "lda 0 "+c+";";}
 	public static String ldcInt(int c){return "ldc "+c+";";}
 	public static String ldcTrue(){return "ldc true;";}
 	public static String ldcFalse(){return "ldc false;";}

@@ -34,9 +34,11 @@ import abstree.tipos.Int;
 public class CodeVisitor implements Visitante {
 	
 	private CodeStack codeStack;
+	private RoVisitor ro;
 	
-	public CodeVisitor(){
+	public CodeVisitor(RoVisitor ro){
 		this.codeStack = new CodeStack();
+		this.ro = ro;
 	}
 	
 	public LinkedList<String> getResult() throws CompilingException{
@@ -58,10 +60,7 @@ public class CodeVisitor implements Visitante {
 	}
 
 	@Override
-	public void previsit(Declaracion node) {
-		// TODO Auto-generated method stub
-
-	}
+	public void previsit(Declaracion node) {}
 
 	@Override
 	public void previsit(Funcion node) {
@@ -77,8 +76,14 @@ public class CodeVisitor implements Visitante {
 
 	@Override
 	public void postvisit(Declaracion node) {
-		// TODO Auto-generated method stub
-
+		try {
+			LinkedList<String> rigth = codeStack.popCodeR();
+			rigth.addFirst(IR.ldcAddr(ro.ro(node)));
+			rigth.add(IR.sto());
+			codeStack.pushCodeC(rigth);
+		} catch (CompilingException e){
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -178,7 +183,7 @@ public class CodeVisitor implements Visitante {
 	public void visit(Identificador node) {
 		try {
 			LinkedList<String> code = new LinkedList<String>();
-			code.add(IR.ldcInt( -666/*TODO hacer RO*/));
+			code.add(IR.ldcAddr(-666/*ro.ro(node)*/));
 			codeStack.pushCodeL(code);
 		} catch (CompilingException e) {
 			e.printStackTrace();
@@ -331,16 +336,10 @@ public class CodeVisitor implements Visitante {
 	}
 
 	@Override
-	public void visit(String id) {
-		// TODO Auto-generated method stub
-
-	}
+	public void visit(String id) {}
 
 	@Override
-	public void visit(int key) {
-		// TODO Auto-generated method stub
-
-	}
+	public void visit(int key) {}
 
 	@Override
 	public void previsit(ArrayOf arrayOf) {
