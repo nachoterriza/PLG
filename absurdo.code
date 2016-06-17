@@ -50,7 +50,7 @@ main start
 	array of 3 array of 3 bool d = all 3 to all 3 to FALSE;
 	int get = 0;
 	int getbis = a@1;
-	& int a = 0;
+	int a = 0;
 	
 	while c@2@2 > 0 do
 		c@2@2 = c@2@2 - c@1@1;
