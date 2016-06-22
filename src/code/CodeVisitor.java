@@ -223,7 +223,7 @@ public class CodeVisitor implements Visitante {
 			return false;
 		}
 		
-		//Código de los casos
+		//Cï¿½digo de los casos
 		for(int i=n;i>=0;i--){
 			try {
 				//Apila el codigo del caso i. Si no hay caso i, salta al catch
@@ -245,7 +245,7 @@ public class CodeVisitor implements Visitante {
 			
 		}
 		
-		//Código de la variable selectora
+		//Cï¿½digo de la variable selectora
 		try {
 			node.var().accept(this);
 			varcode = codeStack.popCodeR();

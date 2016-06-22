@@ -33,7 +33,7 @@ public class Declaracion implements Anfitrion{
 	}
 	
 	public boolean checkTipo() throws UnsuportedOperation {
-		if(valor.getTipo()==tipo)
+		if(valor.getTipo().valorT()==tipo.valorT())
 			return true;
 		else throw new UnsuportedOperation("Declaracion con error de tipos.");
 	}

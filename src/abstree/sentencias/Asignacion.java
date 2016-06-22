@@ -1,6 +1,7 @@
 package abstree.sentencias;
 
 import abstree.expresiones.Expresion;
+import abstree.tipos.ArrayOf;
 import resolid.Visitante;
 import errors.UnsuportedOperation;
 
@@ -24,9 +25,26 @@ public class Asignacion extends Sentencia {
 	}
 	
 	public boolean checkTipo() throws UnsuportedOperation {
-		if(varleft.getTipo()==expright.getTipo())
-			return true;
-		else throw new UnsuportedOperation("Asignación errónea.");
+		int valorL = varleft.getTipo().valorT();
+		int valorR = expright.getTipo().valorT();
+		
+		if(valorR!=valorL)
+			throw new UnsuportedOperation("Asignacion de tipos erroneos.");
+		
+		Expresion arrayL;
+		Expresion arrayR;
+		
+		while(valorL>=2) {
+			arrayL = varleft;
+			arrayR = expright;
+			if(arrayL.getTipo().numElems()!=arrayR.getTipo().numElems())
+				throw new UnsuportedOperation("Asignacion entre arrays de distinto tamaño.");
+			arrayL = arrayL.elemAt(0);
+			arrayR = arrayR.elemAt(0);
+			valorL-=2;
+		}
+		
+		return true;
 	}
 	
 	private Expresion varleft;

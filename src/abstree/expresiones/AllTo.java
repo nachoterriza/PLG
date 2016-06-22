@@ -31,14 +31,25 @@ public class AllTo extends Expresion{
 	}
 	
 	public Tipo getTipo() throws UnsuportedOperation {
-		Int test = new Int();
-		Bool testB = new Bool();
-		if(op1.getTipo().valorT()==test.valorT())
-			return new ArrayOf(num,new Int());
-		else if (op1.getTipo().valorT()==testB.valorT())
-			return new ArrayOf(num,new Bool());
-		else throw new UnsuportedOperation("Configuracion de array con tipo erróneo.");
-
+		int valor = op1.getTipo().valorT();
+		
+		if(valor%2==0){
+			Int test = new Int();
+			if(valor==test.valorT())
+				return new ArrayOf(num,new Int());
+			else return findDim(valor,num,new Int());			
+		} else {
+			Bool testB = new Bool();
+			if (valor==testB.valorT())
+				return new ArrayOf(num,new Bool());
+			else return findDim(valor,num,new Bool());
+		}
+	}
+	
+	private Tipo findDim(int valor, int num, Tipo tipo) {
+		if(valor>=4)
+			return new ArrayOf(num,findDim(valor-2,num,tipo));
+		else return new ArrayOf(num,tipo);
 	}
 
 	@Override

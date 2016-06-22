@@ -51,8 +51,14 @@ public class IfThenElse extends Sentencia{
 
 
 	public boolean checkTipo() throws UnsuportedOperation {
+		Bool test = new Bool();
+		if(codeif.checkTipo() && codeelse==null){
+			if(cond.getTipo().valorT()==test.valorT())
+				return true;
+			else throw new UnsuportedOperation("If de condición no booleana.");
+		}
 		if(codeif.checkTipo() && codeelse.checkTipo()){
-			if(cond.getTipo()==new Bool())
+			if(cond.getTipo().valorT()==test.valorT())
 				return true;
 			else throw new UnsuportedOperation("If de condición no booleana.");}
 		else return false;

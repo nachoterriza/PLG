@@ -48,7 +48,8 @@ public class Choose extends Sentencia {
 	}
 	
 	public boolean checkTipo() throws UnsuportedOperation {
-		if(var.getTipo()==new Int()) {
+		Int test = new Int();
+		if(var.getTipo().valorT()==test.valorT()) {
 			Enumeration<Programa> pCasos = casos.elements();
 			boolean correct = true;
 			while(pCasos.hasMoreElements()) {

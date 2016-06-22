@@ -14,4 +14,10 @@ public class Int extends Tipo{
 	public int valorT() {
 		return 0;
 	}
+
+	@Override
+	public int numElems() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

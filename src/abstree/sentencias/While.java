@@ -41,7 +41,8 @@ public class While extends Sentencia {
 
 
 	public boolean checkTipo() throws UnsuportedOperation {
-		if(cond.getTipo()==new Bool())
+		Bool test = new Bool();
+		if(cond.getTipo().valorT()==test.valorT())
 			return true;
 		else throw new UnsuportedOperation("Condición no booleana en bucle while.");
 	}

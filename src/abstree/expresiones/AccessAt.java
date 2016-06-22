@@ -23,7 +23,7 @@ public class AccessAt extends ExpresionBinaria {
 		Int test = new Int();
 		ArrayOf testArray = new ArrayOf(1,new Int());
 		if(op2.getTipo().valorT()==test.valorT()
-				&& op1.getTipo().valorT()==testArray.valorT()) 
+				&& op1.getTipo().valorT()>=testArray.valorT()) 
 			return ((ArrayOf) op1.getTipo()).getTipoElem();
 		else 
 			throw new UnsuportedOperation("Array de tipo erroneo.");

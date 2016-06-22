@@ -48,9 +48,9 @@ public class Main {
 	 ResolID resolid = new ResolID();
 	 codetree.accept(resolid);
 	 System.out.println(" - resolucion de identificadores completada - ");
-/*	 codetree.checkTipo();
+	 codetree.checkTipo();
 	 System.out.println(" - Comprobacion de tipos completada - ");
-	*/ RoVisitor ro = new RoVisitor();
+	 RoVisitor ro = new RoVisitor();
 	 codetree.accept(ro);
 	 System.out.println(" - localizacion de variables completada - ");
 	 CodeVisitor compiler = new CodeVisitor(ro);
@@ -262,7 +262,7 @@ public class Main {
    
    public static void main(String[] args){
 	   try {
-		testDecl();
+		testMain();
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

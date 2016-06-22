@@ -13,4 +13,10 @@ public class Bool extends Tipo{
 	public int valorT() {
 		return 1;
 	}
+
+	@Override
+	public int numElems() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

@@ -24,9 +24,14 @@ public class ArrayOf extends Tipo{
 	}
 	
 	public int valorT() {
-		return 2;
+		return 2+tipoElem.valorT();
 	}
 	
 	private int tam;
 	private Tipo tipoElem;
+	@Override
+	public int numElems() {
+		// TODO Auto-generated method stub
+		return tam;
+	}
 }

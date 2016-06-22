@@ -53,7 +53,7 @@ public class CodeStack {
 	private class CodeBlock {
 		/**
 		 * Crea un bloque de codigo
-		 * @param codeLR Tipo de código: L (codeL) / R (codeR) / C (code)
+		 * @param codeLR Tipo de cï¿½digo: L (codeL) / R (codeR) / C (code)
 		 * @param intbool Tipo de la expresion: i (int) / b (bool) / n (none)
 		 * @param code seccion de codigo
 		 */
