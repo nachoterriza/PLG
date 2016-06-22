@@ -31,16 +31,48 @@ import abstree.tipos.ArrayOf;
 import abstree.tipos.Bool;
 import abstree.tipos.Int;
 
+/**
+ * Visitante que en su recorrido por el arbol abstracto, 
+ * compila el código representado por el código. Para ello,
+ * el árbol debe ejecutar {@link Codigo#accept(Visitante)} con
+ * esta clase como parámetro. <br><br>
+ * 
+ * Este visitante en las funciones visit() debería apilar el codigo
+ * correspondiente a los nodos hoja en la pila de codigo. En las funciones
+ * postvisit(), debería desapilar los códigos de sus hijos, combinarlos y 
+ * apilar un único bloque de código correspondiente al subárbol que forma.
+ * Las funciones previsit() apenas serán usadas, a menos que queramos cambiar
+ * o controlar de alguna manera cómo se visitan los hijos. Este es el caso de 
+ * {@link CodeVisitor#previsit(Choose)}.
+ * 
+ * <br> <br><b>--//--SIN TERMINAR DE IMPLEMENTAR--//--</b>
+ * 
+ * @see CodeStack
+ */
 public class CodeVisitor implements Visitante {
 	
 	private CodeStack codeStack;
 	private RoVisitor ro;
 	
+	/**
+	 * Crea un nuevo CodeVisitor
+	 * @param ro Función que obtiene las direcciones de las variables. <br>
+	 * El árbol debe ejecutar previamente {@link Codigo#accept(Visitante)} con
+	 * el RoVisitor como parámetro.
+	 * @see RoVisitor
+	 */
 	public CodeVisitor(RoVisitor ro){
 		this.codeStack = new CodeStack();
 		this.ro = ro;
 	}
 	
+	/**
+	 * Obtiene el código máquina resultante tras hacer {@link Codigo#accept(Visitante)} con
+	 * esta clase como parámetro. Si la compilación ha sido correcta, en la pila
+	 * de código sólo debería haber un bloque.
+	 * @return
+	 * @throws CompilingException
+	 */
 	public LinkedList<String> getResult() throws CompilingException{
 		if(codeStack.getNumBlocksStack() == 1){
 			LinkedList<String> code =  IR.relToAbsJumps(codeStack.popCodeC());

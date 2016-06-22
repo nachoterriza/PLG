@@ -21,6 +21,13 @@ import abstree.tipos.ArrayOf;
 import abstree.tipos.Bool;
 import abstree.tipos.Int;
 
+/**
+ * Implementación del visitante que deja todas las funciones
+ * vacías. Permite no recargar las clases que necesitan implementar 
+ * muy pocas funciones. Para los previsit que permiten cortar la exploracion,
+ * esta implementación no la corta.
+ * @see Visitante#previsit(Choose)
+ */
 public class VisitorHelper implements Visitante {
 
 	@Override public void previsit(Codigo node) {}

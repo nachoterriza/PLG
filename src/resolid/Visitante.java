@@ -64,6 +64,17 @@ public interface Visitante {
 	//Sentencias
 	void previsit(Asignacion node);
 	void previsit(Call node);
+	/**
+	 * Visita este nodo. El valor de retorno permite cortar la exploración del
+	 * subárbol que cuelga del nodo. Esto permite, entre otras cosas, cambiar
+	 * el orden o tipo de recorrido que se desea hacer sobre los hijos. El 
+	 * valor de retorno cambia ligeramente la implementación del accept() de este nodo.
+	 * @param node Nodo a explorar
+	 * @return <code>true</code> si se debe explorar el subárbol. <code>false</code>
+	 * si se desea cortar la exploracion, ya sea para no explorar o redefinir la
+	 * exploración.
+	 * @see Choose#accept(Visitante)
+	 */
 	boolean previsit(Choose node);
 	void previsit(IfThenElse node);
 	void previsit(While node);

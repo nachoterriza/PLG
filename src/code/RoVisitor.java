@@ -11,6 +11,10 @@ import abstree.Programa;
 import abstree.expresiones.Identificador;
 import errors.UnsuportedOperation;
 
+/**
+ * Recorre el árbol, asignando direcciones de memoria a las variables
+ * del programa. <br> <br><b>--//--SIN TERMINAR DE IMPLEMENTAR--//--</b>
+ */
 public class RoVisitor extends VisitorHelper{
 
 	private Hashtable<Declaracion,Integer> ro;

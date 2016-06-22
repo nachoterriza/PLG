@@ -5,6 +5,11 @@ import abstree.tipos.Bool;
 import abstree.tipos.Int;
 import resolid.VisitorHelper;
 
+/**
+ * Pequeño visitante que calcula el tamaño de los elementos del
+ * array del que se quiere acceder a un elemento. Usado en 
+ * {@link CodeVisitor#postvisit(abstree.expresiones.ExpresionBinaria)}
+ */
 public class DimensionVisitor extends VisitorHelper {
 
 	public DimensionVisitor(){
