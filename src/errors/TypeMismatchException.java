@@ -11,6 +11,11 @@ public class TypeMismatchException extends Exception {
     public TypeMismatchException(String message) {
         super(message);
     }
+    
+    public TypeMismatchException(String message, int fila) {
+        super(message);
+        this.fila = fila;
+    }
 
     public TypeMismatchException(String message, Throwable cause) {
         super(message, cause);
@@ -19,4 +24,6 @@ public class TypeMismatchException extends Exception {
     public TypeMismatchException(Throwable cause) {
         super(cause);
     }
+    
+    private int fila;
 }
