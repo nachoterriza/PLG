@@ -1,7 +1,7 @@
 package code;
 
+import java.util.Hashtable;
 import java.util.LinkedList;
-import java.util.Stack;
 
 import errors.CompilingException;
 import errors.UnsuportedOperation;
@@ -51,6 +51,8 @@ import abstree.tipos.Int;
  */
 public class CodeVisitor implements Visitante {
 	
+	private Hashtable<Funcion,Integer> startDirTable;
+	private int nextStartDir; 
 	private CodeStack codeStack;
 	private RoVisitor ro;
 	
@@ -64,6 +66,8 @@ public class CodeVisitor implements Visitante {
 	public CodeVisitor(RoVisitor ro){
 		this.codeStack = new CodeStack();
 		this.ro = ro;
+		this.startDirTable = new Hashtable<Funcion,Integer>();
+		this.nextStartDir = 0;
 	}
 	
 	/**
@@ -75,7 +79,7 @@ public class CodeVisitor implements Visitante {
 	 */
 	public LinkedList<String> getResult() throws CompilingException{
 		if(codeStack.getNumBlocksStack() == 1){
-			LinkedList<String> code =  IR.relToAbsJumps(codeStack.popCodeC());
+			LinkedList<String> code =  codeStack.popCodeC();
 			code.add(IR.stop());
 			return code;
 		}
@@ -95,9 +99,25 @@ public class CodeVisitor implements Visitante {
 	public void previsit(Declaracion node) {}
 
 	@Override
-	public void previsit(Funcion node) {
+	public boolean previsit(Funcion node) {
 		// TODO Auto-generated method stub
+		return true;
+	}
 
+	@Override
+	public void postvisit(Funcion node) {
+		LinkedList<String> code;
+		try {
+			code = this.codeStack.popCodeC();
+			
+			this.startDirTable.put(node, this.nextStartDir);
+			this.nextStartDir = this.nextStartDir + code.size();
+			IR.relToAbsJumps(code);
+			
+			this.codeStack.pushCodeC(code);
+		} catch (CompilingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -116,12 +136,6 @@ public class CodeVisitor implements Visitante {
 		} catch (CompilingException e){
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void postvisit(Funcion node) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -145,11 +159,9 @@ public class CodeVisitor implements Visitante {
 			if (node instanceof AccessAt){
 				LinkedList<String> rigth = codeStack.popCodeR();
 				LinkedList<String> left = codeStack.popCodeL();
-				DimensionVisitor dimv = new DimensionVisitor();
-				((ArrayOf) node.op1().getTipo()).getTipoElem().accept(dimv);
-				int dsuper = dimv.getDsuper();
+				
 				left.addAll(rigth);
-				left.add(IR.access(dsuper));
+				left.add(IR.access(node.op1().getTipo().dsuper()));
 				codeStack.pushCodeL(left);
 			}
 			else {
@@ -237,8 +249,48 @@ public class CodeVisitor implements Visitante {
 	public void previsit(Asignacion node) {}
 
 	@Override
-	public void previsit(Call node) {
-		// TODO Auto-generated method stub
+	public boolean previsit(Call node) {
+		Funcion f;
+		LinkedList<String> code;
+		LinkedList<String> totalcode = new LinkedList<String>();
+		totalcode.add(IR.startcall());
+		
+		try {
+			f = node.getRef();
+
+			for (Expresion e: node.entrada()){ //Tipo compuesto
+				e.accept(this);
+				code = this.codeStack.popCodeL();
+				
+				if (e.getTipo() instanceof ArrayOf) //Tipo compuesto
+					code.add(IR.movs(e.getTipo().tam()));
+				else  //Tipo simple
+					code.add(IR.ind());
+				
+				totalcode.addAll(code); //añadimos el valor
+				
+			}
+			for (Expresion e: node.salida()){
+				e.accept(this);
+				code = this.codeStack.popCodeL();
+				totalcode.addAll(code); //Añadimos la referencia ...
+				
+				if (e.getTipo() instanceof ArrayOf) //Tipo compuesto
+					code.add(IR.movs(e.getTipo().tam()));
+				else  //Tipo simple
+					code.add(IR.ind());
+				
+				totalcode.addAll(code);//.. y tambien añadimos el valor
+			}
+			
+			totalcode.add(IR.callj(ro.lparam(f), startDirTable.get(f)));
+			
+		} catch (UnsuportedOperation e1) {
+			e1.printStackTrace();
+		} catch (CompilingException e1) {
+			e1.printStackTrace();
+		}
+		return false;
 
 	}
 

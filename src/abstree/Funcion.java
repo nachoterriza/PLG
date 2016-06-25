@@ -22,7 +22,9 @@ public class Funcion implements Anfitrion{
 	
 	@Override
 	public void accept(Visitante v) {
-		v.previsit(this);
+		boolean cont =  v.previsit(this);
+		if (!cont) return;
+		
 		v.visit(id);
 		for(Declaracion d: entrada)
 			d.accept(v);
@@ -49,6 +51,18 @@ public class Funcion implements Anfitrion{
             throw new UnsuportedOperation("Error de tipo en funcion (programa).");
         return true;
     }
+
+	public LinkedList<Declaracion> getEntrada() {
+		return entrada;
+	}
+
+	public LinkedList<Declaracion> getSalida() {
+		return salida;
+	}
+
+	public Programa getPrograma() {
+		return programa;
+	}
 
 	private String id;
 	private LinkedList<Declaracion> entrada;

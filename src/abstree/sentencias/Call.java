@@ -59,7 +59,9 @@ public class Call extends Sentencia {
 	
 	@Override
 	public void accept(Visitante v) {
-		v.previsit(this);
+		boolean cont =  v.previsit(this);
+		if (!cont) return;
+		
 		v.visit(id);
 		for(Expresion e: entrada)
 			e.accept(v);

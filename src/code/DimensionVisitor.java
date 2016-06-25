@@ -10,6 +10,7 @@ import resolid.VisitorHelper;
  * array del que se quiere acceder a un elemento. Usado en 
  * {@link CodeVisitor#postvisit(abstree.expresiones.ExpresionBinaria)}
  */
+@Deprecated
 public class DimensionVisitor extends VisitorHelper {
 
 	public DimensionVisitor(){

@@ -32,7 +32,7 @@ public class VisitorHelper implements Visitante {
 
 	@Override public void previsit(Codigo node) {}
 	@Override public void previsit(Declaracion node) {}
-	@Override public void previsit(Funcion node) {}
+	@Override public boolean previsit(Funcion node) {return true;}
 	@Override public void previsit(Programa node) {}
 	@Override public void postvisit(Codigo node) {}
 	@Override public void postvisit(Declaracion node) {}
@@ -51,7 +51,7 @@ public class VisitorHelper implements Visitante {
 	@Override public void visit(Identificador node) {}
 	@Override public void visit(Number node) {}
 	@Override public void previsit(Asignacion node) {}
-	@Override public void previsit(Call node) {}
+	@Override public boolean previsit(Call node) {return true;}
 	@Override public boolean previsit(Choose node) {return true;}
 	@Override public void previsit(IfThenElse node) {}
 	@Override public void previsit(While node) {}

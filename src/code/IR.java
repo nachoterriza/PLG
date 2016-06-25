@@ -39,7 +39,16 @@ public class IR {
 	public static String uncondj(int dir){return "ujp "+dir+";";}
 	public static String condj(int dir){return "fjp "+dir+";";}
 	public static String casej(int dir){return "ixj "+dir+";";}
+	/**
+	 * Instruccion de salto a una función
+	 * @param lparam longitud de la zona de parametros de la funcion llamada.
+	 * @param dir direccion de comienzo del código de la funcion llamada.
+	 * @return
+	 */
+	public static String callj(int lparam, int dir){return "cup "+lparam+" "+dir+";";}
 	
+	public static String startcall(){return "mst 0;";}
+	public static String movs(int size){return "movs "+size+";";}
 	public static String access(int tam){return "ixa "+tam+";";}
 	public static String stop(){return "stp;";}
 	

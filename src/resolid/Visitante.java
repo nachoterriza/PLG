@@ -37,7 +37,7 @@ public interface Visitante {
 	
 	void previsit(Codigo node);
 	void previsit(Declaracion node);
-	void previsit(Funcion node);
+	boolean previsit(Funcion node);
 	void previsit(Programa node);
 	
 	void postvisit(Codigo node);
@@ -63,7 +63,7 @@ public interface Visitante {
 	
 	//Sentencias
 	void previsit(Asignacion node);
-	void previsit(Call node);
+	boolean previsit(Call node);
 	/**
 	 * Visita este nodo. El valor de retorno permite cortar la exploración del
 	 * subárbol que cuelga del nodo. Esto permite, entre otras cosas, cambiar

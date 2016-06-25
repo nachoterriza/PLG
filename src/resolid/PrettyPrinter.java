@@ -53,10 +53,11 @@ public class PrettyPrinter implements Visitante {
 	}
 
 	@Override
-	public void previsit(Funcion node) {
+	public boolean previsit(Funcion node) {
 		printDepth();
 		System.out.println("Funcion");
 		depth++;
+		return true;
 	}
 
 	@Override
@@ -181,7 +182,7 @@ public class PrettyPrinter implements Visitante {
 	}
 
 	@Override
-	public void previsit(Call node) {
+	public boolean previsit(Call node) {
 		try {
 			printDepth();
 			System.out.println("Call");
@@ -196,6 +197,7 @@ public class PrettyPrinter implements Visitante {
 			e.printStackTrace();
 		}
 		depth++;
+		return true;
 	}
 
 	@Override

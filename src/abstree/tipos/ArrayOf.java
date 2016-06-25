@@ -27,11 +27,19 @@ public class ArrayOf extends Tipo{
 		return 2+tipoElem.valorT();
 	}
 	
-	private int tam;
-	private Tipo tipoElem;
 	@Override
 	public int numElems() {
-		// TODO Auto-generated method stub
 		return tam;
 	}
+	@Override
+	public int tam() {
+		return tam*tipoElem.tam();
+	}
+	@Override
+	public int dsuper() {
+		return tipoElem.tam();
+	}
+
+	private int tam;
+	private Tipo tipoElem;
 }

@@ -26,13 +26,14 @@ public class ResolID extends VisitorHelper {
 	}
 
 	@Override
-	public void previsit(Funcion node) {
+	public boolean previsit(Funcion node) {
 		try {
 			tabla.insertaIdF(node.getId(), node);
 			tabla.abreBloqueV();
 		} catch (IdentifyingIdException e) {
 			System.out.println(e.getMessage());
 		}
+		return true;
 	}
 
 	@Override 
@@ -63,7 +64,7 @@ public class ResolID extends VisitorHelper {
 	}
 
 	@Override
-	public void previsit(Call node) {
+	public boolean previsit(Call node) {
 		try {
 			Funcion ref = tabla.buscaIdF(node.functionID());
 			node.setRef(ref);
@@ -72,6 +73,7 @@ public class ResolID extends VisitorHelper {
 		} catch (UnsuportedOperation e) {
 			e.printStackTrace();
 		}
+		return true;
 	}
 
 }
