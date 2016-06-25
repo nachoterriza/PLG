@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import errors.CompilingException;
 import errors.UnsuportedOperation;
 import resolid.Visitante;
+import resolid.VisitorHelper;
 import abstree.Codigo;
 import abstree.Declaracion;
 import abstree.Funcion;
@@ -49,7 +50,7 @@ import abstree.tipos.Int;
  * 
  * @see CodeStack
  */
-public class CodeVisitor implements Visitante {
+public class CodeVisitor extends VisitorHelper {
 	
 	private Hashtable<Funcion,Integer> startDirTable;
 	private int nextStartDir; 
@@ -90,15 +91,6 @@ public class CodeVisitor implements Visitante {
 	}
 	
 	@Override
-	public void previsit(Codigo node) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void previsit(Declaracion node) {}
-
-	@Override
 	public boolean previsit(Funcion node) {
 		// TODO Auto-generated method stub
 		return true;
@@ -121,21 +113,15 @@ public class CodeVisitor implements Visitante {
 	}
 
 	@Override
-	public void postvisit(Codigo node) {
+	public void previsit(Codigo node) {
 		// TODO Auto-generated method stub
-
+	
 	}
 
 	@Override
-	public void postvisit(Declaracion node) {
-		try {
-			LinkedList<String> rigth = codeStack.popCodeR();
-			rigth.addFirst(IR.ldcAddr(ro.ro(node)));
-			rigth.add(IR.sto());
-			codeStack.pushCodeC(rigth);
-		} catch (CompilingException e){
-			e.printStackTrace();
-		}
+	public void postvisit(Codigo node) {
+		// TODO Auto-generated method stub
+	
 	}
 
 	@Override
@@ -145,13 +131,34 @@ public class CodeVisitor implements Visitante {
 	}
 
 	@Override
+	public void postvisit(ArrayWithKeys node) {
+		// TODO Auto-generated method stub
+	
+	}
+
+	@Override
 	public void previsit(AllTo node) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void postvisit(Programa node) {}
+	public void postvisit(AllTo node) {
+		// TODO Auto-generated method stub
+	
+	}
+
+	@Override
+	public void postvisit(Declaracion node) { //TODO cambiar asignacion para tipos compuestos
+		try {
+			LinkedList<String> rigth = codeStack.popCodeR();
+			rigth.addFirst(IR.ldcAddr(ro.ro(node)));
+			rigth.add(IR.sto());
+			codeStack.pushCodeC(rigth);
+		} catch (CompilingException e){
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void postvisit(ExpresionBinaria node) {
@@ -187,18 +194,6 @@ public class CodeVisitor implements Visitante {
 		} catch (CompilingException e){
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void postvisit(ArrayWithKeys node) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void postvisit(AllTo node) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -244,9 +239,6 @@ public class CodeVisitor implements Visitante {
 			e.printStackTrace();
 		}
 	}
-
-	@Override
-	public void previsit(Asignacion node) {}
 
 	@Override
 	public boolean previsit(Call node) {
@@ -360,18 +352,6 @@ public class CodeVisitor implements Visitante {
 	}
 
 	@Override
-	public void postvisit(Call node) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void postvisit(Choose node) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void postvisit(IfThenElse node) {
 		try {
 			if (node.tipo() == TipoS.IF) {
@@ -413,55 +393,9 @@ public class CodeVisitor implements Visitante {
 			cond.add(IR.uncondj(-cond.size()));
 			codeStack.pushCodeC(cond);
 		} catch (CompilingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
-
-	@Override
-	public void visit(String id) {}
-
-	@Override
-	public void visit(int key) {}
-
-	@Override
-	public void previsit(ArrayOf arrayOf) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void postvisit(ArrayOf arrayOf) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void visit(Bool bool) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void visit(Int int1) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void previsit(ExpresionBinaria node) {}
-
-	@Override
-	public void previsit(ExpresionUnaria node) {}
-
-	@Override
-	public void previsit(IfThenElse node) {}
-
-	@Override
-	public void previsit(Programa node) {}
-
-	@Override
-	public void previsit(While node) {}
 
 }
