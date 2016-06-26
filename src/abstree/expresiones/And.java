@@ -1,12 +1,12 @@
-package abstree.expresiones;
+package src.abstree.expresiones;
 
-import abstree.tipos.Bool;
-import abstree.tipos.Tipo;
-import errors.UnsuportedOperation;
+import src.abstree.tipos.Bool;
+import src.abstree.tipos.Tipo;
+import src.errors.UnsuportedOperation;
 
 
 public class And extends ExpresionBinaria {
-
+	
 	public And(Expresion op1, Expresion op2) {
 		super(op1, op2);
 	}

@@ -1,14 +1,19 @@
-package abstree.expresiones;
+package src.abstree.expresiones;
 
-import abstree.tipos.Int;
-import abstree.tipos.Tipo;
-import resolid.Visitante;
-import errors.UnsuportedOperation;
+import src.abstree.tipos.Int;
+import src.abstree.tipos.Tipo;
+import src.resolid.Visitante;
+import src.errors.UnsuportedOperation;
 
 public class Number extends Expresion {
 
 	public Number(int num){
 		this.num = num;
+	}
+	
+	public Number(int num, int fila){
+		this.num = num;
+		this.fila = fila;
 	}
 	
 	@Override

@@ -1,25 +1,25 @@
-package resolid;
+package src.resolid;
 
-import abstree.Codigo;
-import abstree.Declaracion;
-import abstree.Funcion;
-import abstree.Programa;
-import abstree.expresiones.AllTo;
-import abstree.expresiones.ArrayWithKeys;
-import abstree.expresiones.ExpresionBinaria;
-import abstree.expresiones.ExpresionUnaria;
-import abstree.expresiones.False;
-import abstree.expresiones.Identificador;
-import abstree.expresiones.True;
-import abstree.sentencias.Asignacion;
-import abstree.sentencias.Call;
-import abstree.sentencias.Choose;
-import abstree.sentencias.IfThenElse;
-import abstree.sentencias.While;
-import abstree.tipos.ArrayOf;
-import abstree.tipos.Bool;
-import abstree.tipos.Int;
-import abstree.expresiones.Number;
+import src.abstree.Codigo;
+import src.abstree.Declaracion;
+import src.abstree.Funcion;
+import src.abstree.Programa;
+import src.abstree.expresiones.AllTo;
+import src.abstree.expresiones.ArrayWithKeys;
+import src.abstree.expresiones.ExpresionBinaria;
+import src.abstree.expresiones.ExpresionUnaria;
+import src.abstree.expresiones.False;
+import src.abstree.expresiones.Identificador;
+import src.abstree.expresiones.True;
+import src.abstree.sentencias.Asignacion;
+import src.abstree.sentencias.Call;
+import src.abstree.sentencias.Choose;
+import src.abstree.sentencias.IfThenElse;
+import src.abstree.sentencias.While;
+import src.abstree.tipos.ArrayOf;
+import src.abstree.tipos.Bool;
+import src.abstree.tipos.Int;
+import src.abstree.expresiones.Number;
 
 
 /** Esta clase permite aplicar operaciones sobre los nodos del
@@ -65,14 +65,14 @@ public interface Visitante {
 	void previsit(Asignacion node);
 	void previsit(Call node);
 	/**
-	 * Visita este nodo. El valor de retorno permite cortar la exploración del
-	 * subárbol que cuelga del nodo. Esto permite, entre otras cosas, cambiar
+	 * Visita este nodo. El valor de retorno permite cortar la exploraciï¿½n del
+	 * subï¿½rbol que cuelga del nodo. Esto permite, entre otras cosas, cambiar
 	 * el orden o tipo de recorrido que se desea hacer sobre los hijos. El 
-	 * valor de retorno cambia ligeramente la implementación del accept() de este nodo.
+	 * valor de retorno cambia ligeramente la implementaciï¿½n del accept() de este nodo.
 	 * @param node Nodo a explorar
-	 * @return <code>true</code> si se debe explorar el subárbol. <code>false</code>
+	 * @return <code>true</code> si se debe explorar el subï¿½rbol. <code>false</code>
 	 * si se desea cortar la exploracion, ya sea para no explorar o redefinir la
-	 * exploración.
+	 * exploraciï¿½n.
 	 * @see Choose#accept(Visitante)
 	 */
 	boolean previsit(Choose node);

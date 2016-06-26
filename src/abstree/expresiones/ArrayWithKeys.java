@@ -1,17 +1,23 @@
-package abstree.expresiones;
+package src.abstree.expresiones;
 
 import java.util.LinkedList;
 
-import abstree.tipos.ArrayOf;
-import abstree.tipos.Tipo;
-import resolid.Visitante;
-import errors.UnsuportedOperation;
+import src.abstree.tipos.ArrayOf;
+import src.abstree.tipos.Tipo;
+import src.resolid.Visitante;
+import src.errors.UnsuportedOperation;
 
 public class ArrayWithKeys extends Expresion {
 
 	public ArrayWithKeys(LinkedList<Expresion> array){
 		this.array = array;
 	}
+	
+	public ArrayWithKeys(LinkedList<Expresion> array, int fila){
+		this.array = array;
+		this.fila = fila;
+	}
+	
 	@Override
 	public TipoE tipo() {
 		return TipoE.ARRAY;
@@ -46,7 +52,7 @@ public class ArrayWithKeys extends Expresion {
 			if(test.valorT()!=array.get(i).getTipo().valorT())
 				throw new UnsuportedOperation("Constructor de array inconsistente.");
 			
-		return new ArrayOf(array.size(),test);
+		return new ArrayOf(array.size(),test,fila);
 	}
 
 }

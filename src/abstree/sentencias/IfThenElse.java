@@ -1,10 +1,10 @@
-package abstree.sentencias;
+package src.abstree.sentencias;
 
-import resolid.Visitante;
-import abstree.Programa;
-import abstree.expresiones.Expresion;
-import abstree.tipos.Bool;
-import errors.UnsuportedOperation;
+import src.resolid.Visitante;
+import src.abstree.Programa;
+import src.abstree.expresiones.Expresion;
+import src.abstree.tipos.Bool;
+import src.errors.UnsuportedOperation;
 
 public class IfThenElse extends Sentencia{
 
@@ -52,16 +52,20 @@ public class IfThenElse extends Sentencia{
 
 	public boolean checkTipo() throws UnsuportedOperation {
 		Bool test = new Bool();
-		if(codeif.checkTipo() && codeelse==null){
-			if(cond.getTipo().valorT()==test.valorT())
-				return true;
-			else throw new UnsuportedOperation("If de condición no booleana.");
+		try {
+			if(codeif.checkTipo() && codeelse==null){
+				if(cond.getTipo().valorT()==test.valorT())
+					return true;
+				else throw new UnsuportedOperation("If de condición no booleana.");
+			}
+			if(codeif.checkTipo() && codeelse.checkTipo()){
+				if(cond.getTipo().valorT()==test.valorT())
+					return true;
+				else throw new UnsuportedOperation("If de condición no booleana.");}
+		} catch (UnsuportedOperation e) {
+			e.printStackTrace();
 		}
-		if(codeif.checkTipo() && codeelse.checkTipo()){
-			if(cond.getTipo().valorT()==test.valorT())
-				return true;
-			else throw new UnsuportedOperation("If de condición no booleana.");}
-		else return false;
+		return false;
 	}
 	
 

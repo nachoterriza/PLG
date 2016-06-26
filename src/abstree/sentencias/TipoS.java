@@ -1,4 +1,4 @@
-package abstree.sentencias;
+package src.abstree.sentencias;
 
 public enum TipoS {
 	IF, IFELSE, CHOOSE,

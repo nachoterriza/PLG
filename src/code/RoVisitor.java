@@ -1,18 +1,18 @@
-package code;
+package src.code;
 
 import java.util.Hashtable;
 import java.util.Stack;
 
-import resolid.VisitorHelper;
-import abstree.Codigo;
-import abstree.Declaracion;
-import abstree.Funcion;
-import abstree.Programa;
-import abstree.expresiones.Identificador;
-import errors.UnsuportedOperation;
+import src.resolid.VisitorHelper;
+import src.abstree.Codigo;
+import src.abstree.Declaracion;
+import src.abstree.Funcion;
+import src.abstree.Programa;
+import src.abstree.expresiones.Identificador;
+import src.errors.UnsuportedOperation;
 
 /**
- * Recorre el árbol, asignando direcciones de memoria a las variables
+ * Recorre el ï¿½rbol, asignando direcciones de memoria a las variables
  * del programa. <br> <br><b>--//--SIN TERMINAR DE IMPLEMENTAR--//--</b>
  */
 public class RoVisitor extends VisitorHelper{

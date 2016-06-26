@@ -1,9 +1,9 @@
-package abstree.expresiones;
+package src.abstree.expresiones;
 
-import abstree.tipos.Bool;
-import abstree.tipos.Tipo;
-import resolid.Visitante;
-import errors.UnsuportedOperation;
+import src.abstree.tipos.Bool;
+import src.abstree.tipos.Tipo;
+import src.resolid.Visitante;
+import src.errors.UnsuportedOperation;
 
 public class True extends Expresion {
 

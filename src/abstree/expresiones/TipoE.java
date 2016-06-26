@@ -1,4 +1,4 @@
-package abstree.expresiones;
+package src.abstree.expresiones;
 
 public enum TipoE {
 	ALLTO, AT, 

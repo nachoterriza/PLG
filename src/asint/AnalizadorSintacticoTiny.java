@@ -4,50 +4,50 @@
 // Sat May 28 20:59:01 CEST 2016
 //----------------------------------------------------
 
-package asint;
+package src.asint;
 
 import java.util.Hashtable;
 import java.util.LinkedList;
 
 import java_cup.runtime.Symbol;
-import abstree.Codigo;
-import abstree.Declaracion;
-import abstree.Funcion;
-import abstree.Programa;
-import abstree.expresiones.AccessAt;
-import abstree.expresiones.AllTo;
-import abstree.expresiones.And;
-import abstree.expresiones.ArrayWithKeys;
-import abstree.expresiones.Div;
-import abstree.expresiones.Equal;
-import abstree.expresiones.Expresion;
-import abstree.expresiones.False;
-import abstree.expresiones.GreaterOrEqual;
-import abstree.expresiones.GreaterThan;
-import abstree.expresiones.Identificador;
-import abstree.expresiones.LowerOrEqual;
-import abstree.expresiones.LowerThan;
-import abstree.expresiones.Mult;
-import abstree.expresiones.Not;
-import abstree.expresiones.NotEqual;
-import abstree.expresiones.Or;
-import abstree.expresiones.Resta;
-import abstree.expresiones.Suma;
-import abstree.expresiones.True;
-import abstree.expresiones.Number;
-import abstree.sentencias.Asignacion;
-import abstree.sentencias.Call;
-import abstree.sentencias.Choose;
-import abstree.sentencias.IfThenElse;
-import abstree.sentencias.Sentencia;
-import abstree.sentencias.While;
-import abstree.tipos.ArrayOf;
-import abstree.tipos.Bool;
-import abstree.tipos.Int;
-import abstree.tipos.Tipo;
-import alex.AnalizadorLexicoTiny;
-import alex.UnidadLexica;
-import errors.GestionErroresTiny;
+import src.abstree.Codigo;
+import src.abstree.Declaracion;
+import src.abstree.Funcion;
+import src.abstree.Programa;
+import src.abstree.expresiones.AccessAt;
+import src.abstree.expresiones.AllTo;
+import src.abstree.expresiones.And;
+import src.abstree.expresiones.ArrayWithKeys;
+import src.abstree.expresiones.Div;
+import src.abstree.expresiones.Equal;
+import src.abstree.expresiones.Expresion;
+import src.abstree.expresiones.False;
+import src.abstree.expresiones.GreaterOrEqual;
+import src.abstree.expresiones.GreaterThan;
+import src.abstree.expresiones.Identificador;
+import src.abstree.expresiones.LowerOrEqual;
+import src.abstree.expresiones.LowerThan;
+import src.abstree.expresiones.Mult;
+import src.abstree.expresiones.Not;
+import src.abstree.expresiones.NotEqual;
+import src.abstree.expresiones.Or;
+import src.abstree.expresiones.Resta;
+import src.abstree.expresiones.Suma;
+import src.abstree.expresiones.True;
+import src.abstree.expresiones.Number;
+import src.abstree.sentencias.Asignacion;
+import src.abstree.sentencias.Call;
+import src.abstree.sentencias.Choose;
+import src.abstree.sentencias.IfThenElse;
+import src.abstree.sentencias.Sentencia;
+import src.abstree.sentencias.While;
+import src.abstree.tipos.ArrayOf;
+import src.abstree.tipos.Bool;
+import src.abstree.tipos.Int;
+import src.abstree.tipos.Tipo;
+import src.alex.AnalizadorLexicoTiny;
+import src.alex.UnidadLexica;
+import src.errors.GestionErroresTiny;
 
 /** CUP v0.11b beta 20140220 generated parser.
   * @version Sat May 28 20:59:01 CEST 2016
@@ -413,11 +413,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 0: // Codigo ::= FunList Main 
             {
               Codigo RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		LinkedList<Funcion> fl = (LinkedList<Funcion>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Programa main = (Programa)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new Codigo(main, fl); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Codigo",0, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -428,8 +424,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 1: // $START ::= Codigo EOF 
             {
               Object RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Codigo start_val = (Codigo)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
 		RESULT = start_val;
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("$START",0, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -442,11 +436,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 2: // FunList ::= Funcion FunList 
             {
               LinkedList<Funcion> RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Funcion f = (Funcion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		LinkedList<Funcion> fl = (LinkedList<Funcion>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 fl.addFirst(f); RESULT = fl; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("FunList",4, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -466,8 +456,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 4: // Main ::= START Programa END 
             {
               Programa RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Programa p = (Programa)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
 		 RESULT = p; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Main",2, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -478,24 +466,15 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 5: // Funcion ::= METHOD ID INPUT Entrada OUTPUT Declaracion DeclList MAKES Programa RETURN 
             {
               Funcion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-8);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-8);
+              UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-8);
 		String id = (String)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-8)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-6);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-6);
 		LinkedList<Declaracion> entrada = (LinkedList<Declaracion>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-6)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-4);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-4);
 		Declaracion d = (Declaracion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-4)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
 		LinkedList<Declaracion> salida = (LinkedList<Declaracion>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Programa prog = (Programa)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
 		 salida.addFirst(d); 
 											   RESULT = new Funcion(id, entrada,
-											   				 salida, prog); 
+											   				 salida, prog, symbol.fila()); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Funcion",3, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-9)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
             }
           return CUP$AnalizadorSintacticoTiny$result;
@@ -504,16 +483,11 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 6: // Entrada ::= Tipo ID SEMICOLON Entrada 
             {
               LinkedList<Declaracion> RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
+              UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Tipo t = (Tipo)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		String id = (String)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		LinkedList<Declaracion> dl = (LinkedList<Declaracion>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
-		 dl.addFirst(new Declaracion(t, id, null)); 
+		 dl.addFirst(new Declaracion(t, id, null, symbol.fila())); 
 											   RESULT = dl; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Entrada",6, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
             }
@@ -523,14 +497,11 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 7: // Entrada ::= Tipo ID SEMICOLON 
             {
               LinkedList<Declaracion> RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
+              UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Tipo t = (Tipo)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		String id = (String)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
 		 RESULT = new LinkedList<Declaracion>(); 
-				 							   RESULT.addFirst(new Declaracion(t, id, null)); 
+				 							   RESULT.addFirst(new Declaracion(t, id, null, symbol.fila())); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Entrada",6, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
             }
           return CUP$AnalizadorSintacticoTiny$result;
@@ -539,11 +510,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 8: // Programa ::= DeclList SentList 
             {
               Programa RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		LinkedList<Declaracion> dl = (LinkedList<Declaracion>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		LinkedList<Sentencia> sl = (LinkedList<Sentencia>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new Programa(dl, sl); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Programa",1, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -554,11 +521,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 9: // DeclList ::= Declaracion DeclList 
             {
               LinkedList<Declaracion> RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Declaracion d = (Declaracion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		LinkedList<Declaracion> dl = (LinkedList<Declaracion>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 dl.addFirst(d); RESULT = dl; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("DeclList",7, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -578,11 +541,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 11: // SentList ::= Sentencia SentList 
             {
               LinkedList<Sentencia> RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Sentencia s = (Sentencia)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		LinkedList<Sentencia> sl = (LinkedList<Sentencia>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 sl.addFirst(s); RESULT = sl; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("SentList",9, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -593,8 +552,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 12: // SentList ::= Sentencia 
             {
               LinkedList<Sentencia> RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Sentencia s = (Sentencia)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new LinkedList<Sentencia>(); 
 											   RESULT.addFirst(s); 
@@ -606,16 +563,11 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 13: // Declaracion ::= Tipo ID IGUAL E0 SEMICOLON 
             {
               Declaracion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-4);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-4);
+              UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
 		Tipo t = (Tipo)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-4)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
 		String id = (String)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Expresion exp = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
-		 RESULT = new Declaracion(t, id, exp); 
+		 RESULT = new Declaracion(t, id, exp, symbol.fila()); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Declaracion",5, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-4)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
             }
           return CUP$AnalizadorSintacticoTiny$result;
@@ -642,13 +594,10 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 16: // Tipo ::= ARRAYOF NUM Tipo 
             {
               Tipo RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
+		UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		String tam = (String)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Tipo tipo = (Tipo)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
-		 RESULT = new ArrayOf(Integer.parseInt(tam), tipo); 
+		 RESULT = new ArrayOf(Integer.parseInt(tam), tipo, symbol.fila()); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Tipo",23, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
             }
           return CUP$AnalizadorSintacticoTiny$result;
@@ -657,11 +606,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 17: // Sentencia ::= Var IGUAL E0 SEMICOLON 
             {
               Sentencia RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
 		Expresion var = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
 		 RESULT = new Asignacion(var, e); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Sentencia",8, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -672,11 +617,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 18: // Sentencia ::= IF E0 THEN Programa DONE 
             {
               Sentencia RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
 		Expresion cond = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Programa codeif = (Programa)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
 		 RESULT = new IfThenElse(cond, codeif, null); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Sentencia",8, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-4)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -687,14 +628,8 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 19: // Sentencia ::= IF E0 THEN Programa ELSE Programa DONE 
             {
               Sentencia RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-5);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-5);
 		Expresion cond = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-5)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
 		Programa codeif = (Programa)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Programa codeelse = (Programa)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
 		 RESULT = new IfThenElse(cond, codeif, codeelse); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Sentencia",8, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-6)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -705,11 +640,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 20: // Sentencia ::= CONSIDERING Var CHOOSE Casos CHOSEN 
             {
               Sentencia RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
 		Expresion var = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Hashtable<Integer,Programa> casos = (Hashtable<Integer,Programa>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
 		 RESULT = new Choose(var, casos); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Sentencia",8, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-4)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -720,11 +651,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 21: // Sentencia ::= WHILE E0 DO Programa DONE 
             {
               Sentencia RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
 		Expresion cond = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Programa code = (Programa)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
 		 RESULT = new While(cond, code); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Sentencia",8, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-4)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -735,16 +662,11 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 22: // Sentencia ::= CALL ID WITH Vars RECEIVING Vars SEMICOLON 
             {
               Sentencia RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-5);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-5);
+              UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-5);
 		String id = (String)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-5)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
 		LinkedList<Expresion> entrada = (LinkedList<Expresion>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		LinkedList<Expresion> salida = (LinkedList<Expresion>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
-		 RESULT = new Call(id, entrada, salida); 
+		 RESULT = new Call(id, entrada, salida, symbol.fila()); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Sentencia",8, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-6)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
             }
           return CUP$AnalizadorSintacticoTiny$result;
@@ -753,14 +675,8 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 23: // Casos ::= VALUE NUM DO Programa DONE Casos 
             {
               Hashtable<Integer,Programa> RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-4);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-4);
 		String num = (String)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-4)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Programa p = (Programa)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Hashtable<Integer,Programa> casos = (Hashtable<Integer,Programa>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 casos.put(Integer.parseInt(num),p); RESULT = casos; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Casos",24, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-5)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -771,11 +687,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 24: // Casos ::= VALUE NUM DO Programa DONE 
             {
               Hashtable<Integer,Programa> RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
 		String num = (String)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3)).value;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Programa p = (Programa)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
 		 RESULT = new Hashtable<Integer,Programa>();
 												   RESULT.put(Integer.parseInt(num),p); 
@@ -787,11 +699,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 25: // Vars ::= Var COMA Vars 
             {
               LinkedList<Expresion> RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion v = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		LinkedList<Expresion> vl = (LinkedList<Expresion>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 vl.addFirst(v); 
 												   RESULT = vl; 
@@ -803,8 +711,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 26: // Vars ::= Var 
             {
               LinkedList<Expresion> RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion v = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new LinkedList<Expresion>(); 
 				 								   RESULT.addFirst(v); 
@@ -816,10 +722,9 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 27: // Var ::= ID 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
+              UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.peek();
 		String id = (String)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
-		 RESULT = new Identificador(id); 
+		 RESULT = new Identificador(id, symbol.fila()); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Var",19, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
             }
           return CUP$AnalizadorSintacticoTiny$result;
@@ -828,11 +733,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 28: // Var ::= Var AT E8 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion var = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new AccessAt(var,e); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Var",19, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -843,11 +744,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 29: // Array ::= Elem COMA Array 
             {
               LinkedList<Expresion> RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		LinkedList<Expresion> array = (LinkedList<Expresion>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 array.addFirst(e); 
 												   RESULT = array; 
@@ -859,8 +756,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 30: // Array ::= Elem 
             {
               LinkedList<Expresion> RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new LinkedList<Expresion>(); 
 				 								   RESULT.addFirst(e); 
@@ -872,10 +767,9 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 31: // Elem ::= NUM 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
+        UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.peek();
 		String num = (String)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
-		 RESULT = new Number(Integer.parseInt(num)); 
+		 RESULT = new Number(Integer.parseInt(num), symbol.fila()); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Elem",20, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
             }
           return CUP$AnalizadorSintacticoTiny$result;
@@ -902,8 +796,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 34: // Elem ::= LLAVEA Array LLAVEC 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		LinkedList<Expresion> e = (LinkedList<Expresion>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
 		 RESULT = new ArrayWithKeys(e); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("Elem",20, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -914,11 +806,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 35: // E0 ::= ALL NUM TO E0 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		String num = (String)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new AllTo(e, Integer.parseInt(num)); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E0",10, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -929,8 +817,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 36: // E0 ::= E1 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = e; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E0",10, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -941,8 +827,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 37: // E0 ::= LLAVEA Array LLAVEC 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		LinkedList<Expresion> e = (LinkedList<Expresion>)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
 		 RESULT = new ArrayWithKeys(e); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E0",10, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -953,11 +837,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 38: // E1 ::= E1 OR E2 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new Or(e1,e2); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E1",11, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -968,8 +848,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 39: // E1 ::= E2 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = e; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E1",11, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -980,11 +858,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 40: // E2 ::= E2 AND E3 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new And(e1, e2); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E2",12, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -995,8 +869,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 41: // E2 ::= E3 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = e; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E2",12, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1007,8 +879,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 42: // E3 ::= NOT E3 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new Not(e); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E3",13, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1019,8 +889,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 43: // E3 ::= E4 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = e; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E3",13, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1049,11 +917,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 46: // E4 ::= E5 EQ E5 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new Equal(e1,e2); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E4",14, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1064,11 +928,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 47: // E4 ::= E5 NEQ E5 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new NotEqual(e1,e2); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E4",14, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1079,11 +939,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 48: // E4 ::= E5 LT E5 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new LowerThan(e1,e2); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E4",14, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1094,11 +950,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 49: // E4 ::= E5 GT E5 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new GreaterThan(e1,e2); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E4",14, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1109,11 +961,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 50: // E4 ::= E5 LE E5 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new LowerOrEqual(e1,e2); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E4",14, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1124,11 +972,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 51: // E4 ::= E5 GE E5 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new GreaterOrEqual(e1,e2); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E4",14, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1139,8 +983,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 52: // E4 ::= E5 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = e; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E4",14, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1151,11 +993,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 53: // E5 ::= E5 MAS E6 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new Suma(e1,e2); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E5",15, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1166,11 +1004,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 54: // E5 ::= E5 MENOS E6 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new Resta(e1,e2); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E5",15, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1181,8 +1015,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 55: // E5 ::= E6 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = e; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E5",15, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1193,11 +1025,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 56: // E6 ::= E6 DIV E7 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new Div(e1,e2); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E6",16, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1208,8 +1036,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 57: // E6 ::= E7 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = e; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E6",16, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1220,11 +1046,7 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 58: // E7 ::= E7 POR E8 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
 		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)).value;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = new Mult(e1,e2); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E7",17, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1235,8 +1057,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 59: // E7 ::= E8 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = e; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E7",17, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1247,10 +1067,9 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 60: // E8 ::= NUM 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
+        UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.peek();
 		String num = (String)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
-		 RESULT = new Number(Integer.parseInt(num)); 
+		 RESULT = new Number(Integer.parseInt(num), symbol.fila()); 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E8",18, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
             }
           return CUP$AnalizadorSintacticoTiny$result;
@@ -1259,8 +1078,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 61: // E8 ::= Var 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.peek();
-		CUP$AnalizadorSintacticoTiny$stack.peek();
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.peek()).value;
 		 RESULT = e; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E8",18, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);
@@ -1271,8 +1088,6 @@ public final java_cup.runtime.Symbol CUP$AnalizadorSintacticoTiny$do_action_part
           case 62: // E8 ::= PAP E0 PCIERRE 
             {
               Expresion RESULT =null;
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
-		CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1)).value;
 		 RESULT = e; 
               CUP$AnalizadorSintacticoTiny$result = parser.getSymbolFactory().newSymbol("E8",18, ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2)), ((java_cup.runtime.Symbol)CUP$AnalizadorSintacticoTiny$stack.peek()), RESULT);

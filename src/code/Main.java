@@ -1,4 +1,4 @@
-package code;
+package src.code;
 
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -7,32 +7,32 @@ import java.util.Hashtable;
 import java.util.LinkedList;
 
 import java_cup.runtime.Symbol;
-import resolid.ResolID;
-import abstree.Codigo;
-import abstree.Declaracion;
-import abstree.Programa;
-import abstree.expresiones.AccessAt;
-import abstree.expresiones.And;
-import abstree.expresiones.Expresion;
-import abstree.expresiones.False;
-import abstree.expresiones.Identificador;
-import abstree.expresiones.LowerThan;
-import abstree.expresiones.Mult;
-import abstree.expresiones.Not;
-import abstree.expresiones.Number;
-import abstree.expresiones.Suma;
-import abstree.expresiones.True;
-import abstree.sentencias.Asignacion;
-import abstree.sentencias.Choose;
-import abstree.sentencias.IfThenElse;
-import abstree.sentencias.Sentencia;
-import abstree.sentencias.While;
-import abstree.tipos.ArrayOf;
-import abstree.tipos.Int;
-import alex.AnalizadorLexicoTiny;
-import asint.AnalizadorSintacticoTiny;
-import errors.CompilingException;
-import errors.UnsuportedOperation;
+import src.resolid.ResolID;
+import src.abstree.Codigo;
+import src.abstree.Declaracion;
+import src.abstree.Programa;
+import src.abstree.expresiones.AccessAt;
+import src.abstree.expresiones.And;
+import src.abstree.expresiones.Expresion;
+import src.abstree.expresiones.False;
+import src.abstree.expresiones.Identificador;
+import src.abstree.expresiones.LowerThan;
+import src.abstree.expresiones.Mult;
+import src.abstree.expresiones.Not;
+import src.abstree.expresiones.Number;
+import src.abstree.expresiones.Suma;
+import src.abstree.expresiones.True;
+import src.abstree.sentencias.Asignacion;
+import src.abstree.sentencias.Choose;
+import src.abstree.sentencias.IfThenElse;
+import src.abstree.sentencias.Sentencia;
+import src.abstree.sentencias.While;
+import src.abstree.tipos.ArrayOf;
+import src.abstree.tipos.Int;
+import src.alex.AnalizadorLexicoTiny;
+import src.asint.AnalizadorSintacticoTiny;
+import src.errors.CompilingException;
+import src.errors.UnsuportedOperation;
 
 public class Main {
    public static void testMain() throws Exception {

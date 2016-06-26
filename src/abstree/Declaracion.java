@@ -1,17 +1,19 @@
-package abstree;
+package src.abstree;
 
-import abstree.expresiones.Expresion;
-import abstree.tipos.Tipo;
-import resolid.Anfitrion;
-import resolid.Visitante;
-import errors.UnsuportedOperation;
+import src.abstree.expresiones.Expresion;
+import src.abstree.tipos.Tipo;
+import src.resolid.Anfitrion;
+import src.resolid.Visitante;
+import src.errors.UnsuportedOperation;
 
 public class Declaracion implements Anfitrion{
 	
-	public Declaracion(Tipo tipo, String id, Expresion valor){
+
+	public Declaracion(Tipo tipo, String id, Expresion valor, int fila){
 		this.tipo = tipo;
 		this.id = id;
 		this.valor = valor;
+		this.fila = fila;
 	}
 	
 	public Tipo getTipo() {
@@ -45,5 +47,6 @@ public class Declaracion implements Anfitrion{
 	private Tipo tipo;
 	private String id;
 	private Expresion valor;
+	private int fila;
 
 }

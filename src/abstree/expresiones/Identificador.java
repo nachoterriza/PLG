@@ -1,15 +1,20 @@
-package abstree.expresiones;
+package src.abstree.expresiones;
 
-import resolid.Visitante;
-import abstree.Declaracion;
-import abstree.tipos.Tipo;
-import errors.UnsuportedOperation;
+import src.resolid.Visitante;
+import src.abstree.Declaracion;
+import src.abstree.tipos.Tipo;
+import src.errors.UnsuportedOperation;
 
 //Hay que inicializar la referencia
 public class Identificador extends Expresion {
 
 	public Identificador(String id){
 		this.id = id;
+	}
+	
+	public Identificador(String id, int fila){
+		this.id = id;
+		this.fila = fila;
 	}
 	
 	@Override

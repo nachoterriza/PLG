@@ -1,48 +1,48 @@
-package code;
+package src.code;
 
 import java.util.LinkedList;
 import java.util.Stack;
 
-import errors.CompilingException;
-import errors.UnsuportedOperation;
-import resolid.Visitante;
-import abstree.Codigo;
-import abstree.Declaracion;
-import abstree.Funcion;
-import abstree.Programa;
-import abstree.expresiones.AccessAt;
-import abstree.expresiones.AllTo;
-import abstree.expresiones.ArrayWithKeys;
-import abstree.expresiones.Expresion;
-import abstree.expresiones.ExpresionBinaria;
-import abstree.expresiones.ExpresionUnaria;
-import abstree.expresiones.False;
-import abstree.expresiones.Identificador;
-import abstree.expresiones.Not;
-import abstree.expresiones.Number;
-import abstree.expresiones.True;
-import abstree.sentencias.Asignacion;
-import abstree.sentencias.Call;
-import abstree.sentencias.Choose;
-import abstree.sentencias.IfThenElse;
-import abstree.sentencias.TipoS;
-import abstree.sentencias.While;
-import abstree.tipos.ArrayOf;
-import abstree.tipos.Bool;
-import abstree.tipos.Int;
+import src.errors.CompilingException;
+import src.errors.UnsuportedOperation;
+import src.resolid.Visitante;
+import src.abstree.Codigo;
+import src.abstree.Declaracion;
+import src.abstree.Funcion;
+import src.abstree.Programa;
+import src.abstree.expresiones.AccessAt;
+import src.abstree.expresiones.AllTo;
+import src.abstree.expresiones.ArrayWithKeys;
+import src.abstree.expresiones.Expresion;
+import src.abstree.expresiones.ExpresionBinaria;
+import src.abstree.expresiones.ExpresionUnaria;
+import src.abstree.expresiones.False;
+import src.abstree.expresiones.Identificador;
+import src.abstree.expresiones.Not;
+import src.abstree.expresiones.Number;
+import src.abstree.expresiones.True;
+import src.abstree.sentencias.Asignacion;
+import src.abstree.sentencias.Call;
+import src.abstree.sentencias.Choose;
+import src.abstree.sentencias.IfThenElse;
+import src.abstree.sentencias.TipoS;
+import src.abstree.sentencias.While;
+import src.abstree.tipos.ArrayOf;
+import src.abstree.tipos.Bool;
+import src.abstree.tipos.Int;
 
 /**
  * Visitante que en su recorrido por el arbol abstracto, 
- * compila el código representado por el código. Para ello,
- * el árbol debe ejecutar {@link Codigo#accept(Visitante)} con
- * esta clase como parámetro. <br><br>
+ * compila el cï¿½digo representado por el cï¿½digo. Para ello,
+ * el ï¿½rbol debe ejecutar {@link Codigo#accept(Visitante)} con
+ * esta clase como parï¿½metro. <br><br>
  * 
- * Este visitante en las funciones visit() debería apilar el codigo
+ * Este visitante en las funciones visit() deberï¿½a apilar el codigo
  * correspondiente a los nodos hoja en la pila de codigo. En las funciones
- * postvisit(), debería desapilar los códigos de sus hijos, combinarlos y 
- * apilar un único bloque de código correspondiente al subárbol que forma.
- * Las funciones previsit() apenas serán usadas, a menos que queramos cambiar
- * o controlar de alguna manera cómo se visitan los hijos. Este es el caso de 
+ * postvisit(), deberï¿½a desapilar los cï¿½digos de sus hijos, combinarlos y 
+ * apilar un ï¿½nico bloque de cï¿½digo correspondiente al subï¿½rbol que forma.
+ * Las funciones previsit() apenas serï¿½n usadas, a menos que queramos cambiar
+ * o controlar de alguna manera cï¿½mo se visitan los hijos. Este es el caso de 
  * {@link CodeVisitor#previsit(Choose)}.
  * 
  * <br> <br><b>--//--SIN TERMINAR DE IMPLEMENTAR--//--</b>
@@ -56,9 +56,9 @@ public class CodeVisitor implements Visitante {
 	
 	/**
 	 * Crea un nuevo CodeVisitor
-	 * @param ro Función que obtiene las direcciones de las variables. <br>
-	 * El árbol debe ejecutar previamente {@link Codigo#accept(Visitante)} con
-	 * el RoVisitor como parámetro.
+	 * @param ro Funciï¿½n que obtiene las direcciones de las variables. <br>
+	 * El ï¿½rbol debe ejecutar previamente {@link Codigo#accept(Visitante)} con
+	 * el RoVisitor como parï¿½metro.
 	 * @see RoVisitor
 	 */
 	public CodeVisitor(RoVisitor ro){
@@ -67,9 +67,9 @@ public class CodeVisitor implements Visitante {
 	}
 	
 	/**
-	 * Obtiene el código máquina resultante tras hacer {@link Codigo#accept(Visitante)} con
-	 * esta clase como parámetro. Si la compilación ha sido correcta, en la pila
-	 * de código sólo debería haber un bloque.
+	 * Obtiene el cï¿½digo mï¿½quina resultante tras hacer {@link Codigo#accept(Visitante)} con
+	 * esta clase como parï¿½metro. Si la compilaciï¿½n ha sido correcta, en la pila
+	 * de cï¿½digo sï¿½lo deberï¿½a haber un bloque.
 	 * @return
 	 * @throws CompilingException
 	 */

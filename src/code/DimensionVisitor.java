@@ -1,12 +1,12 @@
-package code;
+package src.code;
 
-import abstree.tipos.ArrayOf;
-import abstree.tipos.Bool;
-import abstree.tipos.Int;
-import resolid.VisitorHelper;
+import src.abstree.tipos.ArrayOf;
+import src.abstree.tipos.Bool;
+import src.abstree.tipos.Int;
+import src.resolid.VisitorHelper;
 
 /**
- * Pequeño visitante que calcula el tamaño de los elementos del
+ * Pequeï¿½o visitante que calcula el tamaï¿½o de los elementos del
  * array del que se quiere acceder a un elemento. Usado en 
  * {@link CodeVisitor#postvisit(abstree.expresiones.ExpresionBinaria)}
  */

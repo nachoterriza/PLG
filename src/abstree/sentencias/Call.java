@@ -1,20 +1,21 @@
-package abstree.sentencias;
+package src.abstree.sentencias;
 
 import java.util.LinkedList;
 
-import resolid.Visitante;
-import abstree.Declaracion;
-import abstree.Funcion;
-import abstree.expresiones.Expresion;
-import errors.UnsuportedOperation;
+import src.resolid.Visitante;
+import src.abstree.Declaracion;
+import src.abstree.Funcion;
+import src.abstree.expresiones.Expresion;
+import src.errors.UnsuportedOperation;
 
 public class Call extends Sentencia {
 
 	public Call(String id, LinkedList<Expresion> entrada, 
-			LinkedList<Expresion> salida) {
+			LinkedList<Expresion> salida, int fila) {
 		this.id = id;
 		this.entrada = entrada;
 		this.salida = salida;
+		this.fila = fila;
 	}
 	
 	@Override
@@ -43,15 +44,26 @@ public class Call extends Sentencia {
 		LinkedList<Expresion> params = entrada;
 		for(int i=0;i<params.size();i++) {
 			Declaracion dec = params.get(i).ref();
-			if(dec.getTipo().valorT()!=params.get(i).getTipo().valorT())
-				throw new UnsuportedOperation("Parámetros de entrada mal declarados en CALL.");
+			
+			try {
+				
+				if(dec.getTipo().valorT()!=params.get(i).getTipo().valorT())
+					throw new UnsuportedOperation("Parámetros de entrada mal declarados en CALL.");
+			} catch (UnsuportedOperation e) {
+				e.printStackTrace();
+			}
 			
 		}
 		LinkedList<Expresion> vars = salida;
 		for(int i=0;i<vars.size();i++) {
 			Declaracion dec = vars.get(i).ref();
-			if(dec.getTipo().valorT()!=vars.get(i).getTipo().valorT())
-				throw new UnsuportedOperation("Parámetros de salida mal declarados en CALL.");
+			
+			try {
+				if(dec.getTipo().valorT()!=vars.get(i).getTipo().valorT())
+					throw new UnsuportedOperation("Parámetros de salida mal declarados en CALL.");
+			} catch (UnsuportedOperation e) {
+				e.printStackTrace();
+			}
 			
 		}
 		return true;
@@ -73,5 +85,6 @@ public class Call extends Sentencia {
 	private LinkedList<Expresion> entrada;
 	private LinkedList<Expresion> salida;
 	private Funcion ref;
+	private int fila;
 
 }

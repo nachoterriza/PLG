@@ -1,12 +1,13 @@
-package resolid;
+package src.resolid;
 
-import abstree.Declaracion;
-import abstree.Funcion;
-import abstree.Programa;
-import abstree.expresiones.Identificador;
-import abstree.sentencias.Call;
-import errors.IdentifyingIdException;
-import errors.UnsuportedOperation;
+
+import src.abstree.Declaracion;
+import src.abstree.Funcion;
+import src.abstree.Programa;
+import src.abstree.expresiones.Identificador;
+import src.abstree.sentencias.Call;
+import src.errors.IdentifyingIdException;
+import src.errors.UnsuportedOperation;
 
 public class ResolID extends VisitorHelper {
 
