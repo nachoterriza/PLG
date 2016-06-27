@@ -1,10 +1,10 @@
 package abstree.sentencias;
 
-import resolid.Visitante;
+import errors.UnsuportedOperation;
 import abstree.Programa;
 import abstree.expresiones.Expresion;
 import abstree.tipos.Bool;
-import errors.UnsuportedOperation;
+import resolid.Visitante;
 
 public class While extends Sentencia {
 
@@ -28,7 +28,7 @@ public class While extends Sentencia {
 	@Override
 	public Programa codeAt(int i) throws UnsuportedOperation {
 		if (i==0) return code;
-		else 	throw new UnsuportedOperation("code "+i);
+		else throw new UnsuportedOperation("code "+i);
 	}
 	
 	@Override
@@ -42,9 +42,14 @@ public class While extends Sentencia {
 
 	public boolean checkTipo() throws UnsuportedOperation {
 		Bool test = new Bool();
-		if(cond.getTipo().valorT()==test.valorT())
-			return true;
-		else throw new UnsuportedOperation("Condición no booleana en bucle while.");
+		try {	
+			if(cond.getTipo().valorT()==test.valorT())
+				return true;
+			else throw new UnsuportedOperation("Condición no booleana en bucle while.");
+		} catch (UnsuportedOperation e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	private Expresion cond;

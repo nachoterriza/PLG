@@ -2,11 +2,11 @@ package abstree.sentencias;
 
 import java.util.LinkedList;
 
-import resolid.Anfitrion;
+import errors.UnsuportedOperation;
 import abstree.Funcion;
 import abstree.Programa;
 import abstree.expresiones.Expresion;
-import errors.UnsuportedOperation;
+import resolid.Anfitrion;
 
 public abstract class Sentencia implements Anfitrion{
 	

@@ -1,5 +1,6 @@
 package resolid;
 
+import errors.UnsuportedOperation;
 import abstree.Codigo;
 import abstree.Declaracion;
 import abstree.Funcion;
@@ -20,7 +21,6 @@ import abstree.sentencias.While;
 import abstree.tipos.ArrayOf;
 import abstree.tipos.Bool;
 import abstree.tipos.Int;
-import errors.UnsuportedOperation;
 
 public class PrettyPrinter implements Visitante {
 	

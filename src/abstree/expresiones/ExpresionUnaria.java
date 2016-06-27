@@ -1,11 +1,12 @@
 package abstree.expresiones;
 
-import resolid.Visitante;
 import errors.UnsuportedOperation;
+import resolid.Visitante;
 
 public abstract class ExpresionUnaria extends Expresion{
 	public ExpresionUnaria(Expresion op1){
 		this.op1 = op1;
+		this.fila = op1.fila;
 	}
 	
 	@Override

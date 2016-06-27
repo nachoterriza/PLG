@@ -11,4 +11,8 @@ public class GestionErroresTiny {
      System.out.print("ERROR fila "+unidadLexica.fila()+": Elemento inexperado "+unidadLexica.value);
      System.exit(1);
    }
+   public void errorTipos(int fila, String tipo){
+	 System.out.println("ERROR fila "+fila+": Tipo erróneo "+tipo);
+	 System.exit(1);
+   }
 }

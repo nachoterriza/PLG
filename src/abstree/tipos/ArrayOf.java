@@ -4,9 +4,10 @@ import resolid.Visitante;
 
 public class ArrayOf extends Tipo{
 
-	public ArrayOf(int tam, Tipo tipoElem){
+	public ArrayOf(int tam, Tipo tipoElem, int fila){
 		this.tam = tam;
 		this.tipoElem = tipoElem;
+		this.fila = fila;
 	}
 	public int getTam() {
 		return tam;
@@ -42,4 +43,5 @@ public class ArrayOf extends Tipo{
 
 	private int tam;
 	private Tipo tipoElem;
+	private int fila;
 }

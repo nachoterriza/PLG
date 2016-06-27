@@ -1,4 +1,4 @@
-package code;
+package src.code;
 
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -6,8 +6,6 @@ import java.io.Reader;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
-import java_cup.runtime.Symbol;
-import resolid.ResolID;
 import abstree.Codigo;
 import abstree.Declaracion;
 import abstree.Programa;
@@ -31,8 +29,10 @@ import abstree.tipos.ArrayOf;
 import abstree.tipos.Int;
 import alex.AnalizadorLexicoTiny;
 import asint.AnalizadorSintacticoTiny;
-import errors.CompilingException;
-import errors.UnsuportedOperation;
+import java_cup.runtime.Symbol;
+import src.resolid.ResolID;
+import src.errors.CompilingException;
+import src.errors.UnsuportedOperation;
 
 public class Main {
    public static void testMain() throws Exception {

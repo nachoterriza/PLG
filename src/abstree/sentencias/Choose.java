@@ -5,11 +5,11 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-import resolid.Visitante;
+import errors.UnsuportedOperation;
 import abstree.Programa;
 import abstree.expresiones.Expresion;
 import abstree.tipos.Int;
-import errors.UnsuportedOperation;
+import resolid.Visitante;
 
 public class Choose extends Sentencia {
 
@@ -41,25 +41,31 @@ public class Choose extends Sentencia {
 	@Override
 	public Programa codeAt(int i) throws UnsuportedOperation {
 		Programa code = casos.get(i);
+		
 		if (code == null)
 			throw new UnsuportedOperation("code "+i);
 		else
-			return code;
+			return code;		
 	}
 	
 	public boolean checkTipo() throws UnsuportedOperation {
 		Int test = new Int();
-		if(var.getTipo().valorT()==test.valorT()) {
-			Enumeration<Programa> pCasos = casos.elements();
-			boolean correct = true;
-			while(pCasos.hasMoreElements()) {
-				Programa codigo = pCasos.nextElement();
-				correct = correct && casos.get(codigo).checkTipo();
-			}
-			if(correct)
-				return true;
-			else throw new UnsuportedOperation("Error en el código de CHOOSE.");
-		} else throw new UnsuportedOperation("CHOOSE de índice no entero.");
+		try {
+			if(var.getTipo().valorT()==test.valorT()) {
+				Enumeration<Programa> pCasos = casos.elements();
+				boolean correct = true;
+				while(pCasos.hasMoreElements()) {
+					Programa codigo = pCasos.nextElement();
+					correct = correct && casos.get(codigo).checkTipo();
+				}
+				if(correct)
+					return true;
+				else throw new UnsuportedOperation("Error en el código de CHOOSE.");
+			} else throw new UnsuportedOperation("CHOOSE de índice no entero.");
+		} catch (UnsuportedOperation e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	@Override

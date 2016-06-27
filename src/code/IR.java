@@ -2,12 +2,12 @@ package code;
 
 import java.util.LinkedList;
 
-import abstree.expresiones.TipoE;
 import errors.CompilingException;
+import abstree.expresiones.TipoE;
 
 /**
- * Clase InstructionRepertory que reune todas las instrucciones máquina y 
- * las centraliza para que su modificación sea más sencilla. Actualmente, 
+ * Clase InstructionRepertory que reune todas las instrucciones mï¿½quina y 
+ * las centraliza para que su modificaciï¿½n sea mï¿½s sencilla. Actualmente, 
  * los saltos que se usan en las sentencias son saltos relativos, que se transforman
  *  en absolutos con la funcion {@link IR#relToAbsJumps(LinkedList)}
  */
@@ -54,8 +54,8 @@ public class IR {
 	
 	/**
 	 * Obtiene la instruccion correspondiente a una expresion binaria
-	 * @param t Tipo de la expresión
-	 * @return Instrucción máquina correspondiente
+	 * @param t Tipo de la expresiï¿½n
+	 * @return Instrucciï¿½n mï¿½quina correspondiente
 	 * @throws CompilingException si el tipo no se corresponde con el de
 	 * una expresion binaria admitida
 	 */
@@ -95,9 +95,9 @@ public class IR {
 	
 	/**
 	 * Transforma todos los saltos de este bloque de relativos a absolutos,
-	 * tomando como instrucción cero la primera de este bloque.
+	 * tomando como instrucciï¿½n cero la primera de este bloque.
 	 * @param code Bloque de codigo original
-	 * @return Bloque de código transformado
+	 * @return Bloque de cï¿½digo transformado
 	 */
 	public static LinkedList<String> relToAbsJumps(LinkedList<String> code){
 		LinkedList<String> newcode= new LinkedList<String>();

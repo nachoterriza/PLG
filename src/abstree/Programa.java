@@ -2,10 +2,10 @@ package abstree;
 
 import java.util.LinkedList;
 
+import errors.UnsuportedOperation;
+import abstree.sentencias.Sentencia;
 import resolid.Anfitrion;
 import resolid.Visitante;
-import abstree.sentencias.Sentencia;
-import errors.UnsuportedOperation;
 
 public class Programa implements Anfitrion{
 	

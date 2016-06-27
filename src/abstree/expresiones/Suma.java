@@ -1,14 +1,15 @@
 package abstree.expresiones;
 
+import errors.UnsuportedOperation;
 import abstree.tipos.Int;
 import abstree.tipos.Tipo;
-import errors.UnsuportedOperation;
 
 
 public class Suma extends ExpresionBinaria {
 
 	public Suma(Expresion op1, Expresion op2) {
 		super(op1, op2);
+		this.fila = op1.getFila();
 	}
 
 	@Override

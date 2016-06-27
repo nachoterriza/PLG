@@ -1,9 +1,9 @@
 package abstree.expresiones;
 
-import resolid.Anfitrion;
+import errors.UnsuportedOperation;
 import abstree.Declaracion;
 import abstree.tipos.Tipo;
-import errors.UnsuportedOperation;
+import resolid.Anfitrion;
 
 public abstract class Expresion implements Anfitrion{
 	public abstract TipoE tipo();
@@ -18,4 +18,7 @@ public abstract class Expresion implements Anfitrion{
 
 	public Tipo getTipo() throws UnsuportedOperation {throw new UnsuportedOperation("Error de tipo");};
 	
+	public int getFila(){return this.fila;};
+
+	protected int fila;
 }

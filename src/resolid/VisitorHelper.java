@@ -1,5 +1,6 @@
 package resolid;
 
+
 import abstree.Codigo;
 import abstree.Declaracion;
 import abstree.Funcion;
@@ -22,10 +23,10 @@ import abstree.tipos.Bool;
 import abstree.tipos.Int;
 
 /**
- * Implementación del visitante que deja todas las funciones
- * vacías. Permite no recargar las clases que necesitan implementar 
+ * Implementaciï¿½n del visitante que deja todas las funciones
+ * vacï¿½as. Permite no recargar las clases que necesitan implementar 
  * muy pocas funciones. Para los previsit que permiten cortar la exploracion,
- * esta implementación no la corta.
+ * esta implementaciï¿½n no la corta.
  * @see Visitante#previsit(Choose)
  */
 public class VisitorHelper implements Visitante {

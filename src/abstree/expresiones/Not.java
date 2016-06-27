@@ -1,8 +1,8 @@
 package abstree.expresiones;
 
+import errors.UnsuportedOperation;
 import abstree.tipos.Bool;
 import abstree.tipos.Tipo;
-import errors.UnsuportedOperation;
 
 
 public class Not extends ExpresionUnaria {

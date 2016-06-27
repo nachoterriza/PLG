@@ -1,12 +1,13 @@
 package abstree.expresiones;
 
-import resolid.Visitante;
 import errors.UnsuportedOperation;
+import resolid.Visitante;
 
 public abstract class ExpresionBinaria extends Expresion{
 	public ExpresionBinaria(Expresion op1, Expresion op2){
 		this.op1 = op1;
 		this.op2 = op2;
+		this.fila = op1.getFila();
 	}
 	
 	@Override

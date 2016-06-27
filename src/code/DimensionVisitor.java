@@ -6,7 +6,7 @@ import abstree.tipos.Int;
 import resolid.VisitorHelper;
 
 /**
- * Pequeño visitante que calcula el tamaño de los elementos del
+ * Pequeï¿½o visitante que calcula el tamaï¿½o de los elementos del
  * array del que se quiere acceder a un elemento. Usado en 
  * {@link CodeVisitor#postvisit(abstree.expresiones.ExpresionBinaria)}
  */

@@ -6,22 +6,22 @@ import java.util.Stack;
 import errors.CompilingException;
 
 /**
- * Implementa una pila de trozos de código máquina, implementados como
- * listas de Strings. Existen 3 tipos diferentes de códigos:
+ * Implementa una pila de trozos de cï¿½digo mï¿½quina, implementados como
+ * listas de Strings. Existen 3 tipos diferentes de cï¿½digos:
  * <ul>
  * <li> CodeL: al ejecutarse, la pila crece en uno, dejando una
- * dirección en la pila. Corresponden a las direcciones de las variables
+ * direcciï¿½n en la pila. Corresponden a las direcciones de las variables
  * o de los elementos de arrays, especialmente cuando van a la izquierda de
  * las asignaciones.
  * <li> CodeR: al ejecutarse, la pila crece en uno, dejando un valor
  * en la pila. Corresponden a las expresiones, que suelen corresponderse con
  * la parte derecha de las asignaciones y las condiciones booleanas.
- * <li> CodeC (o Code): al ejecutarse, la pila no cambia de tamaño. Corresponde
+ * <li> CodeC (o Code): al ejecutarse, la pila no cambia de tamaï¿½o. Corresponde
  * a la ejecucion de sentencias completas tales como asignaciones, if, ifelse,
  * while...
  * </ul>
- * Es importante apilar los códigos del tipo específico, ya que evitará errores.
- * Además, la pila realiza conversiones implícitas de CodeL a CodeR cuando es necesario.
+ * Es importante apilar los cï¿½digos del tipo especï¿½fico, ya que evitarï¿½ errores.
+ * Ademï¿½s, la pila realiza conversiones implï¿½citas de CodeL a CodeR cuando es necesario.
  * 
  */
 public class CodeStack {
@@ -58,9 +58,9 @@ public class CodeStack {
 	}
 	
 	/**
-	 * Devuelve el número de instrucciones máquina que hay en la pila
+	 * Devuelve el nï¿½mero de instrucciones mï¿½quina que hay en la pila
 	 * entre todos los bloques.
-	 * @return Número de bloques de instrucciones máquina en la pila
+	 * @return Nï¿½mero de bloques de instrucciones mï¿½quina en la pila
 	 */
 	public int getNumInstrStack(){
 		int length = 0;
@@ -71,11 +71,11 @@ public class CodeStack {
 	}
 	
 	/**
-	 * Devuelve el número de bloques de código apilados.
+	 * Devuelve el nï¿½mero de bloques de cï¿½digo apilados.
 	 * Usado en el CodeVisitor especialmente, ya que al final de la
-	 * compilación todos los trocos de código se deberían haber podido 
-	 * unir en uno sólo.
-	 * @return Número de bloques de código apilados
+	 * compilaciï¿½n todos los trocos de cï¿½digo se deberï¿½an haber podido 
+	 * unir en uno sï¿½lo.
+	 * @return Nï¿½mero de bloques de cï¿½digo apilados
 	 */
 	public int getNumBlocksStack(){
 		return stack.size();

@@ -3,14 +3,20 @@ package code;
 import java.util.Hashtable;
 import java.util.Stack;
 
+
 import resolid.VisitorHelper;
+
+import errors.UnsuportedOperation;
+import abstree.Codigo;
+
 import abstree.Declaracion;
 import abstree.Funcion;
 import abstree.Programa;
 import abstree.expresiones.Identificador;
-import errors.UnsuportedOperation;
+import resolid.VisitorHelper;
 
 /**
+
  * Recorre el árbol, asignando direcciones de memoria a las variables
  * del programa. La organización de la memoria es la siguiente:
  * <ul>

@@ -2,9 +2,9 @@ package abstree;
 
 import java.util.LinkedList;
 
+import errors.UnsuportedOperation;
 import resolid.Anfitrion;
 import resolid.Visitante;
-import errors.UnsuportedOperation;
 
 public class Funcion implements Anfitrion{
 	
@@ -14,6 +14,15 @@ public class Funcion implements Anfitrion{
 		this.entrada = entrada;
 		this.salida = salida;
 		this.programa = programa;
+	}
+	
+	public Funcion(String id, LinkedList<Declaracion> entrada, 
+			LinkedList<Declaracion> salida, Programa programa, int fila) {
+		this.id = id;
+		this.entrada = entrada;
+		this.salida = salida;
+		this.programa = programa;
+		this.fila = fila;
 	}
 
 	public String getId() {
@@ -68,4 +77,5 @@ public class Funcion implements Anfitrion{
 	private LinkedList<Declaracion> entrada;
 	private LinkedList<Declaracion> salida;
 	private Programa programa;
+	private int fila;
 }
