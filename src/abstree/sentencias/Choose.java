@@ -5,6 +5,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import errors.GestionErroresTiny;
 import errors.UnsuportedOperation;
 import abstree.Programa;
 import abstree.expresiones.Expresion;
@@ -60,10 +61,10 @@ public class Choose extends Sentencia {
 				}
 				if(correct)
 					return true;
-				else throw new UnsuportedOperation("Error en el código de CHOOSE.");
-			} else throw new UnsuportedOperation("CHOOSE de índice no entero.");
+				else throw new UnsuportedOperation("Error en el codigo de CHOOSE.");
+			} else throw new UnsuportedOperation("CHOOSE de indice no entero.");
 		} catch (UnsuportedOperation e) {
-			e.printStackTrace();
+			GestionErroresTiny.errorTipos(var.getFila(), e.getMessage());
 		}
 		return false;
 	}

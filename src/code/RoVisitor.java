@@ -3,17 +3,12 @@ package code;
 import java.util.Hashtable;
 import java.util.Stack;
 
-
 import resolid.VisitorHelper;
-
-import errors.UnsuportedOperation;
-import abstree.Codigo;
-
 import abstree.Declaracion;
 import abstree.Funcion;
 import abstree.Programa;
 import abstree.expresiones.Identificador;
-import resolid.VisitorHelper;
+import errors.UnsuportedOperation;
 
 /**
 

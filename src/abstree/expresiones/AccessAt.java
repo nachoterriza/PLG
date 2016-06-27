@@ -1,11 +1,9 @@
 package abstree.expresiones;
 
-import errors.UnsuportedOperation;
 import abstree.tipos.ArrayOf;
-import abstree.tipos.Bool;
 import abstree.tipos.Int;
 import abstree.tipos.Tipo;
-import resolid.Visitante;
+import errors.UnsuportedOperation;
 
 
 public class AccessAt extends ExpresionBinaria {

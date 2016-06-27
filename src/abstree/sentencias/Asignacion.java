@@ -1,9 +1,9 @@
 package abstree.sentencias;
 
-import errors.UnsuportedOperation;
-import abstree.expresiones.Expresion;
-import abstree.tipos.ArrayOf;
 import resolid.Visitante;
+import abstree.expresiones.Expresion;
+import errors.GestionErroresTiny;
+import errors.UnsuportedOperation;
 
 public class Asignacion extends Sentencia {
 
@@ -32,7 +32,8 @@ public class Asignacion extends Sentencia {
 			if(valorR!=valorL)
 				throw new UnsuportedOperation("Asignacion de tipos erroneos.");
 		} catch (UnsuportedOperation e) {
-			e.printStackTrace();
+			GestionErroresTiny.errorTipos(varleft.getFila(), e.getMessage());
+			return false;
 		}
 		
 		Expresion arrayL;
@@ -44,9 +45,10 @@ public class Asignacion extends Sentencia {
 			
 			try {
 				if(arrayL.getTipo().numElems()!=arrayR.getTipo().numElems())
-					throw new UnsuportedOperation("Asignacion entre arrays de distinto tamaÃ±o.");
+					throw new UnsuportedOperation("Asignacion entre arrays de distinto tamaño.");
 			} catch (UnsuportedOperation e) {
-				e.printStackTrace();
+				GestionErroresTiny.errorTipos(varleft.getFila(), e.getMessage());
+				return false;
 			}
 			
 			arrayL = arrayL.elemAt(0);

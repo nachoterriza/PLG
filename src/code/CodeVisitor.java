@@ -3,16 +3,11 @@ package code;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
-import errors.CompilingException;
-import errors.UnsuportedOperation;
-
 import resolid.Visitante;
 import resolid.VisitorHelper;
-
 import abstree.Codigo;
 import abstree.Declaracion;
 import abstree.Funcion;
-import abstree.Programa;
 import abstree.expresiones.AccessAt;
 import abstree.expresiones.AllTo;
 import abstree.expresiones.ArrayWithKeys;
@@ -31,9 +26,8 @@ import abstree.sentencias.IfThenElse;
 import abstree.sentencias.TipoS;
 import abstree.sentencias.While;
 import abstree.tipos.ArrayOf;
-import abstree.tipos.Bool;
-import abstree.tipos.Int;
-import resolid.Visitante;
+import errors.CompilingException;
+import errors.UnsuportedOperation;
 
 /**
  * Visitante que en su recorrido por el arbol abstracto, 

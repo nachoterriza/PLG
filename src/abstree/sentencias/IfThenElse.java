@@ -1,5 +1,6 @@
 package abstree.sentencias;
 
+import errors.GestionErroresTiny;
 import errors.UnsuportedOperation;
 import abstree.Programa;
 import abstree.expresiones.Expresion;
@@ -56,14 +57,14 @@ public class IfThenElse extends Sentencia{
 			if(codeif.checkTipo() && codeelse==null){
 				if(cond.getTipo().valorT()==test.valorT())
 					return true;
-				else throw new UnsuportedOperation("If de condición no booleana.");
+				else throw new UnsuportedOperation("If de condicion no booleana.");
 			}
 			if(codeif.checkTipo() && codeelse.checkTipo()){
 				if(cond.getTipo().valorT()==test.valorT())
 					return true;
-				else throw new UnsuportedOperation("If de condición no booleana.");}
+				else throw new UnsuportedOperation("If de condicion no booleana.");}
 		} catch (UnsuportedOperation e) {
-			e.printStackTrace();
+			GestionErroresTiny.errorTipos(cond.getFila(), e.getMessage());
 		}
 		return false;
 	}

@@ -2,6 +2,7 @@ package abstree.sentencias;
 
 import java.util.LinkedList;
 
+import errors.GestionErroresTiny;
 import errors.UnsuportedOperation;
 import abstree.Declaracion;
 import abstree.Funcion;
@@ -41,6 +42,7 @@ public class Call extends Sentencia {
 	}
 
 	public boolean checkTipo() throws UnsuportedOperation {
+		boolean ret = true;
 		LinkedList<Expresion> params = entrada;
 		for(int i=0;i<params.size();i++) {
 			Declaracion dec = params.get(i).ref();
@@ -48,9 +50,10 @@ public class Call extends Sentencia {
 			try {
 				
 				if(dec.getTipo().valorT()!=params.get(i).getTipo().valorT())
-					throw new UnsuportedOperation("Parámetros de entrada mal declarados en CALL.");
+					throw new UnsuportedOperation("Parametro "+i+" de entrada mal declarado en CALL.");
 			} catch (UnsuportedOperation e) {
-				e.printStackTrace();
+				GestionErroresTiny.errorTipos(fila, e.getMessage());
+				ret = false;
 			}
 			
 		}
@@ -60,13 +63,14 @@ public class Call extends Sentencia {
 			
 			try {
 				if(dec.getTipo().valorT()!=vars.get(i).getTipo().valorT())
-					throw new UnsuportedOperation("Parámetros de salida mal declarados en CALL.");
+					throw new UnsuportedOperation("Parametro "+i+" de salida mal declarado en CALL.");
 			} catch (UnsuportedOperation e) {
-				e.printStackTrace();
+				GestionErroresTiny.errorTipos(fila, e.getMessage());
+				ret = false;
 			}
 			
 		}
-		return true;
+		return ret;
 	}
 	
 	@Override

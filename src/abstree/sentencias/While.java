@@ -1,5 +1,6 @@
 package abstree.sentencias;
 
+import errors.GestionErroresTiny;
 import errors.UnsuportedOperation;
 import abstree.Programa;
 import abstree.expresiones.Expresion;
@@ -45,9 +46,9 @@ public class While extends Sentencia {
 		try {	
 			if(cond.getTipo().valorT()==test.valorT())
 				return true;
-			else throw new UnsuportedOperation("Condición no booleana en bucle while.");
+			else throw new UnsuportedOperation("Condicion no booleana en bucle while.");
 		} catch (UnsuportedOperation e) {
-			e.printStackTrace();
+			GestionErroresTiny.errorTipos(cond.getFila(), e.getMessage());
 		}
 		return false;
 	}

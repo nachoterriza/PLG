@@ -32,7 +32,7 @@ public class Main {
 		testA.add(tres);
 		testA.add(cuatro);
 		ArrayWithKeys array = new ArrayWithKeys(testA);
-		ArrayOf test3 = new ArrayOf(testA.size(),cuatro.getTipo());
+		ArrayOf test3 = new ArrayOf(testA.size(),cuatro.getTipo(), 0);
 		//System.out.println(testA.get(0).toString());
 		if(array.getTipo().valorT()==test3.valorT())
 			System.out.println("Bien");
