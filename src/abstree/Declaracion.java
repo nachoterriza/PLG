@@ -44,6 +44,10 @@ public class Declaracion implements Anfitrion{
 		return valor;
 	}
 
+	public int getFila() {
+		return fila;
+	}
+
 	private Tipo tipo;
 	private String id;
 	private Expresion valor;

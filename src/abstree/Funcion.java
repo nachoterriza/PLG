@@ -73,6 +73,10 @@ public class Funcion implements Anfitrion{
 		return programa;
 	}
 
+	public int getFila() {
+		return fila;
+	}
+
 	private String id;
 	private LinkedList<Declaracion> entrada;
 	private LinkedList<Declaracion> salida;
