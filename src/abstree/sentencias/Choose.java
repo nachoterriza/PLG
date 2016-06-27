@@ -1,15 +1,15 @@
-package src.abstree.sentencias;
+package abstree.sentencias;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-import src.resolid.Visitante;
-import src.abstree.Programa;
-import src.abstree.expresiones.Expresion;
-import src.abstree.tipos.Int;
-import src.errors.UnsuportedOperation;
+import errors.UnsuportedOperation;
+import abstree.Programa;
+import abstree.expresiones.Expresion;
+import abstree.tipos.Int;
+import resolid.Visitante;
 
 public class Choose extends Sentencia {
 

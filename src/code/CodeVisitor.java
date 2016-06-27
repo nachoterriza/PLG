@@ -1,35 +1,35 @@
-package src.code;
+package code;
 
 import java.util.LinkedList;
 import java.util.Stack;
 
-import src.errors.CompilingException;
-import src.errors.UnsuportedOperation;
-import src.resolid.Visitante;
-import src.abstree.Codigo;
-import src.abstree.Declaracion;
-import src.abstree.Funcion;
-import src.abstree.Programa;
-import src.abstree.expresiones.AccessAt;
-import src.abstree.expresiones.AllTo;
-import src.abstree.expresiones.ArrayWithKeys;
-import src.abstree.expresiones.Expresion;
-import src.abstree.expresiones.ExpresionBinaria;
-import src.abstree.expresiones.ExpresionUnaria;
-import src.abstree.expresiones.False;
-import src.abstree.expresiones.Identificador;
-import src.abstree.expresiones.Not;
-import src.abstree.expresiones.Number;
-import src.abstree.expresiones.True;
-import src.abstree.sentencias.Asignacion;
-import src.abstree.sentencias.Call;
-import src.abstree.sentencias.Choose;
-import src.abstree.sentencias.IfThenElse;
-import src.abstree.sentencias.TipoS;
-import src.abstree.sentencias.While;
-import src.abstree.tipos.ArrayOf;
-import src.abstree.tipos.Bool;
-import src.abstree.tipos.Int;
+import errors.CompilingException;
+import errors.UnsuportedOperation;
+import abstree.Codigo;
+import abstree.Declaracion;
+import abstree.Funcion;
+import abstree.Programa;
+import abstree.expresiones.AccessAt;
+import abstree.expresiones.AllTo;
+import abstree.expresiones.ArrayWithKeys;
+import abstree.expresiones.Expresion;
+import abstree.expresiones.ExpresionBinaria;
+import abstree.expresiones.ExpresionUnaria;
+import abstree.expresiones.False;
+import abstree.expresiones.Identificador;
+import abstree.expresiones.Not;
+import abstree.expresiones.Number;
+import abstree.expresiones.True;
+import abstree.sentencias.Asignacion;
+import abstree.sentencias.Call;
+import abstree.sentencias.Choose;
+import abstree.sentencias.IfThenElse;
+import abstree.sentencias.TipoS;
+import abstree.sentencias.While;
+import abstree.tipos.ArrayOf;
+import abstree.tipos.Bool;
+import abstree.tipos.Int;
+import resolid.Visitante;
 
 /**
  * Visitante que en su recorrido por el arbol abstracto, 

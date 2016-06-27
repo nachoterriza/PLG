@@ -1,11 +1,11 @@
-package src.abstree.expresiones;
+package abstree.expresiones;
 
 import java.util.LinkedList;
 
-import src.abstree.tipos.ArrayOf;
-import src.abstree.tipos.Tipo;
-import src.resolid.Visitante;
-import src.errors.UnsuportedOperation;
+import errors.UnsuportedOperation;
+import abstree.tipos.ArrayOf;
+import abstree.tipos.Tipo;
+import resolid.Visitante;
 
 public class ArrayWithKeys extends Expresion {
 

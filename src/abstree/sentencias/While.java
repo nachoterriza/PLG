@@ -1,10 +1,10 @@
-package src.abstree.sentencias;
+package abstree.sentencias;
 
-import src.resolid.Visitante;
-import src.abstree.Programa;
-import src.abstree.expresiones.Expresion;
-import src.abstree.tipos.Bool;
-import src.errors.UnsuportedOperation;
+import errors.UnsuportedOperation;
+import abstree.Programa;
+import abstree.expresiones.Expresion;
+import abstree.tipos.Bool;
+import resolid.Visitante;
 
 public class While extends Sentencia {
 

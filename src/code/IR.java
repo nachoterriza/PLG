@@ -1,9 +1,9 @@
-package src.code;
+package code;
 
 import java.util.LinkedList;
 
-import src.abstree.expresiones.TipoE;
-import src.errors.CompilingException;
+import errors.CompilingException;
+import abstree.expresiones.TipoE;
 
 /**
  * Clase InstructionRepertory que reune todas las instrucciones m�quina y 

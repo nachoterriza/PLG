@@ -1,9 +1,9 @@
-package src.abstree.expresiones;
+package abstree.expresiones;
 
-import src.resolid.Anfitrion;
-import src.abstree.Declaracion;
-import src.abstree.tipos.Tipo;
-import src.errors.UnsuportedOperation;
+import errors.UnsuportedOperation;
+import abstree.Declaracion;
+import abstree.tipos.Tipo;
+import resolid.Anfitrion;
 
 public abstract class Expresion implements Anfitrion{
 	public abstract TipoE tipo();

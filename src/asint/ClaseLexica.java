@@ -4,7 +4,7 @@
 // Sat May 28 20:59:00 CEST 2016
 //----------------------------------------------------
 
-package src.asint;
+package asint;
 
 /** CUP generated class containing symbol constants. */
 public class ClaseLexica {

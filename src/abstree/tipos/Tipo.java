@@ -1,6 +1,6 @@
-package src.abstree.tipos;
+package abstree.tipos;
 
-import src.resolid.Anfitrion;
+import resolid.Anfitrion;
 
 public abstract class Tipo implements Anfitrion{
 

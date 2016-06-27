@@ -1,9 +1,9 @@
-package src.abstree.expresiones;
+package abstree.expresiones;
 
-import src.abstree.tipos.Int;
-import src.abstree.tipos.Tipo;
-import src.resolid.Visitante;
-import src.errors.UnsuportedOperation;
+import errors.UnsuportedOperation;
+import abstree.tipos.Int;
+import abstree.tipos.Tipo;
+import resolid.Visitante;
 
 public class Number extends Expresion {
 

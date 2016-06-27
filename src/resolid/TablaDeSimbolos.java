@@ -1,12 +1,12 @@
-package src.resolid;
+package resolid;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Stack;
 
-import src.abstree.Declaracion;
-import src.abstree.Funcion;
-import src.errors.IdentifyingIdException;
+import errors.IdentifyingIdException;
+import abstree.Declaracion;
+import abstree.Funcion;
 
 public class TablaDeSimbolos {
 

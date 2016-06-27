@@ -1,6 +1,6 @@
-package src.abstree.tipos;
+package abstree.tipos;
 
-import src.resolid.Visitante;
+import resolid.Visitante;
 
 public class Int extends Tipo{
 	

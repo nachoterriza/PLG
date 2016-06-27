@@ -1,7 +1,7 @@
-package src.abstree.expresiones;
+package abstree.expresiones;
 
-import src.resolid.Visitante;
-import src.errors.UnsuportedOperation;
+import errors.UnsuportedOperation;
+import resolid.Visitante;
 
 public abstract class ExpresionUnaria extends Expresion{
 	public ExpresionUnaria(Expresion op1){

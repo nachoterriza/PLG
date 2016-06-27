@@ -1,10 +1,10 @@
-package src.abstree.expresiones;
+package abstree.expresiones;
 
 import java.util.LinkedList;
 
-import src.abstree.tipos.ArrayOf;
-import src.abstree.tipos.Bool;
-import src.abstree.tipos.Int;
+import abstree.tipos.ArrayOf;
+import abstree.tipos.Bool;
+import abstree.tipos.Int;
 
 public class Main {
 	public static void main(String[] args) throws Exception {

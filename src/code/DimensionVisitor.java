@@ -1,9 +1,9 @@
-package src.code;
+package code;
 
-import src.abstree.tipos.ArrayOf;
-import src.abstree.tipos.Bool;
-import src.abstree.tipos.Int;
-import src.resolid.VisitorHelper;
+import abstree.tipos.ArrayOf;
+import abstree.tipos.Bool;
+import abstree.tipos.Int;
+import resolid.VisitorHelper;
 
 /**
  * Peque�o visitante que calcula el tama�o de los elementos del

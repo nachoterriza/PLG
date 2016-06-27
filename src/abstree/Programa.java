@@ -1,11 +1,11 @@
-package src.abstree;
+package abstree;
 
 import java.util.LinkedList;
 
-import src.resolid.Anfitrion;
-import src.resolid.Visitante;
-import src.abstree.sentencias.Sentencia;
-import src.errors.UnsuportedOperation;
+import errors.UnsuportedOperation;
+import abstree.sentencias.Sentencia;
+import resolid.Anfitrion;
+import resolid.Visitante;
 
 public class Programa implements Anfitrion{
 	

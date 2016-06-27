@@ -1,15 +1,15 @@
-package src.code;
+package code;
 
 import java.util.Hashtable;
 import java.util.Stack;
 
-import src.resolid.VisitorHelper;
-import src.abstree.Codigo;
-import src.abstree.Declaracion;
-import src.abstree.Funcion;
-import src.abstree.Programa;
-import src.abstree.expresiones.Identificador;
-import src.errors.UnsuportedOperation;
+import errors.UnsuportedOperation;
+import abstree.Codigo;
+import abstree.Declaracion;
+import abstree.Funcion;
+import abstree.Programa;
+import abstree.expresiones.Identificador;
+import resolid.VisitorHelper;
 
 /**
  * Recorre el �rbol, asignando direcciones de memoria a las variables

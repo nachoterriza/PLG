@@ -1,9 +1,9 @@
-package src.abstree.sentencias;
+package abstree.sentencias;
 
-import src.abstree.expresiones.Expresion;
-import src.abstree.tipos.ArrayOf;
-import src.resolid.Visitante;
-import src.errors.UnsuportedOperation;
+import errors.UnsuportedOperation;
+import abstree.expresiones.Expresion;
+import abstree.tipos.ArrayOf;
+import resolid.Visitante;
 
 public class Asignacion extends Sentencia {
 

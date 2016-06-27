@@ -1,6 +1,6 @@
-package src.errors;
+package errors;
 
-import src.alex.UnidadLexica;
+import alex.UnidadLexica;
 
 public class GestionErroresTiny {
    public void errorLexico(int fila, String lexema) {

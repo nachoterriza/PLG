@@ -1,8 +1,8 @@
-package src.abstree.expresiones;
+package abstree.expresiones;
 
-import src.abstree.tipos.Bool;
-import src.abstree.tipos.Tipo;
-import src.errors.UnsuportedOperation;
+import errors.UnsuportedOperation;
+import abstree.tipos.Bool;
+import abstree.tipos.Tipo;
 
 
 public class Not extends ExpresionUnaria {

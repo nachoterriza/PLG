@@ -1,9 +1,9 @@
-package src.code;
+package code;
 
 import java.util.LinkedList;
 import java.util.Stack;
 
-import src.errors.CompilingException;
+import errors.CompilingException;
 
 /**
  * Implementa una pila de trozos de c�digo m�quina, implementados como
