@@ -53,6 +53,7 @@ public class CodeVisitor extends VisitorHelper {
 	private int nextStartDir; 
 	private CodeStack codeStack;
 	private RoVisitor ro;
+	private LinkedList<String> elemStore;
 	
 	/**
 	 * Crea un nuevo CodeVisitor
@@ -66,6 +67,12 @@ public class CodeVisitor extends VisitorHelper {
 		this.ro = ro;
 		this.startDirTable = new Hashtable<Funcion,Integer>();
 		this.nextStartDir = 0;
+		
+		elemStore = new LinkedList<String>();
+		elemStore.add(IR.store1());
+		elemStore.add(IR.load0());
+		elemStore.add(IR.load1());
+		elemStore.add(IR.sto());
 	}
 	
 	/**
@@ -85,6 +92,21 @@ public class CodeVisitor extends VisitorHelper {
 		else
 			throw new CompilingException("Se esperaba 1 bloque de codigo en la pila. "
 					+ "Sin embargo hay" + codeStack.getNumBlocksStack());
+	}
+	
+	/**
+	 * Guarda un array en memoria. deben estar los datos de 0 (fondo)
+	 * a tam-1 (cima) y encima la direccion.
+	 * @param tam tamaño del array
+	 * @return
+	 */
+	private LinkedList<String> multipleStore(int tam){
+		LinkedList<String> code = new LinkedList<String>();
+		code.add(IR.store0());
+		for(int i=0;i<tam;i++)
+			code.addAll(this.elemStore);
+		
+		return code;
 	}
 	
 	@Override

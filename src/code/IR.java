@@ -36,6 +36,11 @@ public class IR {
 	public static String ind(){return "ind;";}
 	public static String sto(){return "sto;";}
 	
+	public static String load0(){return "ldo 0;";}
+	public static String store0(){return "sro 0;";}
+	public static String load1(){return "ldo 1;";}
+	public static String store1(){return "sro 1;";}
+	
 	public static String dup(){return "dpl;";}
 	
 	/**
