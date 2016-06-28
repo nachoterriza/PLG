@@ -1,4 +1,4 @@
-package src.code;
+package code;
 
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -6,6 +6,8 @@ import java.io.Reader;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
+import errors.CompilingException;
+import errors.UnsuportedOperation;
 import abstree.Codigo;
 import abstree.Declaracion;
 import abstree.Programa;
@@ -30,9 +32,7 @@ import abstree.tipos.Int;
 import alex.AnalizadorLexicoTiny;
 import asint.AnalizadorSintacticoTiny;
 import java_cup.runtime.Symbol;
-import src.resolid.ResolID;
-import src.errors.CompilingException;
-import src.errors.UnsuportedOperation;
+import resolid.ResolID;
 
 public class Main {
    public static void testMain() throws Exception {
@@ -202,10 +202,10 @@ public class Main {
 		try {
 			exp1.setRef(new Declaracion(
 					new ArrayOf(5, new ArrayOf(7, new ArrayOf(2,new Int()))),
-					"x", exp4
+					"x", exp4, 0
 					)
 				);
-			id.setRef(new Declaracion(new Int(),"i", new Number(69)));
+			id.setRef(new Declaracion(new Int(),"i", new Number(69), 0));
 		} catch (UnsuportedOperation e) {
 			e.printStackTrace();
 		}
