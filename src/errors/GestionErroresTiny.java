@@ -33,6 +33,7 @@ public class GestionErroresTiny {
 	
    public void errorLexico(int fila, String lexema) {
      System.out.println("ERROR lexico fila "+fila+": Caracter inexperado: "+lexema);
+
      sacarContexto(fila);
      System.exit(1);
    }  
@@ -43,6 +44,7 @@ public class GestionErroresTiny {
    }
    public static void errorTipos(int fila, String tipo){
 	 System.out.println("ERROR de tipos fila "+fila+": "+tipo);
+
      sacarContexto(fila);
 	 System.exit(1);
    }
@@ -54,7 +56,7 @@ public class GestionErroresTiny {
 	    	 sacarContexto(filaDecl);
 	     }
 		 System.exit(1);
-	   }
+	}	
    
    private static String archivo;
 }
