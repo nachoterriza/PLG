@@ -36,9 +36,8 @@ public class IR {
 	public static String ind(){return "ind;";}
 	public static String sto(){return "sto;";}
 	
-	public static String uncondj(int dir){return "ujp "+dir+";";}
-	public static String condj(int dir){return "fjp "+dir+";";}
-	public static String casej(int dir){return "ixj "+dir+";";}
+	public static String dup(){return "dpl;";}
+	
 	/**
 	 * Instruccion de salto a una función
 	 * @param lparam longitud de la zona de parametros de la funcion llamada.
@@ -46,7 +45,13 @@ public class IR {
 	 * @return
 	 */
 	public static String callj(int lparam, int dir){return "cup "+lparam+" "+dir+";";}
+	public static String returnj(){return "retp;";}
+	public static String uncondj(int dir){return "ujp "+dir+";";}
+	public static String condj(int dir){return "fjp "+dir+";";}
+	public static String casej(int dir){return "ixj "+dir+";";}
+
 	
+	public static String startfun(int lvar){return "ssp "+lvar+";";}
 	public static String startcall(){return "mst 0;";}
 	public static String movs(int size){return "movs "+size+";";}
 	public static String access(int tam){return "ixa "+tam+";";}
@@ -117,6 +122,29 @@ public class IR {
 			}
 			newcode.add(instr);
 			i++;
+		}
+		return newcode;
+	}
+	
+	/**
+	 * Dado que el main en el codigo maquina va antes que las funciones,
+	 * añade el tamaño del main a los saltos a funciones
+	 * @param code Bloque de codigo original
+	 * @param tam tamaño del main, a sumar a los saltos a funciones
+	 * @return Bloque de codigo transformado
+	 */
+	public static LinkedList<String> adjustFuncionJumps(LinkedList<String> code, int tam){
+		LinkedList<String> newcode= new LinkedList<String>();
+		String s;
+		int dir;
+		for (String instr: code){
+			s = (String) instr.subSequence(0, 4);
+			if ( s.equalsIgnoreCase("cup ") ){
+				dir = Integer.parseInt(instr.substring(4, instr.length()-1));
+				dir = dir + tam;
+				instr = s+dir+';';
+			}
+			newcode.add(instr);
 		}
 		return newcode;
 	}

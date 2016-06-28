@@ -22,6 +22,10 @@ public class Codigo implements Anfitrion{
 		v.postvisit(this);
 	}
 	
+	public int nFunciones(){
+		return this.funciones.size();
+	}
+	
 	public boolean checkTipo() throws UnsuportedOperation {
 		LinkedList<Funcion> funcs = funciones;
 		if(main.checkTipo()){

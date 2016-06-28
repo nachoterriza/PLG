@@ -30,12 +30,15 @@ public class RoVisitor extends VisitorHelper{
 
 	private Hashtable<Declaracion,Integer> ro;
 	private Hashtable<Funcion,Integer> lparam;
+	private Hashtable<Funcion,Integer> lvar;
 	private int nextdir;
+	private int maxdir;
 	private Stack<Integer> dirstack;
 	
 	public RoVisitor(){
 		this.ro = new Hashtable<Declaracion,Integer>();
 		this.nextdir = 5;
+		this.maxdir = 4;
 		this.dirstack = new Stack<Integer>();
 	}
 	
@@ -80,16 +83,33 @@ public class RoVisitor extends VisitorHelper{
 		else
 			return ret;
 	}
+	
+	/**
+	 * Devuelve la longitud de la zona de organizacion,
+	 * parámetros y variables (en todos los bloques) de la funcion
+	 * @param f Declaracion de la funcion
+	 * @return Tamaño de los parámetros en memoria
+	 */
+	public int lvar(Funcion f){
+		Integer ret = lvar.get(f);
+		if (ret == null)
+			return -777;
+		else
+			return ret;
+	}
 
 	@Override
 	public void previsit(Declaracion node) {
 		this.ro.put(node, this.nextdir);
 		this.nextdir = this.nextdir + node.getTipo().tam();
+		if(nextdir-1 > maxdir)
+			maxdir = nextdir-1;
 	}
 
 	@Override
 	public boolean previsit(Funcion node) {
 		this.nextdir = 5;
+		this.maxdir = 4;
 		
 		for (Declaracion d: node.getEntrada()){
 			this.ro.put(d, this.nextdir);
@@ -100,12 +120,15 @@ public class RoVisitor extends VisitorHelper{
 			this.nextdir = this.nextdir + d.getTipo().tam()+1;
 		}
 		this.lparam.put(node, this.nextdir-5);
+		this.maxdir = this.nextdir-1;
+		
 		node.getPrograma().accept(this);
 		
+		this.lvar.put(node, this.maxdir);
 		this.nextdir = 5;
+		this.maxdir = 4;
 		return false;
 	}
-
 
 	@Override
 	public void previsit(Programa node) {

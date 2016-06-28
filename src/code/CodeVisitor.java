@@ -88,16 +88,36 @@ public class CodeVisitor extends VisitorHelper {
 	}
 	
 	@Override
-	public boolean previsit(Funcion node) {
-		// TODO Auto-generated method stub
-		return true;
+	public void postvisit(Codigo node) {
+		try {
+			LinkedList<String> main = this.codeStack.popCodeC();
+			if (node.nFunciones()>0){
+				LinkedList<String> f, flist;
+				flist = this.codeStack.popCodeC();
+				for(int i=1; i<node.nFunciones(); i++){
+					f = flist;
+					flist = this.codeStack.popCodeC();
+					flist.addAll(f);
+				}
+				IR.adjustFuncionJumps(flist, main.size());
+				main.addAll(flist);
+			}
+			this.codeStack.pushCodeC(main);
+		} catch (CompilingException e) {
+			e.printStackTrace();
+		}
+	
 	}
 
 	@Override
-	public void postvisit(Funcion node) {
+	public boolean previsit(Funcion node) {
 		LinkedList<String> code;
 		try {
+			node.getPrograma().accept(this);
 			code = this.codeStack.popCodeC();
+			code.addFirst(IR.startfun(ro.lvar(node)));
+			/*TODO mover los parametros de salida*/
+			code.add(IR.returnj());
 			
 			this.startDirTable.put(node, this.nextStartDir);
 			this.nextStartDir = this.nextStartDir + code.size();
@@ -107,18 +127,7 @@ public class CodeVisitor extends VisitorHelper {
 		} catch (CompilingException e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void previsit(Codigo node) {
-		// TODO Auto-generated method stub
-	
-	}
-
-	@Override
-	public void postvisit(Codigo node) {
-		// TODO Auto-generated method stub
-	
+		return false;
 	}
 
 	@Override
