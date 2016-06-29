@@ -41,7 +41,7 @@ public class While extends Sentencia {
 	}
 
 
-	public boolean checkTipo() throws UnsuportedOperation {
+	public boolean checkTipo() {
 		Bool test = new Bool();
 		try {	
 			if(cond.getTipo().valorT()==test.valorT())

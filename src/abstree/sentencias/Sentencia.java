@@ -37,7 +37,7 @@ public abstract class Sentencia implements Anfitrion{
 	
 	public String functionID() throws UnsuportedOperation {throw new UnsuportedOperation("functionID");}
 	
-	public boolean checkTipo() throws UnsuportedOperation {throw new UnsuportedOperation("Tipos incorrectos.");};
+	public abstract boolean checkTipo();
 	
 	public LinkedList<Expresion> entrada() throws UnsuportedOperation {throw new UnsuportedOperation("entrada");}
 	public LinkedList<Expresion> salida() throws UnsuportedOperation {throw new UnsuportedOperation("salida");}

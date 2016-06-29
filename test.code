@@ -1,0 +1,24 @@
+
+method ordenar
+takes input array of 10 int lista;
+declares output  array of 10 int listabis = all 10 to 0;
+makes
+int temp = 0;
+bool i = 1;
+int j = 0;
+while i < 10 do
+	temp = lista @ i;
+	j = i - 1;
+	while lista @ j > temp AND j >= 0 do
+		lista @ (j + 1) = lista @ j;
+		j = j - 1;
+	done;
+lista @ (j + 1) = temp;
+i = i + 1;
+done;
+returns output;
+
+main start
+array of 7 int lista = {5,4,8,10,0,3,9};
+	call ordenar with lista receiving lista;
+end;

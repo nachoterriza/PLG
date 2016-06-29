@@ -2,10 +2,9 @@ package abstree;
 
 import java.util.LinkedList;
 
-import errors.UnsuportedOperation;
-import abstree.sentencias.Sentencia;
 import resolid.Anfitrion;
 import resolid.Visitante;
+import abstree.sentencias.Sentencia;
 
 public class Programa implements Anfitrion{
 	
@@ -25,16 +24,14 @@ public class Programa implements Anfitrion{
 	}
 
 
-	public boolean checkTipo() throws UnsuportedOperation {
-		LinkedList<Declaracion> decs = declaraciones;
-		for(int i=0;i<decs.size();i++) {
-			if(!decs.get(i).checkTipo())
-				throw new UnsuportedOperation("Error en los tipos de las declaraciones del programa.");
+	public boolean checkTipo() {
+		for(int i=0;i<declaraciones.size();i++) {
+			if(!declaraciones.get(i).checkTipo())
+				return false;
 		}
-		LinkedList<Sentencia> sents = sentencias;
-		for(int i=0;i<sents.size();i++) {
-			if(!sents.get(i).checkTipo())
-				throw new UnsuportedOperation("Error en los tipos de las sentencias del programa.");
+		for(int i=0;i<sentencias.size();i++) {
+			if(!sentencias.get(i).checkTipo())
+				return false;
 		}
 		
 		return true;

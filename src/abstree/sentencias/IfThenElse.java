@@ -51,7 +51,7 @@ public class IfThenElse extends Sentencia{
 	}
 
 
-	public boolean checkTipo() throws UnsuportedOperation {
+	public boolean checkTipo() {
 		Bool test = new Bool();
 		try {
 			if(codeif.checkTipo() && codeelse==null){

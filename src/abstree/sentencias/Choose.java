@@ -49,7 +49,7 @@ public class Choose extends Sentencia {
 			return code;		
 	}
 	
-	public boolean checkTipo() throws UnsuportedOperation {
+	public boolean checkTipo() {
 		Int test = new Int();
 		try {
 			if(var.getTipo().valorT()==test.valorT()) {

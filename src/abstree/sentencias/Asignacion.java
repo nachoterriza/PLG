@@ -2,7 +2,6 @@ package abstree.sentencias;
 
 import resolid.Visitante;
 import abstree.expresiones.Expresion;
-import abstree.tipos.ArrayOf;
 import abstree.tipos.Tipo;
 import errors.GestionErroresTiny;
 import errors.UnsuportedOperation;
@@ -29,15 +28,26 @@ public class Asignacion extends Sentencia {
 	public Tipo getTipo() throws UnsuportedOperation {
 		return varleft.getTipo();
 	}
-	public boolean checkTipo() throws UnsuportedOperation {
-		int valorL = varleft.getTipo().valorT();
-		int valorR = expright.getTipo().valorT();
-		
-		try{
-			if(valorR!=valorL)
-				throw new UnsuportedOperation("Asignacion de tipos erroneos.");
-		} catch (UnsuportedOperation e) {
-			GestionErroresTiny.errorTipos(varleft.getFila(), e.getMessage());
+	public boolean checkTipo() {
+		int valorL;
+		try {
+			valorL = varleft.getTipo().valorT();
+		} catch (UnsuportedOperation e1) {
+			GestionErroresTiny.errorTipos(varleft.getFila(), 
+					e1.getMessage());
+			return false;
+		}
+		int valorR;
+		try {
+			valorR = expright.getTipo().valorT();
+		} catch (UnsuportedOperation e1) {
+			GestionErroresTiny.errorTipos(varleft.getFila(), 
+					e1.getMessage());
+			return false;
+		}
+		if(valorR!=valorL) {
+			GestionErroresTiny.errorTipos(varleft.getFila(), 
+					"El tipo de la expresion no coincide con el tipo de la variable");
 			return false;
 		}
 		
@@ -50,14 +60,19 @@ public class Asignacion extends Sentencia {
 			
 			try {
 				if(arrayL.getTipo().numElems()!=arrayR.getTipo().numElems())
-					throw new UnsuportedOperation("Asignacion entre arrays de distinto tamaño.");
-			} catch (UnsuportedOperation e) {
-				GestionErroresTiny.errorTipos(varleft.getFila(), e.getMessage());
+					GestionErroresTiny.errorTipos(varleft.getFila(), "Asignacion entre arrays de distinto tamaño.");
 				return false;
+			} catch (UnsuportedOperation e) {
+				
 			}
 			
-			arrayL = arrayL.elemAt(0);
-			arrayR = arrayR.elemAt(0);
+			try {
+				arrayL = arrayL.elemAt(0);
+				arrayR = arrayR.elemAt(0);
+			} catch (UnsuportedOperation e) {
+				e.printStackTrace();
+			}
+			
 			valorL-=2;
 		}
 		

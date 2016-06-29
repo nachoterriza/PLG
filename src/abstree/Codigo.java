@@ -2,7 +2,6 @@ package abstree;
 
 import java.util.LinkedList;
 
-import errors.UnsuportedOperation;
 import resolid.Anfitrion;
 import resolid.Visitante;
 
@@ -26,16 +25,17 @@ public class Codigo implements Anfitrion{
 		return this.funciones.size();
 	}
 	
-	public boolean checkTipo() throws UnsuportedOperation {
-		LinkedList<Funcion> funcs = funciones;
-		if(main.checkTipo()){
-			for(int i=0;i<funcs.size();i++) {
-				if(!funcs.get(i).checkTipo())
-					throw new UnsuportedOperation("Error de tipos en el codigo (funciones).");
+	public boolean checkTipo() {
+		if(!main.checkTipo())
+			return false;
+		
+		for(int i=0;i<funciones.size();i++) {
+			if(!funciones.get(i).checkTipo()) {
+				return false;
 			}
-		return true;
 		}
-		throw new UnsuportedOperation("Error de tipos en el codigo (main).");
+		return true;
+		
 	}
 
 	private Programa main;

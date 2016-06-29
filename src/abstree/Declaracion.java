@@ -1,5 +1,6 @@
 package abstree;
 
+import errors.GestionErroresTiny;
 import errors.UnsuportedOperation;
 import abstree.expresiones.Expresion;
 import abstree.tipos.Tipo;
@@ -34,10 +35,19 @@ public class Declaracion implements Anfitrion{
 		v.postvisit(this);
 	}
 	
-	public boolean checkTipo() throws UnsuportedOperation {
-		if(valor.getTipo().valorT()==tipo.valorT())
-			return true;
-		else throw new UnsuportedOperation("Declaracion con error de tipos.");
+	public boolean checkTipo() {
+		try {
+			if(valor.getTipo().valorT()==tipo.valorT())
+				return true;
+			else {
+				GestionErroresTiny.errorTipos(fila, 
+						"El tipo de la expresion no coincide con el tipo de la variable");
+				return false;
+			}
+		} catch (UnsuportedOperation e) {
+			GestionErroresTiny.errorTipos(fila, "Expresion con error de tipos");
+			return false;
+		}
 	}
 	
 	public Expresion getValor() {
