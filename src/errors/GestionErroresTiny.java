@@ -26,6 +26,7 @@ public class GestionErroresTiny {
 		   System.out.println("" + c + ":\t" + sc.nextLine());
 		   c++;
 		   System.out.println("" + c + ":\t" + sc.nextLine());
+		   sc.close();
 	   } catch (FileNotFoundException e) {
 		   System.err.println("Archivo de codigo no encontrado");
 	   }	   

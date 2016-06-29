@@ -1,6 +1,7 @@
 package resolid;
 
 
+import errors.GestionErroresTiny;
 import errors.IdentifyingIdException;
 import errors.UnsuportedOperation;
 import abstree.Declaracion;
@@ -22,7 +23,7 @@ public class ResolID extends VisitorHelper {
 		try {
 			tabla.insertaIdV(node.getId(), node);
 		} catch (IdentifyingIdException e) {
-			System.out.println(e.getMessage());
+			GestionErroresTiny.errorID(e.getFila(), e.getLocalizedMessage(), e.getFilaDecl());
 		}
 	}
 
@@ -32,7 +33,7 @@ public class ResolID extends VisitorHelper {
 			tabla.insertaIdF(node.getId(), node);
 			tabla.abreBloqueV();
 		} catch (IdentifyingIdException e) {
-			System.out.println(e.getMessage());
+			GestionErroresTiny.errorID(e.getFila(), e.getLocalizedMessage(), e.getFilaDecl());
 		}
 		return true;
 	}
@@ -58,7 +59,7 @@ public class ResolID extends VisitorHelper {
 			Declaracion ref = tabla.buscaIdV(node.id());
 			node.setRef(ref);
 		} catch (IdentifyingIdException e) {
-			System.out.println(e.getMessage());
+			GestionErroresTiny.errorID(node.getFila(), e.getLocalizedMessage(), -1);
 		} catch (UnsuportedOperation e) {
 			e.printStackTrace();
 		}
@@ -70,7 +71,7 @@ public class ResolID extends VisitorHelper {
 			Funcion ref = tabla.buscaIdF(node.functionID());
 			node.setRef(ref);
 		} catch (IdentifyingIdException e) {
-			System.out.println(e.getMessage());
+			GestionErroresTiny.errorID(node.getFila(), e.getLocalizedMessage(), -1);
 		} catch (UnsuportedOperation e) {
 			e.printStackTrace();
 		}

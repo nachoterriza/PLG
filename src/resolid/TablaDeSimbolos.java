@@ -32,8 +32,11 @@ public class TablaDeSimbolos {
 	
 	public void insertaIdV(String id, Declaracion decl) throws IdentifyingIdException {
 		if(ptBloques.peek().containsKey(id)){
-			throw new IdentifyingIdException("Variable "+ id 
-					+ " ya declarada");
+			throw new IdentifyingIdException(
+					"Variable "+ id + " ya declarada",
+					decl.getFila(),
+					ptBloques.peek().get(id).getFila()
+				);
 		}
 		else {
 			ptBloques.peek().put(id, decl);
@@ -47,8 +50,11 @@ public class TablaDeSimbolos {
 	
 	public void insertaIdF(String id, Funcion decl) throws IdentifyingIdException {
 		if(tFunciones.contains(id)){
-			throw new IdentifyingIdException("Funcion "+ id 
-					+ " ya declarada");
+			throw new IdentifyingIdException(
+					"Funcion "+ id + " ya declarada",
+					decl.getFila(),
+					tFunciones.get(id).getFila()
+				);
 		}
 		else {
 			tFunciones.put(id, decl);

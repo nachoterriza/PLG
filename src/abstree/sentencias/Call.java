@@ -19,6 +19,10 @@ public class Call extends Sentencia {
 		this.fila = fila;
 	}
 	
+	public int getFila() {
+		return fila;
+	}
+
 	@Override
 	public TipoS tipo() {
 		return TipoS.CALL;
