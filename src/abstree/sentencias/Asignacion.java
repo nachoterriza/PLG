@@ -2,6 +2,8 @@ package abstree.sentencias;
 
 import resolid.Visitante;
 import abstree.expresiones.Expresion;
+import abstree.tipos.ArrayOf;
+import abstree.tipos.Tipo;
 import errors.GestionErroresTiny;
 import errors.UnsuportedOperation;
 
@@ -24,6 +26,9 @@ public class Asignacion extends Sentencia {
 		return expright;
 	}
 	
+	public Tipo getTipo() throws UnsuportedOperation {
+		return varleft.getTipo();
+	}
 	public boolean checkTipo() throws UnsuportedOperation {
 		int valorL = varleft.getTipo().valorT();
 		int valorR = expright.getTipo().valorT();

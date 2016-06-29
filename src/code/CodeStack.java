@@ -3,6 +3,8 @@ package code;
 import java.util.LinkedList;
 import java.util.Stack;
 
+import abstree.tipos.ArrayOf;
+import abstree.tipos.Tipo;
 import errors.CompilingException;
 
 /**
@@ -13,7 +15,8 @@ import errors.CompilingException;
  * direcci�n en la pila. Corresponden a las direcciones de las variables
  * o de los elementos de arrays, especialmente cuando van a la izquierda de
  * las asignaciones.
- * <li> CodeR: al ejecutarse, la pila crece en uno, dejando un valor
+ * <li> CodeR: al ejecutarse, la pila crece en uno (o en mas si el valor que
+ *  maneja es un array), dejando un valor
  * en la pila. Corresponden a las expresiones, que suelen corresponderse con
  * la parte derecha de las asignaciones y las condiciones booleanas.
  * <li> CodeC (o Code): al ejecutarse, la pila no cambia de tama�o. Corresponde
@@ -30,16 +33,16 @@ public class CodeStack {
 		this.stack = new Stack<CodeBlock>();
 	}
 	
-	public void pushCodeL(LinkedList<String> code) throws CompilingException{
-		this.stack.push(new CodeBlock('L', code));
+	public void pushCodeL(LinkedList<String> code, Tipo tipo) throws CompilingException{
+		this.stack.push(new CodeBlock('L', code, tipo));
 	}
 	
 	public void pushCodeR(LinkedList<String> code) throws CompilingException{
-		this.stack.push(new CodeBlock('R', code));
+		this.stack.push(new CodeBlock('R', code, null));
 	}
 	
 	public void pushCodeC( LinkedList<String> code) throws CompilingException{
-		this.stack.push(new CodeBlock('C', code));
+		this.stack.push(new CodeBlock('C', code, null));
 	}
 	
 	public LinkedList<String> popCodeL() throws CompilingException{
@@ -86,10 +89,12 @@ public class CodeStack {
 		 * Crea un bloque de codigo
 		 * @param codeLR Tipo de codigo: L (codeL) / R (codeR) / C (code)
 		 * @param code seccion de codigo
+		 * @param tipo Tipo de la variable (para codeL)
 		 */
-		public CodeBlock(char codeLR, LinkedList<String> code){
+		public CodeBlock(char codeLR, LinkedList<String> code, Tipo tipo){
 			this.codeLR = codeLR;
 			this.code = code;
+			this.tipo = tipo;
 		}
 		
 		public LinkedList<String> codeC() throws CompilingException{
@@ -108,7 +113,10 @@ public class CodeStack {
 		
 		public LinkedList<String> codeR() throws CompilingException{
 			if (codeLR == 'L'){
-				code.add(IR.ind());
+				if (tipo instanceof ArrayOf) //Tipo compuesto
+					code.add(IR.movs(tipo.tam()));
+				else  //Tipo simple
+					code.add(IR.ind());
 				codeLR = 'R';
 				return code;
 			} 
@@ -119,6 +127,7 @@ public class CodeStack {
 		}
 
 		private char codeLR;
+		private Tipo tipo;
 		private LinkedList<String> code;
 	}
 

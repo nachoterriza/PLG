@@ -62,6 +62,9 @@ public class IR {
 	public static String access(int tam){return "ixa "+tam+";";}
 	public static String stop(){return "stp;";}
 	
+	public static String inc(int n){return "inc "+n+";";}
+	public static String dec(int n){return "dec "+n+";";}
+	
 	/**
 	 * Obtiene la instruccion correspondiente a una expresion binaria
 	 * @param t Tipo de la expresiï¿½n
@@ -152,5 +155,33 @@ public class IR {
 			newcode.add(instr);
 		}
 		return newcode;
+	}
+	
+	/**
+	 * Guarda un array en memoria. deben estar los datos de 0 (fondo)
+	 * a tam-1 (cima) y encima la direccion.
+	 * @param tam tamaño del array
+	 * @return
+	 */
+	public static LinkedList<String> multipleStore(int tam){
+		LinkedList<String> code = new LinkedList<String>();
+		
+		code.add(IR.inc(tam-1)); //Aumentamos la direccion hasta la ultima posicion del array
+		for(int i=tam-1;i>=1;i--){
+			code.add(IR.store0());
+			code.add(IR.store1());
+			code.add(IR.load0());
+			code.add(IR.load1());
+			code.add(IR.sto()); //Tras ordenar direccion y valor, guardamos
+			code.add(IR.load0());
+			code.add(IR.dec(1));//Decrementamos para que apunte a la posicion anterior
+		}
+		code.add(IR.store0());
+		code.add(IR.store1());
+		code.add(IR.load0());
+		code.add(IR.load1());
+		code.add(IR.sto()); //Tras ordenar direccion y valor, guardamos
+		
+		return code;
 	}
 }

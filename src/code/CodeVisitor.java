@@ -1,6 +1,7 @@
 package code;
 
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import resolid.Visitante;
@@ -53,7 +54,7 @@ public class CodeVisitor extends VisitorHelper {
 	private int nextStartDir; 
 	private CodeStack codeStack;
 	private RoVisitor ro;
-	private LinkedList<String> elemStore;
+	//private int anidamientoEnLlaves;
 	
 	/**
 	 * Crea un nuevo CodeVisitor
@@ -67,12 +68,7 @@ public class CodeVisitor extends VisitorHelper {
 		this.ro = ro;
 		this.startDirTable = new Hashtable<Funcion,Integer>();
 		this.nextStartDir = 0;
-		
-		elemStore = new LinkedList<String>();
-		elemStore.add(IR.store1());
-		elemStore.add(IR.load0());
-		elemStore.add(IR.load1());
-		elemStore.add(IR.sto());
+	//	this.anidamientoEnLlaves = 0;
 	}
 	
 	/**
@@ -94,20 +90,7 @@ public class CodeVisitor extends VisitorHelper {
 					+ "Sin embargo hay" + codeStack.getNumBlocksStack());
 	}
 	
-	/**
-	 * Guarda un array en memoria. deben estar los datos de 0 (fondo)
-	 * a tam-1 (cima) y encima la direccion.
-	 * @param tam tamaño del array
-	 * @return
-	 */
-	private LinkedList<String> multipleStore(int tam){
-		LinkedList<String> code = new LinkedList<String>();
-		code.add(IR.store0());
-		for(int i=0;i<tam;i++)
-			code.addAll(this.elemStore);
-		
-		return code;
-	}
+	
 	
 	@Override
 	public void postvisit(Codigo node) {
@@ -138,7 +121,23 @@ public class CodeVisitor extends VisitorHelper {
 			node.getPrograma().accept(this);
 			code = this.codeStack.popCodeC();
 			code.addFirst(IR.startfun(ro.lvar(node)));
-			/*TODO mover los parametros de salida*/
+			
+			//Guardamos en su lugar las variables de salida
+			Iterator<Declaracion> it = node.getSalida().descendingIterator();
+			Declaracion d;
+			while(it.hasNext()){
+				d = it.next();
+				if (d.getTipo() instanceof ArrayOf) {
+					code.add(IR.ldcAddr(ro.ro(d)-1)); //Leemos la dieccion de la variable del llamante
+					code.add(IR.ind());
+					code.addAll(IR.multipleStore(d.getTipo().tam())); //Guardamos
+					code.addLast(IR.store1()); //Nos deshacemos de la direccion
+				}
+				else {
+					code.add(IR.sto()); //Está primero la direccion y despues el valor. simplemente guardamos
+				}
+			}
+			
 			code.add(IR.returnj());
 			
 			this.startDirTable.put(node, this.nextStartDir);
@@ -153,35 +152,51 @@ public class CodeVisitor extends VisitorHelper {
 	}
 
 	@Override
-	public void previsit(ArrayWithKeys node) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void postvisit(ArrayWithKeys node) {
-		// TODO Auto-generated method stub
+		LinkedList<String> code;
+		try {
+			code = this.codeStack.popCodeR();
+			for(int i=1;i<node.num();i++)
+				code.addAll(this.codeStack.popCodeR());
+			
+			this.codeStack.pushCodeR(code);
+		} catch (CompilingException e) {
+			e.printStackTrace();
+		} catch (UnsuportedOperation e) {
+			e.printStackTrace();
+		}
+		
 	
-	}
-
-	@Override
-	public void previsit(AllTo node) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void postvisit(AllTo node) {
-		// TODO Auto-generated method stub
+		try {
+			LinkedList<String> code = codeStack.popCodeR();
+			for (int i=1;i<node.num();i++){
+				code.add(IR.dup());
+			}
+			codeStack.pushCodeR(code);
+		} catch (CompilingException e) {
+			e.printStackTrace();
+		} catch (UnsuportedOperation e) {
+			e.printStackTrace();
+		}
 	
 	}
 
 	@Override
-	public void postvisit(Declaracion node) { //TODO cambiar asignacion para tipos compuestos
+	public void postvisit(Declaracion node) { 
 		try {
 			LinkedList<String> rigth = codeStack.popCodeR();
-			rigth.addFirst(IR.ldcAddr(ro.ro(node)));
-			rigth.add(IR.sto());
+			if (node.getTipo() instanceof ArrayOf) {
+				rigth.add(IR.ldcAddr(ro.ro(node)));
+				rigth.addAll(IR.multipleStore(node.getTipo().tam()));
+			}
+			else {
+				rigth.addFirst(IR.ldcAddr(ro.ro(node)));
+				rigth.add(IR.sto());
+			}
 			codeStack.pushCodeC(rigth);
 		} catch (CompilingException e){
 			e.printStackTrace();
@@ -197,7 +212,7 @@ public class CodeVisitor extends VisitorHelper {
 				
 				left.addAll(rigth);
 				left.add(IR.access(node.op1().getTipo().dsuper()));
-				codeStack.pushCodeL(left);
+				codeStack.pushCodeL(left, node.getTipo());
 			}
 			else {
 				LinkedList<String> rigth = codeStack.popCodeR();
@@ -251,8 +266,10 @@ public class CodeVisitor extends VisitorHelper {
 		try {
 			LinkedList<String> code = new LinkedList<String>();
 			code.add(IR.ldcAddr(-666/*ro.ro(node)*/));
-			codeStack.pushCodeL(code);
+			codeStack.pushCodeL(code, node.getTipo());
 		} catch (CompilingException e) {
+			e.printStackTrace();
+		} catch (UnsuportedOperation e) {
 			e.printStackTrace();
 		}
 	}
@@ -293,14 +310,15 @@ public class CodeVisitor extends VisitorHelper {
 			for (Expresion e: node.salida()){
 				e.accept(this);
 				code = this.codeStack.popCodeL();
-				totalcode.addAll(code); //Añadimos la referencia ...
+				code.add(IR.dup()); //Duplicamos la referencia ...
 				
+				//...y la segunda la transfromamos en valor
 				if (e.getTipo() instanceof ArrayOf) //Tipo compuesto
 					code.add(IR.movs(e.getTipo().tam()));
 				else  //Tipo simple
 					code.add(IR.ind());
 				
-				totalcode.addAll(code);//.. y tambien añadimos el valor
+				totalcode.addAll(code);//añadimos la referencia y el valor
 			}
 			
 			totalcode.add(IR.callj(ro.lparam(f), startDirTable.get(f)));
@@ -368,12 +386,22 @@ public class CodeVisitor extends VisitorHelper {
 	@Override
 	public void postvisit(Asignacion node) {
 		try {
-			LinkedList<String> rigth = codeStack.popCodeR();
+			LinkedList<String> right = codeStack.popCodeR();
 			LinkedList<String> left = codeStack.popCodeL();
-			left.addAll(rigth);
-			left.add(IR.sto());
-			codeStack.pushCodeC(left);
+			if (node.getTipo() instanceof ArrayOf) {
+				right.addAll(left);
+				right.addAll(IR.multipleStore(node.getTipo().tam()));
+				codeStack.pushCodeC(right);
+			}
+			else {
+				left.addAll(right);
+				left.add(IR.sto());
+				codeStack.pushCodeC(left);
+			}
+			
 		} catch (CompilingException e){
+			e.printStackTrace();
+		} catch (UnsuportedOperation e) {
 			e.printStackTrace();
 		}
 

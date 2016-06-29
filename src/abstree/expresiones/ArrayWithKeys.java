@@ -34,10 +34,6 @@ public class ArrayWithKeys extends Expresion {
 		return array.size();
 	}
 	
-	private LinkedList<Expresion> array;
-	
-
-
 	@Override
 	public void accept(Visitante v) {
 		v.previsit(this);
@@ -54,5 +50,7 @@ public class ArrayWithKeys extends Expresion {
 			
 		return new ArrayOf(array.size(),test,fila);
 	}
+
+	private LinkedList<Expresion> array;
 
 }
