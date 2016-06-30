@@ -69,7 +69,7 @@ public class MainClass {
 			System.out.println("Abortando compilacion");
 			return;
 		}
-		/*XXX TEST*/ System.out.print(ro);
+		//XXX TEST System.out.print(ro);
 		System.out.println("Localizacion de variables completada (RO)");
 		
 		System.out.println("Iniciando compilacion...");

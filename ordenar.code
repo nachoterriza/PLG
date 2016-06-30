@@ -20,6 +20,6 @@ makes
 returns output;
 
 main start
-array of 7 int lista = {5,4,8,10,0,3,9};
+array of 10 int lista = {5,4,8,10,0,3,9,1,2,3};
 	call ordenar with lista receiving lista;
 end;

@@ -125,7 +125,7 @@ public class IR {
 						|| s.equalsIgnoreCase("ixj ")
 					)
 				{
-					dir = Integer.parseInt(instr.substring(4, instr.length()));
+					dir = Integer.parseInt(instr.substring(4, instr.length()-1));
 					dir = dir + i;
 					instr = s+dir+";";
 				}
@@ -153,7 +153,7 @@ public class IR {
 				s = (String) instr.subSequence(0, 4);
 				if ( s.equalsIgnoreCase("cup ") ){
 					//XXX TEST System.out.print(instr);
-					param = instr.split(" ");
+					param = instr.substring(0, instr.length()-1).split(" ");
 					//XXX TEST for(String item: param) System.out.print("["+item+"]");
 					lparam = Integer.parseInt(param[1]);
 					dir = Integer.parseInt(param[2]);
