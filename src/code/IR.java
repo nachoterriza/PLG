@@ -12,36 +12,36 @@ import abstree.expresiones.TipoE;
  *  en absolutos con la funcion {@link IR#relToAbsJumps(LinkedList)}
  */
 public class IR {
-	public static String add(){return "add";}
-	public static String sub(){return "sub";}
-	public static String mul(){return "mul";}
-	public static String div(){return "div";}
-	public static String neg(){return "neg";}
+	public static String add(){return "add;";}
+	public static String sub(){return "sub;";}
+	public static String mul(){return "mul;";}
+	public static String div(){return "div;";}
+	public static String neg(){return "neg;";}
 	
-	public static String and(){return "and";}
-	public static String or(){return "or";}
-	public static String not(){return "not";}
+	public static String and(){return "and;";}
+	public static String or(){return "or;";}
+	public static String not(){return "not;";}
 
-	public static String eq(){return "equ";}
-	public static String ge(){return "geq";}
-	public static String le(){return "leq";}
-	public static String lt(){return "les";}
-	public static String gt(){return "grt";}
-	public static String neq(){return "neq";}
+	public static String eq(){return "equ;";}
+	public static String ge(){return "geq;";}
+	public static String le(){return "leq;";}
+	public static String lt(){return "les;";}
+	public static String gt(){return "grt;";}
+	public static String neq(){return "neq;";}
 	
-	public static String ldcAddr(int c){return "lda 0 "+c;}
-	public static String ldcInt(int c){return "ldc "+c;}
-	public static String ldcTrue(){return "ldc true";}
-	public static String ldcFalse(){return "ldc false";}
-	public static String ind(){return "ind";}
-	public static String sto(){return "sto";}
+	public static String ldcAddr(int c){return "lda 0 "+c+";";}
+	public static String ldcInt(int c){return "ldc "+c+";";}
+	public static String ldcTrue(){return "ldc true;";}
+	public static String ldcFalse(){return "ldc false;";}
+	public static String ind(){return "ind;";}
+	public static String sto(){return "sto;";}
 	
-	public static String load0(){return "ldo 0";}
-	public static String store0(){return "sro 0";}
-	public static String load1(){return "ldo 1";}
-	public static String store1(){return "sro 1";}
+	public static String load0(){return "ldo 0;";}
+	public static String store0(){return "sro 0;";}
+	public static String load1(){return "ldo 1;";}
+	public static String store1(){return "sro 1;";}
 	
-	public static String dup(){return "dpl";}
+	public static String dup(){return "dpl;";}
 	
 	/**
 	 * Instruccion de salto a una función
@@ -49,21 +49,21 @@ public class IR {
 	 * @param dir direccion de comienzo del código de la funcion llamada.
 	 * @return
 	 */
-	public static String callj(int lparam, int dir){return "cup "+lparam+" "+dir;}
-	public static String returnj(){return "retp";}
-	public static String uncondj(int dir){return "ujp "+dir;}
-	public static String condj(int dir){return "fjp "+dir;}
-	public static String casej(int dir){return "ixj "+dir;}
+	public static String callj(int lparam, int dir){return "cup "+lparam+" "+dir+";";}
+	public static String returnj(){return "retp;";}
+	public static String uncondj(int dir){return "ujp "+dir+";";}
+	public static String condj(int dir){return "fjp "+dir+";";}
+	public static String casej(int dir){return "ixj "+dir+";";}
 
 	
-	public static String startfun(int lvar){return "ssp "+lvar;}
-	public static String startcall(){return "mst 0";}
-	public static String movs(int size){return "movs "+size;}
-	public static String access(int tam){return "ixa "+tam;}
-	public static String stop(){return "stp";}
+	public static String startfun(int lvar){return "ssp "+lvar+";";}
+	public static String startcall(){return "mst 0;";}
+	public static String movs(int size){return "movs "+size+";";}
+	public static String access(int tam){return "ixa "+tam+";";}
+	public static String stop(){return "stp;";}
 	
-	public static String inc(int n){return "inc "+n;}
-	public static String dec(int n){return "dec "+n;}
+	public static String inc(int n){return "inc "+n+";";}
+	public static String dec(int n){return "dec "+n+";";}
 	
 	/**
 	 * Obtiene la instruccion correspondiente a una expresion binaria
@@ -127,7 +127,7 @@ public class IR {
 				{
 					dir = Integer.parseInt(instr.substring(4, instr.length()));
 					dir = dir + i;
-					instr = s+dir;
+					instr = s+dir+";";
 				}
 			}
 			newcode.add(instr);
@@ -158,7 +158,7 @@ public class IR {
 					lparam = Integer.parseInt(param[1]);
 					dir = Integer.parseInt(param[2]);
 					dir = dir + tam;
-					instr = s+lparam+' '+dir;
+					instr = s+lparam+' '+dir+";";
 					//XXX TEST System.out.println(" cambiado a "+instr);
 				}
 			}
