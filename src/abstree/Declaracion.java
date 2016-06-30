@@ -41,9 +41,15 @@ public class Declaracion implements Anfitrion{
 	
 	public boolean checkTipo() {
 		try {
-			if(valor.getTipo().valorT()==tipo.valorT())
-				return true;
-			else {
+			if(valor.getTipo().valorT()==tipo.valorT()) {
+				if(valor.getTipo().numElems()==tipo.numElems())
+					return true;
+				else {
+					GestionErroresTiny.errorTipos(fila, "El tamaño del array no coincide con el declarado.");
+					return false;
+				}
+				
+			} else {
 				GestionErroresTiny.errorTipos(fila, 
 						"El tipo de la expresion no coincide con el tipo de la variable");
 				return false;
