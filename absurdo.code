@@ -1,6 +1,12 @@
+//RO: {c=11, auxd=41, d=20, y=34, b=6, w=38, get=29, b=8, d=20, auxb=40, 
+//	aux=41, auxc=42, c=8, a=5, aux=39, auxe=42, b=8, get=29, a=5, c=11, 
+//	getbis=30, getbis=30, a=5, z=36, x=32}
+//lparam: {getAt=34, suma=4}
+//lvar: {getAt=43, suma=9}
+
 method suma
-takes input int a; int b;
-declares output int c = 0;
+takes input int a; int b; //5,6
+declares output int c = 0; //8
 makes
 	c = c + a;
 	c = c + b;
@@ -42,15 +48,15 @@ makes
 returns output;
 
 main start
-	array of 3 int a = {0,1,2};
-	array of 3 bool b = all 3 to TRUE;
+	array of 3 int a = {0,1,2}; //5
+	array of 3 bool b = all 3 to TRUE; //8
 	array of 3 array of 3 int c = { {1,2,3},
 									{4,5,6},
-									{7,8,9} };
-	array of 3 array of 3 bool d = all 3 to all 3 to FALSE;
-	int get = 0;
-	int getbis = a@1;
-	int a = 0;
+									{7,8,9} }; //11
+	array of 3 array of 3 bool d = all 3 to all 3 to FALSE; //20
+	int get = 0; //29
+	int getbis = a@1; //30
+	//int a = 0;
 	
 	while c@2@2 > 0 do
 		c@2@2 = c@2@2 - c@1@1;

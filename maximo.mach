@@ -5,8 +5,11 @@ ldc 10
 ldc 0
 ldc 3
 ldc 9
+ldc 1
+ldc 2
+ldc 3
 lda 0 5
-inc 6
+inc 9
 sro 0
 sro 1
 ldo 0
@@ -54,16 +57,37 @@ sro 1
 ldo 0
 ldo 1
 sto
-lda 0 12
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+lda 0 15
 ldc 0
 sto
 mst 0
 lda 0 5
-movs 7
-lda 0 12
+movs 10
+lda 0 15
 dpl
 ind
-cup 12 67
+cup 12 91
 stp
 ssp 18
 lda 0 16
@@ -82,7 +106,7 @@ lda 0 17
 ind
 ldc 10
 les
-fjp 108
+fjp 132
 lda 0 16
 ind
 lda 0 5
@@ -91,7 +115,7 @@ ind
 ixa 1
 ind
 les
-fjp 101
+fjp 125
 lda 0 16
 lda 0 5
 lda 0 17
@@ -105,6 +129,6 @@ ind
 ldc 1
 add
 sto
-ujp 80
+ujp 104
 sto
 retp
