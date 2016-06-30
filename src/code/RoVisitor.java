@@ -141,7 +141,7 @@ public class RoVisitor extends VisitorHelper{
 		
 		node.getPrograma().accept(this);
 		
-		this.lvar.put(node, this.maxdir);
+		this.lvar.put(node, this.maxdir+1);
 		this.nextdir = 5;
 		this.maxdir = 4;
 		return false;

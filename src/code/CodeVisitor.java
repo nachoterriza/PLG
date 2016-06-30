@@ -83,11 +83,10 @@ public class CodeVisitor extends VisitorHelper {
 	public LinkedList<String> getResult() throws CompilingException{
 		if(codeStack.getNumBlocksStack() == 1){
 			LinkedList<String> code =  codeStack.popCodeC();
-			code.add(IR.stop());
 			if (mainsize<0) 
 				System.err.println("CompilingException: Tamaño del main no guardado");
-			IR.adjustFuncionJumps(code, mainsize);
-			IR.relToAbsJumps(code);
+			code = IR.adjustFuncionJumps(code, mainsize);
+			code = IR.relToAbsJumps(code);
 			return code;
 		}
 			
@@ -102,6 +101,8 @@ public class CodeVisitor extends VisitorHelper {
 	public void postvisit(Codigo node) {
 		try {
 			LinkedList<String> main = this.codeStack.popCodeC();
+			main.add(IR.stop());
+			this.mainsize = main.size();
 			if (node.nFunciones()>0){
 				LinkedList<String> f, flist;
 				flist = this.codeStack.popCodeC();
@@ -110,7 +111,6 @@ public class CodeVisitor extends VisitorHelper {
 					flist = this.codeStack.popCodeC();
 					flist.addAll(f);
 				}
-				this.mainsize = main.size();
 				main.addAll(flist);
 			}
 			this.codeStack.pushCodeC(main);
@@ -144,11 +144,16 @@ public class CodeVisitor extends VisitorHelper {
 
 	@Override
 	public boolean previsit(Funcion node) {
-		LinkedList<String> code;
+		LinkedList<String> code = new LinkedList<String>();
 		try {
+			code.add(IR.startfun(ro.lvar(node)));
+			for(Declaracion d: node.getSalida()){
+				d.accept(this);
+				code.addAll(this.codeStack.popCodeC());
+			}
 			node.getPrograma().accept(this);
-			code = this.codeStack.popCodeC();
-			code.addFirst(IR.startfun(ro.lvar(node)));
+			code.addAll(this.codeStack.popCodeC());
+			
 			
 			//Guardamos en su lugar las variables de salida
 			Iterator<Declaracion> it = node.getSalida().descendingIterator();
@@ -202,10 +207,11 @@ public class CodeVisitor extends VisitorHelper {
 	public void postvisit(AllTo node) {
 		try {
 			LinkedList<String> code = codeStack.popCodeR();
-			for (int i=1;i<node.num();i++){
-				code.add(IR.dup());
+			LinkedList<String> codelist = new LinkedList<String>();
+			for (int i=0;i<node.num();i++){
+				codelist.addAll(code);
 			}
-			codeStack.pushCodeR(code);
+			codeStack.pushCodeR(codelist);
 		} catch (CompilingException e) {
 			e.printStackTrace();System.out.println(node.getFila());
 		} catch (UnsuportedOperation e) {

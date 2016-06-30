@@ -13,7 +13,7 @@ done;
 returns output;
 
 main start
-array of 7 int a = {5,4,8,10,0,3,9};
+array of 10 int a = {5,4,8,10,0,3,9,1,2,3};
 	int max = 0;
 	call maximo with a receiving max;
 end;
