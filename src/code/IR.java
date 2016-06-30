@@ -112,7 +112,7 @@ public class IR {
 	 * @param code Bloque de codigo original
 	 * @return Bloque de cï¿½digo transformado
 	 */
-	public static LinkedList<String> relToAbsJumps(LinkedList<String> code){
+	public static void relToAbsJumps(LinkedList<String> code){
 		LinkedList<String> newcode= new LinkedList<String>();
 		int i=0;
 		String s;
@@ -131,7 +131,7 @@ public class IR {
 			newcode.add(instr);
 			i++;
 		}
-		return newcode;
+		code = newcode;
 	}
 	
 	/**
@@ -141,20 +141,25 @@ public class IR {
 	 * @param tam tamaño del main, a sumar a los saltos a funciones
 	 * @return Bloque de codigo transformado
 	 */
-	public static LinkedList<String> adjustFuncionJumps(LinkedList<String> code, int tam){
+	public static void adjustFuncionJumps(LinkedList<String> code, int tam){
 		LinkedList<String> newcode= new LinkedList<String>();
 		String s;
-		int dir;
+		String[] param;
+		int dir, lparam;
 		for (String instr: code){
 			s = (String) instr.subSequence(0, 4);
 			if ( s.equalsIgnoreCase("cup ") ){
-				dir = Integer.parseInt(instr.substring(4, instr.length()-1));
+				/*XXX TEST*/System.out.print(instr);
+				param = instr.substring(4, instr.length()-1).split(" ");
+				lparam = Integer.parseInt(param[0]);
+				dir = Integer.parseInt(param[1]);
 				dir = dir + tam;
-				instr = s+dir+';';
+				instr = s+lparam+' '+dir+';';
+				/*XXX TEST*/System.out.println(" cambiado a "+instr);
 			}
 			newcode.add(instr);
 		}
-		return newcode;
+		code = newcode;
 	}
 	
 	/**

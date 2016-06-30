@@ -12,8 +12,8 @@ import java_cup.runtime.Symbol;
 
 public class Main {
    public static void main(String[] args) throws Exception {
-     Reader input = new InputStreamReader(new FileInputStream("ordenar.code"));
-     GestionErroresTiny.setArchivo("ordenar.code");
+     Reader input = new InputStreamReader(new FileInputStream("mult.code"));
+     GestionErroresTiny.setArchivo("mult.code");
 	 AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
 	 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
 	 asint.setScanner(alex);
@@ -25,9 +25,9 @@ public class Main {
 	 ResolID resolid = new ResolID();
 	 codetree.accept(resolid);
 	 System.out.println(" - resolucion de identificadores completada - ");
-	 codetree.checkTipo();
-	// PrettyPrinter pp = new PrettyPrinter(false);
-//	 codetree.accept(pp);
+//	 codetree.checkTipo();
+	 PrettyPrinter pp = new PrettyPrinter(false);
+	 codetree.accept(pp);
    }
 
 }   

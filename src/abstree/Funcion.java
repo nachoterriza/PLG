@@ -8,14 +8,6 @@ import resolid.Visitante;
 public class Funcion implements Anfitrion{
 	
 	public Funcion(String id, LinkedList<Declaracion> entrada, 
-			LinkedList<Declaracion> salida, Programa programa) {
-		this.id = id;
-		this.entrada = entrada;
-		this.salida = salida;
-		this.programa = programa;
-	}
-	
-	public Funcion(String id, LinkedList<Declaracion> entrada, 
 			LinkedList<Declaracion> salida, Programa programa, int fila) {
 		this.id = id;
 		this.entrada = entrada;

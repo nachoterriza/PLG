@@ -7,10 +7,6 @@ import resolid.Visitante;
 
 //Hay que inicializar la referencia
 public class Identificador extends Expresion {
-
-	public Identificador(String id){
-		this.id = id;
-	}
 	
 	public Identificador(String id, int fila){
 		this.id = id;

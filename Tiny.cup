@@ -80,16 +80,19 @@ Funcion ::= METHOD ID: id
 			INPUT Entrada: entrada 
 			OUTPUT Declaracion: d DeclList: salida 
 			MAKES Programa: prog RETURN 
-											{: salida.addFirst(d); 
+											{: UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-8);
+											   salida.addFirst(d); 
 											   RESULT = new Funcion(id, entrada,
-											   				 salida, prog); :}
+											   				 salida, prog, symbol.fila()); :}
 		;
 	
 Entrada ::= Tipo: t ID: id SEMICOLON Entrada: dl 	
-											{: dl.addFirst(new Declaracion(t, id, null)); 
+											{: UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-2);
+											dl.addFirst(new Declaracion(t, id, null, symbol.fila())); 
 											   RESULT = dl; :}
-		| Tipo: t ID: id SEMICOLON 			{: RESULT = new LinkedList<Declaracion>(); 
-				 							   RESULT.addFirst(new Declaracion(t, id, null)); :}
+		| Tipo: t ID: id SEMICOLON 			{: UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
+											RESULT = new LinkedList<Declaracion>(); 
+				 							   RESULT.addFirst(new Declaracion(t, id, null, symbol.fila())); :}
 		;
 
 
@@ -103,13 +106,15 @@ SentList ::= Sentencia: s SentList: sl		{: sl.addFirst(s); RESULT = sl; :}
 											   RESULT.addFirst(s); :}
 		;
 Declaracion ::= Tipo: t ID: id IGUAL E0: exp SEMICOLON 
-											{: RESULT = new Declaracion(t, id, exp); :}
+											{: UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-3);
+											RESULT = new Declaracion(t, id, exp, symbol.fila()); :}
 		;
 		
 		
 Tipo ::= INT 								{: RESULT = new Int(); :}
 	| BOOL  								{: RESULT = new Bool(); :}
-	| ARRAYOF NUM: tam Tipo: tipo 			{: RESULT = new ArrayOf(Integer.parseInt(tam), tipo); :}
+	| ARRAYOF NUM: tam Tipo: tipo 			{: UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-1);
+												RESULT = new ArrayOf(Integer.parseInt(tam), tipo, symbol.fila()); :}
 	;
 Sentencia ::= Var: var IGUAL E0: e SEMICOLON 		
 											{: RESULT = new Asignacion(var, e); :}
@@ -124,7 +129,8 @@ Sentencia ::= Var: var IGUAL E0: e SEMICOLON
 											{: RESULT = new While(cond, code); :}
 			| CALL ID: id WITH Vars: entrada
 			  RECEIVING Vars: salida SEMICOLON 
-											{: RESULT = new Call(id, entrada, salida); :}
+											{: UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.elementAt(CUP$AnalizadorSintacticoTiny$top-5);
+											RESULT = new Call(id, entrada, salida, symbol.fila()); :}
 			;
 Casos ::= VALUE NUM: num DO Programa: p DONE Casos: casos
 												{: casos.put(Integer.parseInt(num),p); RESULT = casos; :}
@@ -137,8 +143,13 @@ Vars ::= Var: v COMA Vars: vl 					{: vl.addFirst(v);
 	| Var:v 									{: RESULT = new LinkedList<Expresion>(); 
 				 								   RESULT.addFirst(v); :}
 	;
-Var ::= ID: id									{: RESULT = new Identificador(id); :}
-	| Var: var AT E8: e 						{: RESULT = new AccessAt(var,e); :}
+Var ::= ID: id									{: UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.peek();
+													RESULT = new Identificador(id, symbol.fila()); :}
+	| Var: var AT NUM: num 						{: UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.peek();
+													RESULT = new AccessAt(var,new Number(Integer.parseInt(num), symbol.fila())); :}
+	| Var: var AT ID: id 						{: UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.peek();
+													RESULT = new AccessAt(var,new Identificador(id, symbol.fila())); :}
+	| Var: var AT PAP E0: e PCIERRE	 			{: 	RESULT = new AccessAt(var,e); :}
 	;
 	
 Array ::= Elem: e COMA Array: array 			{: array.addFirst(e); 
@@ -146,7 +157,8 @@ Array ::= Elem: e COMA Array: array 			{: array.addFirst(e);
 	| Elem: e 									{: RESULT = new LinkedList<Expresion>(); 
 				 								   RESULT.addFirst(e); :}
 	;
-Elem ::= NUM: num 								{: RESULT = new Number(Integer.parseInt(num)); :}
+Elem ::= NUM: num 								{: UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.peek();
+													RESULT = new Number(Integer.parseInt(num), symbol.fila()); :}
 	| TRUE 										{: RESULT = new True(); :}
 	| FALSE 									{: RESULT = new False(); :}
 	| LLAVEA Array: e LLAVEC 					{: RESULT = new ArrayWithKeys(e); :}
@@ -185,7 +197,8 @@ E6 ::= E6: e1 DIV E7: e2 						{: RESULT = new Div(e1,e2); :}
 E7 ::= E7: e1 POR E8: e2 						{: RESULT = new Mult(e1,e2); :}
 	| E8: e										{: RESULT = e; :}
 	;
-E8 ::= NUM: num 								{: RESULT = new Number(Integer.parseInt(num)); :}
+E8 ::= NUM: num 								{: UnidadLexica symbol = (UnidadLexica) CUP$AnalizadorSintacticoTiny$stack.peek();
+													RESULT = new Number(Integer.parseInt(num), symbol.fila()); :}
 	| Var: e 									{: RESULT = e; :}
 	| PAP E0: e PCIERRE							{: RESULT = e; :} 
 	;

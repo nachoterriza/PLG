@@ -53,6 +53,7 @@ public class CodeVisitor extends VisitorHelper {
 	
 	private Hashtable<Funcion,Integer> startDirTable;
 	private int nextStartDir; 
+	private int mainsize;
 	private CodeStack codeStack;
 	private RoVisitor ro;
 	//private int anidamientoEnLlaves;
@@ -69,7 +70,7 @@ public class CodeVisitor extends VisitorHelper {
 		this.ro = ro;
 		this.startDirTable = new Hashtable<Funcion,Integer>();
 		this.nextStartDir = 0;
-	//	this.anidamientoEnLlaves = 0;
+		this.mainsize = -1;
 	}
 	
 	/**
@@ -83,6 +84,10 @@ public class CodeVisitor extends VisitorHelper {
 		if(codeStack.getNumBlocksStack() == 1){
 			LinkedList<String> code =  codeStack.popCodeC();
 			code.add(IR.stop());
+			if (mainsize<0) 
+				System.err.println("CompilingException: Tamaño del main no guardado");
+			IR.adjustFuncionJumps(code, mainsize);
+			IR.relToAbsJumps(code);
 			return code;
 		}
 			
@@ -105,7 +110,7 @@ public class CodeVisitor extends VisitorHelper {
 					flist = this.codeStack.popCodeC();
 					flist.addAll(f);
 				}
-				IR.adjustFuncionJumps(flist, main.size());
+				this.mainsize = main.size();
 				main.addAll(flist);
 			}
 			this.codeStack.pushCodeC(main);
@@ -165,7 +170,6 @@ public class CodeVisitor extends VisitorHelper {
 			
 			this.startDirTable.put(node, this.nextStartDir);
 			this.nextStartDir = this.nextStartDir + code.size();
-			IR.relToAbsJumps(code);
 			
 			this.codeStack.pushCodeC(code);
 		} catch (CompilingException e) {
@@ -184,7 +188,7 @@ public class CodeVisitor extends VisitorHelper {
 				code.addAll(codelist);
 				codelist = code;
 			}
-			this.codeStack.pushCodeR(code);
+			this.codeStack.pushCodeR(codelist);
 		} catch (CompilingException e) {
 			e.printStackTrace();System.out.println(node.getFila());
 		} catch (UnsuportedOperation e) {
@@ -347,7 +351,7 @@ public class CodeVisitor extends VisitorHelper {
 			}
 			
 			totalcode.add(IR.callj(ro.lparam(f), startDirTable.get(f)));
-			
+			this.codeStack.pushCodeC(totalcode);
 		} catch (UnsuportedOperation e1) {
 			e1.printStackTrace();
 		} catch (CompilingException e1) {

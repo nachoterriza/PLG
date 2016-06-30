@@ -6,10 +6,6 @@ import abstree.tipos.Tipo;
 import resolid.Visitante;
 
 public class Number extends Expresion {
-
-	public Number(int num){
-		this.num = num;
-	}
 	
 	public Number(int num, int fila){
 		this.num = num;
