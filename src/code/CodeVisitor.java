@@ -144,11 +144,16 @@ public class CodeVisitor extends VisitorHelper {
 
 	@Override
 	public boolean previsit(Funcion node) {
-		LinkedList<String> code;
+		LinkedList<String> code = new LinkedList<String>();
 		try {
+			code.add(IR.startfun(ro.lvar(node)));
+			for(Declaracion d: node.getSalida()){
+				d.accept(this);
+				code.addAll(this.codeStack.popCodeC());
+			}
 			node.getPrograma().accept(this);
-			code = this.codeStack.popCodeC();
-			code.addFirst(IR.startfun(ro.lvar(node)));
+			code.addAll(this.codeStack.popCodeC());
+			
 			
 			//Guardamos en su lugar las variables de salida
 			Iterator<Declaracion> it = node.getSalida().descendingIterator();
