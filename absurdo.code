@@ -17,7 +17,7 @@ takes input array of 3 int a;
 declares output int x = 10; 
 				bool y = FALSE; 
 				int z = getbis + get * c@((getbis+get)/2)@(c@get@getbis); 
-				bool w = d@(a@get)@(c@0@0) AND NOT b@0 OR d@2 AND NOT b@2;
+				bool w = d@(a@get)@(c@0@0) AND NOT b@0 OR d@2@2 AND NOT b@2;
 makes
 	int aux = 0;
 	int auxb = 45 + x;
