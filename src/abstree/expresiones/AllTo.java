@@ -50,9 +50,15 @@ public class AllTo extends Expresion{
 	}
 	
 	private Tipo findDim(int valor, int num, Tipo tipo, int fila) {
-		if(valor>=2)
-			return new ArrayOf(num,findDim(valor-2,num,tipo,fila),fila);
-		else return new ArrayOf(num,tipo,fila);
+		try {
+			if(valor>=2) {
+				int numHijo = op1.getTipo().numElems();
+				return new ArrayOf(num,findDim(valor-2,numHijo,tipo,fila),fila); 
+			}
+			else return new ArrayOf(num,tipo,fila);
+		} catch (UnsuportedOperation e) {
+			e.printStackTrace();
+		} return null;
 	}
 
 	@Override

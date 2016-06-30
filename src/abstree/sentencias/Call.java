@@ -52,6 +52,9 @@ public class Call extends Sentencia {
 			try {
 				if(dec.getTipo().valorT()!=entrada.get(i).getTipo().valorT())
 					throw new UnsuportedOperation("Parametro "+i+" de entrada mal declarado en CALL.");
+				else if (dec.getTipo().valorT()>=2) 
+						if (dec.getTipo().numElems()!=entrada.get(i).getTipo().numElems())
+							throw new UnsuportedOperation("Parametro "+i+" de entrada mal declarado en CALL: Array de distinto tamaño.");
 			} catch (UnsuportedOperation e) {
 				GestionErroresTiny.errorTipos(fila, e.getMessage());
 				ret = false;
