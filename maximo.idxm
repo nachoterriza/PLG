@@ -65,7 +65,7 @@
 64: ind
 65: cup 12 67
 66: stp
-67: ssp 17
+67: ssp 18
 68: lda 0 16
 69: ldc 0
 70: sto

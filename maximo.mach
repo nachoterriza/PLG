@@ -65,7 +65,7 @@ dpl
 ind
 cup 12 67
 stp
-ssp 17
+ssp 18
 lda 0 16
 ldc 0
 sto
