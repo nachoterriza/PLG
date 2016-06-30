@@ -20,7 +20,7 @@ import errors.GestionErroresTiny;
 
 public class MainClass {
 	
-	private static final String file = "anidar"; 
+	private static final String file = "mult"; 
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("Iniciando proceso de compilacion de "+file+".code...");
@@ -68,6 +68,7 @@ public class MainClass {
 			System.out.println("Abortando compilacion");
 			return;
 		}
+		/*XXX TEST*/ System.out.print(ro);
 		System.out.println("Localizacion de variables completada (RO)");
 		
 		System.out.println("Iniciando compilacion...");

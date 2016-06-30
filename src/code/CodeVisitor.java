@@ -207,10 +207,11 @@ public class CodeVisitor extends VisitorHelper {
 	public void postvisit(AllTo node) {
 		try {
 			LinkedList<String> code = codeStack.popCodeR();
-			for (int i=1;i<node.num();i++){
-				code.add(IR.dup());
+			LinkedList<String> codelist = new LinkedList<String>();
+			for (int i=0;i<node.num();i++){
+				codelist.addAll(code);
 			}
-			codeStack.pushCodeR(code);
+			codeStack.pushCodeR(codelist);
 		} catch (CompilingException e) {
 			e.printStackTrace();System.out.println(node.getFila());
 		} catch (UnsuportedOperation e) {

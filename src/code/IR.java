@@ -152,14 +152,14 @@ public class IR {
 			if (instr.length()>4) {
 				s = (String) instr.subSequence(0, 4);
 				if ( s.equalsIgnoreCase("cup ") ){
-					/*XXX TEST*/System.out.print(instr);
+					//XXX TEST System.out.print(instr);
 					param = instr.split(" ");
-					/*XXX TEST*/for(String item: param) System.out.print("["+item+"]");
+					//XXX TEST for(String item: param) System.out.print("["+item+"]");
 					lparam = Integer.parseInt(param[1]);
 					dir = Integer.parseInt(param[2]);
 					dir = dir + tam;
 					instr = s+lparam+' '+dir;
-					/*XXX TEST*/System.out.println(" cambiado a "+instr);
+					//XXX TEST System.out.println(" cambiado a "+instr);
 				}
 			}
 			newcode.add(instr);

@@ -1,0 +1,110 @@
+0: ldc 5
+1: ldc 4
+2: ldc 8
+3: ldc 10
+4: ldc 0
+5: ldc 3
+6: ldc 9
+7: lda 0 5
+8: inc 6
+9: sro 0
+10: sro 1
+11: ldo 0
+12: ldo 1
+13: sto
+14: ldo 0
+15: dec 1
+16: sro 0
+17: sro 1
+18: ldo 0
+19: ldo 1
+20: sto
+21: ldo 0
+22: dec 1
+23: sro 0
+24: sro 1
+25: ldo 0
+26: ldo 1
+27: sto
+28: ldo 0
+29: dec 1
+30: sro 0
+31: sro 1
+32: ldo 0
+33: ldo 1
+34: sto
+35: ldo 0
+36: dec 1
+37: sro 0
+38: sro 1
+39: ldo 0
+40: ldo 1
+41: sto
+42: ldo 0
+43: dec 1
+44: sro 0
+45: sro 1
+46: ldo 0
+47: ldo 1
+48: sto
+49: ldo 0
+50: dec 1
+51: sro 0
+52: sro 1
+53: ldo 0
+54: ldo 1
+55: sto
+56: lda 0 12
+57: ldc 0
+58: sto
+59: mst 0
+60: lda 0 5
+61: movs 7
+62: lda 0 12
+63: dpl
+64: ind
+65: cup 12 67
+66: stp
+67: ssp 17
+68: lda 0 16
+69: ldc 0
+70: sto
+71: lda 0 17
+72: ldc 0
+73: sto
+74: lda 0 16
+75: lda 0 5
+76: ldc 0
+77: ixa 1
+78: ind
+79: sto
+80: lda 0 17
+81: ind
+82: ldc 10
+83: les
+84: fjp 108
+85: lda 0 16
+86: ind
+87: lda 0 5
+88: lda 0 17
+89: ind
+90: ixa 1
+91: ind
+92: les
+93: fjp 101
+94: lda 0 16
+95: lda 0 5
+96: lda 0 17
+97: ind
+98: ixa 1
+99: ind
+100: sto
+101: lda 0 17
+102: lda 0 17
+103: ind
+104: ldc 1
+105: add
+106: sto
+107: ujp 80
+108: sto
+109: retp
