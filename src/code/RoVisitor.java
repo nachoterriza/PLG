@@ -64,6 +64,8 @@ public class RoVisitor extends VisitorHelper{
 		} catch (UnsuportedOperation e) {
 			e.printStackTrace();
 		}
+		if (ret<=0)
+			GestionErroresTiny.errorRO(id.getFila(), "Variable " + id + "no encontrada");
 		return ret;
 	}
 	
@@ -89,8 +91,10 @@ public class RoVisitor extends VisitorHelper{
 	 */
 	public int lparam(Funcion f){
 		Integer ret = lparam.get(f);
-		if (ret == null)
+		if (ret == null) {
+			GestionErroresTiny.errorRO(f.getFila(), "Funcion " + f + "no encontrada");
 			return -333;
+		}
 		else
 			return ret;
 	}
@@ -103,8 +107,10 @@ public class RoVisitor extends VisitorHelper{
 	 */
 	public int lvar(Funcion f){
 		Integer ret = lvar.get(f);
-		if (ret == null)
+		if (ret == null) {
+			GestionErroresTiny.errorRO(f.getFila(), "Funcion " + f + "no encontrada");
 			return -777;
+		}
 		else
 			return ret;
 	}

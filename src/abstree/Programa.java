@@ -22,6 +22,14 @@ public class Programa implements Anfitrion{
 			s.accept(v);
 		v.postvisit(this);		
 	}
+	
+	public int nDecl(){
+		return declaraciones.size();
+	}
+	
+	public int nSent(){
+		return sentencias.size();
+	}
 
 
 	public boolean checkTipo() {

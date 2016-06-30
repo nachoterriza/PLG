@@ -9,6 +9,7 @@ import resolid.VisitorHelper;
 import abstree.Codigo;
 import abstree.Declaracion;
 import abstree.Funcion;
+import abstree.Programa;
 import abstree.expresiones.AccessAt;
 import abstree.expresiones.AllTo;
 import abstree.expresiones.ArrayWithKeys;
@@ -113,6 +114,28 @@ public class CodeVisitor extends VisitorHelper {
 		}
 	
 	}
+	
+	@Override
+	public void postvisit(Programa node) {
+		try {
+			LinkedList<String> list = this.codeStack.popCodeC();
+			LinkedList<String> line;
+			for (int i=1; i<node.nSent();i++) {
+				line = this.codeStack.popCodeC();
+				line.addAll(list);
+				list = line;
+			}
+			for (int i=0; i<node.nDecl();i++) {
+				line = this.codeStack.popCodeC();
+				line.addAll(list);
+				list = line;
+			}
+			this.codeStack.pushCodeC(list);
+		} catch (CompilingException e) {
+			e.printStackTrace();System.out.println("Programa");
+		}
+	
+	}
 
 	@Override
 	public boolean previsit(Funcion node) {
@@ -153,12 +176,14 @@ public class CodeVisitor extends VisitorHelper {
 
 	@Override
 	public void postvisit(ArrayWithKeys node) {
-		LinkedList<String> code;
+		LinkedList<String> code, codelist;
 		try {
-			code = this.codeStack.popCodeR();
-			for(int i=1;i<node.num();i++)
-				code.addAll(this.codeStack.popCodeR());
-			
+			codelist = this.codeStack.popCodeR();
+			for(int i=1;i<node.num();i++){
+				code = this.codeStack.popCodeR();
+				code.addAll(codelist);
+				codelist = code;
+			}
 			this.codeStack.pushCodeR(code);
 		} catch (CompilingException e) {
 			e.printStackTrace();System.out.println(node.getFila());
@@ -265,7 +290,7 @@ public class CodeVisitor extends VisitorHelper {
 	public void visit(Identificador node) {
 		try {
 			LinkedList<String> code = new LinkedList<String>();
-			code.add(IR.ldcAddr(-666/*ro.ro(node)*/));
+			code.add(IR.ldcAddr(ro.ro(node)));
 			codeStack.pushCodeL(code, node.getTipo());
 		} catch (CompilingException e) {
 			e.printStackTrace();System.out.println(node.getFila());
