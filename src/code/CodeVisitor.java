@@ -102,6 +102,7 @@ public class CodeVisitor extends VisitorHelper {
 		try {
 			LinkedList<String> main = this.codeStack.popCodeC();
 			main.add(IR.stop());
+			this.mainsize = main.size();
 			if (node.nFunciones()>0){
 				LinkedList<String> f, flist;
 				flist = this.codeStack.popCodeC();
@@ -110,7 +111,6 @@ public class CodeVisitor extends VisitorHelper {
 					flist = this.codeStack.popCodeC();
 					flist.addAll(f);
 				}
-				this.mainsize = main.size();
 				main.addAll(flist);
 			}
 			this.codeStack.pushCodeC(main);

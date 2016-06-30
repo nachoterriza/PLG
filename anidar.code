@@ -1,22 +1,22 @@
 main start
-	int a = 0;
-	bool b = TRUE;
-	array of 2 int c = {1,2};
-	array of 4 bool d = {TRUE,FALSE,TRUE,FALSE};
+	int a = 0; //5
+	bool b = TRUE; //6
+	array of 2 int c = {1,2}; //7
+	array of 4 bool d = {TRUE,FALSE,TRUE,FALSE}; //9
 	
 	if b then
-		int a = 55;
-		int b = 30;
+		int a = 55; //13
+		int b = 30; //14
 		c@0 = a+b;
 	else
-		int c = 36;
+		int c = 36; //13
 		if d@0 then
 			a = c;
 		else
-			int b = 66;
+			int b = 66; //14
 			a = b;
 			if d@3 then
-				int d = 789;
+				int d = 789; //15
 				c = d;
 			done;
 		done;

@@ -20,7 +20,7 @@ import errors.GestionErroresTiny;
 
 public class MainClass {
 	
-	private static final String file = "ordenar"; 
+	private static final String file = "anidar"; 
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("Iniciando proceso de compilacion de "+file+".code...");
