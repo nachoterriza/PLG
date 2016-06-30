@@ -50,7 +50,7 @@ public class AllTo extends Expresion{
 	}
 	
 	private Tipo findDim(int valor, int num, Tipo tipo, int fila) {
-		if(valor>=4)
+		if(valor>=2)
 			return new ArrayOf(num,findDim(valor-2,num,tipo,fila),fila);
 		else return new ArrayOf(num,tipo,fila);
 	}

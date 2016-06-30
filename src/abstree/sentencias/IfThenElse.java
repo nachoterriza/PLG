@@ -64,8 +64,9 @@ public class IfThenElse extends Sentencia{
 		}
 		if (!codeif.checkTipo())
 			ret = false;
-		if (!codeelse.checkTipo())
-			ret = false;
+		if (tipo()==TipoS.IFELSE)
+			if (!codeelse.checkTipo())
+				ret = false;
 		return ret;
 	}
 	
