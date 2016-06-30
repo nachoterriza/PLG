@@ -57,7 +57,7 @@ public class Choose extends Sentencia {
 				boolean correct = true;
 				while(pCasos.hasMoreElements()) {
 					Programa codigo = pCasos.nextElement();
-					correct = correct && casos.get(codigo).checkTipo();
+					correct = correct && codigo.checkTipo();
 				}
 				if(correct)
 					return true;
