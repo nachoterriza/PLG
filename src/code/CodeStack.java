@@ -83,6 +83,10 @@ public class CodeStack {
 	public int getNumBlocksStack(){
 		return stack.size();
 	}
+	
+	public String toString() {
+		return stack.toString();
+	}
 
 	private class CodeBlock {
 		/**
@@ -124,6 +128,10 @@ public class CodeStack {
 				throw new CompilingException("Se esperaba un codeR y se ha obtenido un code"+codeLR);
 			else
 				return code;
+		}
+		
+		public String toString(){
+			return code.toString();
 		}
 
 		private char codeLR;

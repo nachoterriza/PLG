@@ -26,15 +26,14 @@ public class Codigo implements Anfitrion{
 	}
 	
 	public boolean checkTipo() {
-		if(!main.checkTipo())
-			return false;
+		boolean ret = true;
 		
 		for(int i=0;i<funciones.size();i++) {
 			if(!funciones.get(i).checkTipo()) {
-				return false;
+				ret = false;
 			}
 		}
-		return true;
+		return main.checkTipo() && ret;
 		
 	}
 

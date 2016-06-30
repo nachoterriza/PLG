@@ -42,15 +42,20 @@ public class While extends Sentencia {
 
 
 	public boolean checkTipo() {
-		Bool test = new Bool();
-		try {	
-			if(cond.getTipo().valorT()==test.valorT())
-				return true;
-			else throw new UnsuportedOperation("Condicion no booleana en bucle while.");
+		boolean ret = true;
+		try {
+			if (cond.getTipo().valorT()!=(new Bool()).valorT()){
+				ret = false;
+				GestionErroresTiny.errorTipos(cond.getFila(),"If de condicion no booleana.");
+			}
 		} catch (UnsuportedOperation e) {
-			GestionErroresTiny.errorTipos(cond.getFila(), e.getMessage());
+			ret = false;
+			GestionErroresTiny.errorTipos(cond.getFila(), e.getLocalizedMessage());
 		}
-		return false;
+		if (!code.checkTipo())
+			ret = false;
+
+		return ret;
 	}
 	
 	private Expresion cond;

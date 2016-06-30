@@ -23,6 +23,11 @@ public class Identificador extends Expresion {
 	}
 	
 	@Override
+	public String toString() {
+		return id;
+	}
+	
+	@Override
 	public Declaracion ref() throws UnsuportedOperation {
 		return ref;
 	}

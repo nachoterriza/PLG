@@ -109,7 +109,7 @@ public class CodeVisitor extends VisitorHelper {
 			}
 			this.codeStack.pushCodeC(main);
 		} catch (CompilingException e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println("Codigo");
 		}
 	
 	}
@@ -146,7 +146,7 @@ public class CodeVisitor extends VisitorHelper {
 			
 			this.codeStack.pushCodeC(code);
 		} catch (CompilingException e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(node.getFila());
 		}
 		return false;
 	}
@@ -161,9 +161,9 @@ public class CodeVisitor extends VisitorHelper {
 			
 			this.codeStack.pushCodeR(code);
 		} catch (CompilingException e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(node.getFila());
 		} catch (UnsuportedOperation e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(node.getFila());
 		}
 		
 	
@@ -178,9 +178,9 @@ public class CodeVisitor extends VisitorHelper {
 			}
 			codeStack.pushCodeR(code);
 		} catch (CompilingException e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(node.getFila());
 		} catch (UnsuportedOperation e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(node.getFila());
 		}
 	
 	}
@@ -199,7 +199,7 @@ public class CodeVisitor extends VisitorHelper {
 			}
 			codeStack.pushCodeC(rigth);
 		} catch (CompilingException e){
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(node.getFila());
 		}
 	}
 
@@ -222,7 +222,7 @@ public class CodeVisitor extends VisitorHelper {
 				codeStack.pushCodeR(left);
 			}
 		} catch (CompilingException | UnsuportedOperation e){
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(node.getFila());
 		}
 	}
 
@@ -230,12 +230,12 @@ public class CodeVisitor extends VisitorHelper {
 	public void postvisit(ExpresionUnaria node) {
 		try {
 			if (!(node instanceof Not))
-				throw new CompilingException("Expresion unaria no reconocida");
+				throw new CompilingException("Fila " + node.getFila() + " Expresion unaria no reconocida");
 			LinkedList<String> code = codeStack.popCodeR();
 			code.add(IR.not());
 			codeStack.pushCodeR(code);
 		} catch (CompilingException e){
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(node.getFila());
 		}
 	}
 
@@ -246,7 +246,7 @@ public class CodeVisitor extends VisitorHelper {
 			code.add(IR.ldcTrue());
 			codeStack.pushCodeR(code);
 		} catch (CompilingException e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(node.getFila());
 		}
 	}
 
@@ -257,7 +257,7 @@ public class CodeVisitor extends VisitorHelper {
 			code.add(IR.ldcFalse());
 			codeStack.pushCodeR(code);
 		} catch (CompilingException e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(node.getFila());
 		}
 	}
 
@@ -268,9 +268,9 @@ public class CodeVisitor extends VisitorHelper {
 			code.add(IR.ldcAddr(-666/*ro.ro(node)*/));
 			codeStack.pushCodeL(code, node.getTipo());
 		} catch (CompilingException e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(node.getFila());
 		} catch (UnsuportedOperation e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(node.getFila());
 		}
 	}
 
@@ -281,7 +281,7 @@ public class CodeVisitor extends VisitorHelper {
 			code.add(IR.ldcInt(node.num()));
 			codeStack.pushCodeR(code);
 		} catch (CompilingException | UnsuportedOperation e) {
-			e.printStackTrace();
+			e.printStackTrace();System.out.println(node.getFila());
 		}
 	}
 
@@ -341,7 +341,11 @@ public class CodeVisitor extends VisitorHelper {
 		try{
 			n = node.codeNum();
 		} catch (UnsuportedOperation e) {
-			e.printStackTrace();
+			e.printStackTrace();try {
+				System.out.println(node.exp().getFila());
+			} catch (UnsuportedOperation e1) {
+				e1.printStackTrace();
+			}
 			return false;
 		}
 		
@@ -361,7 +365,11 @@ public class CodeVisitor extends VisitorHelper {
 				//salto al final (entrada de la tabla)
 				codechoose.add(IR.uncondj(i+1)); 
 			} catch (CompilingException e) {
-				e.printStackTrace();
+				e.printStackTrace();try {
+					System.out.println(node.exp().getFila());
+				} catch (UnsuportedOperation e1) {
+					e1.printStackTrace();
+				}
 				return false;
 			}
 			
@@ -376,7 +384,11 @@ public class CodeVisitor extends VisitorHelper {
 			varcode.addAll(codechoose);
 			codeStack.pushCodeC(varcode);
 		} catch (UnsuportedOperation | CompilingException e) {
-			e.printStackTrace();
+			e.printStackTrace();try {
+				System.out.println(node.exp().getFila());
+			} catch (UnsuportedOperation e1) {
+				e1.printStackTrace();
+			}
 			return false;
 		}
 		
@@ -400,9 +412,17 @@ public class CodeVisitor extends VisitorHelper {
 			}
 			
 		} catch (CompilingException e){
-			e.printStackTrace();
+			e.printStackTrace();try {
+				System.out.println(node.var().getTipo());
+			} catch (UnsuportedOperation e1) {
+				e1.printStackTrace();
+			}
 		} catch (UnsuportedOperation e) {
-			e.printStackTrace();
+			e.printStackTrace();try {
+				System.out.println(node.var().getTipo());
+			} catch (UnsuportedOperation e1) {
+				e1.printStackTrace();
+			}
 		}
 
 	}
@@ -434,7 +454,11 @@ public class CodeVisitor extends VisitorHelper {
 				codeStack.pushCodeC(cond);
 			}
 		} catch (CompilingException e) {
-			e.printStackTrace();
+			e.printStackTrace();try {
+				System.out.println(node.exp().getFila());
+			} catch (UnsuportedOperation e1) {
+				e1.printStackTrace();
+			}
 		}
 
 	}
@@ -449,7 +473,11 @@ public class CodeVisitor extends VisitorHelper {
 			cond.add(IR.uncondj(-cond.size()));
 			codeStack.pushCodeC(cond);
 		} catch (CompilingException e) {
-			e.printStackTrace();
+			e.printStackTrace();try {
+				System.out.println(node.exp().getFila());
+			} catch (UnsuportedOperation e1) {
+				e1.printStackTrace();
+			}
 		}
 
 	}

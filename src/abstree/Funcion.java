@@ -28,6 +28,10 @@ public class Funcion implements Anfitrion{
 		return id;
 	}
 	
+	public String toString() {
+		return id;
+	}
+	
 	@Override
 	public void accept(Visitante v) {
 		boolean cont =  v.previsit(this);
@@ -43,19 +47,15 @@ public class Funcion implements Anfitrion{
 	}
 
     public boolean checkTipo() {
-     /*   for(int i=0;i<entrada.size();i++) {
-            if(!entrada.get(i).checkTipo())
-                throw new UnsuportedOperation("Error de tipo en funcion (entrada).");
-        }*/
-        
+    	boolean ret = true;
         for(int j=0;j<salida.size();j++) {
             if(!salida.get(j).checkTipo())
-                return false;
+                ret = false;
         }
         
         if(!programa.checkTipo())
-            return false;
-        return true;
+            ret = false;
+        return ret;
     }
 
 	public LinkedList<Declaracion> getEntrada() {

@@ -59,7 +59,13 @@ public class GestionErroresTiny {
 	     }
 	}	
    
-   public static boolean ok(){
+   public static void errorRO(int fila, String tipo) {
+	   ok = false;
+		 System.err.println("ERROR de localizacion RO fila "+fila+": "+tipo);
+	
+}
+
+public static boolean ok(){
 	   return ok;
    }
    

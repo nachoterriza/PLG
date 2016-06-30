@@ -58,7 +58,7 @@ public class MainClass {
 		}
 		System.out.println("Comprobacion de tipos completado");
 		
-		System.out.println("Iniciando localizacion de variables...");
+		System.out.println("Iniciando localizacion de variables (RO)...");
 		RoVisitor ro = new RoVisitor();
 		codetree.accept(ro);
 	/*	if(!GestionErroresTiny.ok()){
@@ -66,7 +66,7 @@ public class MainClass {
 			System.out.println("Abortando compilacion");
 			return;
 		}
-	*/	System.out.println("Localizacion de variables completada");
+	*/	System.out.println("Localizacion de variables completada (RO)");
 		
 		System.out.println("Iniciando compilacion...");
 		CodeVisitor compiler = new CodeVisitor(ro);

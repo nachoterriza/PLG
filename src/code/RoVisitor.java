@@ -8,6 +8,7 @@ import abstree.Declaracion;
 import abstree.Funcion;
 import abstree.Programa;
 import abstree.expresiones.Identificador;
+import errors.GestionErroresTiny;
 import errors.UnsuportedOperation;
 
 /**
@@ -35,8 +36,16 @@ public class RoVisitor extends VisitorHelper{
 	private int maxdir;
 	private Stack<Integer> dirstack;
 	
+	public String toString(){
+		return "RO: " + ro.toString() + '\n'
+				+ "lparam: " + lparam.toString() + '\n'
+				+ "lvar: " + lvar.toString() + '\n';
+	}
+	
 	public RoVisitor(){
 		this.ro = new Hashtable<Declaracion,Integer>();
+		this.lparam = new Hashtable<Funcion,Integer>();
+		this.lvar = new Hashtable<Funcion,Integer>();
 		this.nextdir = 5;
 		this.maxdir = 4;
 		this.dirstack = new Stack<Integer>();
@@ -65,8 +74,10 @@ public class RoVisitor extends VisitorHelper{
 	 */
 	public int ro(Declaracion id){
 		Integer ret = ro.get(id);
-		if (ret == null)
+		if (ret == null) {
+			GestionErroresTiny.errorRO(id.getFila(), "Variable " + id + "no encontrada");
 			return -666;
+		}
 		else
 			return ret;
 	}

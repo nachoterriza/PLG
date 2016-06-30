@@ -24,6 +24,10 @@ public class Declaracion implements Anfitrion{
 	public String getId() {
 		return id;
 	}
+	
+	public String toString() {
+		return id;
+	}
 
 	@Override
 	public void accept(Visitante v) {
@@ -45,7 +49,7 @@ public class Declaracion implements Anfitrion{
 				return false;
 			}
 		} catch (UnsuportedOperation e) {
-			GestionErroresTiny.errorTipos(fila, "Expresion con error de tipos");
+			GestionErroresTiny.errorTipos(fila, e.getLocalizedMessage());
 			return false;
 		}
 	}

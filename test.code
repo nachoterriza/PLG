@@ -4,7 +4,7 @@ takes input array of 10 int lista;
 declares output  array of 10 int listabis = all 10 to 0;
 makes
 int temp = 0;
-bool i = 1;
+int i = 1;
 int j = 0;
 while i < 10 do
 	temp = lista @ i;

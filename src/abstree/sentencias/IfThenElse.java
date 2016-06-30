@@ -52,21 +52,21 @@ public class IfThenElse extends Sentencia{
 
 
 	public boolean checkTipo() {
-		Bool test = new Bool();
+		boolean ret = true;
 		try {
-			if(codeif.checkTipo() && codeelse==null){
-				if(cond.getTipo().valorT()==test.valorT())
-					return true;
-				else throw new UnsuportedOperation("If de condicion no booleana.");
+			if (cond.getTipo().valorT()!=(new Bool()).valorT()){
+				ret = false;
+				GestionErroresTiny.errorTipos(cond.getFila(),"If de condicion no booleana.");
 			}
-			if(codeif.checkTipo() && codeelse.checkTipo()){
-				if(cond.getTipo().valorT()==test.valorT())
-					return true;
-				else throw new UnsuportedOperation("If de condicion no booleana.");}
 		} catch (UnsuportedOperation e) {
-			GestionErroresTiny.errorTipos(cond.getFila(), e.getMessage());
+			ret = false;
+			GestionErroresTiny.errorTipos(cond.getFila(), e.getLocalizedMessage());
 		}
-		return false;
+		if (!codeif.checkTipo())
+			ret = false;
+		if (!codeelse.checkTipo())
+			ret = false;
+		return ret;
 	}
 	
 

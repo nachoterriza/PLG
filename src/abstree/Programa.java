@@ -25,16 +25,17 @@ public class Programa implements Anfitrion{
 
 
 	public boolean checkTipo() {
+		boolean ret = true;
 		for(int i=0;i<declaraciones.size();i++) {
 			if(!declaraciones.get(i).checkTipo())
-				return false;
+				ret = false;
 		}
 		for(int i=0;i<sentencias.size();i++) {
 			if(!sentencias.get(i).checkTipo())
-				return false;
+				ret = false;
 		}
 		
-		return true;
+		return ret;
 	}
 	
 	private LinkedList<Declaracion> declaraciones;
