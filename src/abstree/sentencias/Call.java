@@ -47,7 +47,6 @@ public class Call extends Sentencia {
 
 	public boolean checkTipo() {
 		boolean ret = true;
-		int num=199;
 		for(int i=0;i<entrada.size();i++) {
 			Declaracion dec = ref.getEntrada().get(i);
 			try {
@@ -68,7 +67,11 @@ public class Call extends Sentencia {
 			try {
 				if(dec.getTipo().valorT()!=salida.get(i).getTipo().valorT())
 					throw new UnsuportedOperation("Parametro "+i+" de salida mal declarado en CALL.");
-			} catch (UnsuportedOperation e) {
+				else if (dec.getTipo().valorT()>=2) {
+					if (dec.getTipo().numElems()!=salida.get(i).getTipo().numElems())
+						throw new UnsuportedOperation("Parametro "+i+" de salida mal declarado en CALL: Array de distinto tamaño.");
+					
+			}} catch (UnsuportedOperation e) {
 				GestionErroresTiny.errorTipos(fila, e.getMessage());
 				ret = false;
 			}
