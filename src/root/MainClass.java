@@ -1,7 +1,9 @@
 package root;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.util.LinkedList;
 
@@ -18,7 +20,7 @@ import errors.GestionErroresTiny;
 
 public class MainClass {
 	
-	private static final String file = "test"; 
+	private static final String file = "maximo"; 
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("Iniciando proceso de compilacion de "+file+".code...");
@@ -61,12 +63,12 @@ public class MainClass {
 		System.out.println("Iniciando localizacion de variables (RO)...");
 		RoVisitor ro = new RoVisitor();
 		codetree.accept(ro);
-	/*	if(!GestionErroresTiny.ok()){
+		if(!GestionErroresTiny.ok()){
 			System.out.println("Error en localizacion de variables");
 			System.out.println("Abortando compilacion");
 			return;
 		}
-	*/	System.out.println("Localizacion de variables completada (RO)");
+		System.out.println("Localizacion de variables completada (RO)");
 		
 		System.out.println("Iniciando compilacion...");
 		CodeVisitor compiler = new CodeVisitor(ro);
@@ -78,14 +80,24 @@ public class MainClass {
 	
 	private static void printCode(CodeVisitor compiler){
 		LinkedList<String> newcode;
+		PrintWriter cout,cout2;
 		try {
+			cout = new PrintWriter(file+".mach");
+			cout2 = new PrintWriter(file+".idxm");
 			newcode = compiler.getResult();
 			int i=0;
 			for(String instr: newcode){
-				   System.out.println(""+i+": "+instr);
+				   cout.println(instr);
+				   cout2.println(""+i+": "+instr);
 				   i++;
 			}
+			cout.close();
+			cout2.close();
+			System.out.println("Codigo maquina en "+file+".mach");
+			System.out.println("Codigo maquina indexado en "+file+".idxm");
 		} catch (CompilingException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

@@ -83,11 +83,10 @@ public class CodeVisitor extends VisitorHelper {
 	public LinkedList<String> getResult() throws CompilingException{
 		if(codeStack.getNumBlocksStack() == 1){
 			LinkedList<String> code =  codeStack.popCodeC();
-			code.add(IR.stop());
 			if (mainsize<0) 
 				System.err.println("CompilingException: Tamaño del main no guardado");
-			IR.adjustFuncionJumps(code, mainsize);
-			IR.relToAbsJumps(code);
+			code = IR.adjustFuncionJumps(code, mainsize);
+			code = IR.relToAbsJumps(code);
 			return code;
 		}
 			
@@ -102,6 +101,7 @@ public class CodeVisitor extends VisitorHelper {
 	public void postvisit(Codigo node) {
 		try {
 			LinkedList<String> main = this.codeStack.popCodeC();
+			main.add(IR.stop());
 			if (node.nFunciones()>0){
 				LinkedList<String> f, flist;
 				flist = this.codeStack.popCodeC();

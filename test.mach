@@ -1,0 +1,214 @@
+ldc 5
+ldc 4
+ldc 8
+ldc 10
+ldc 0
+ldc 3
+ldc 9
+lda 0 5
+inc 6
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+mst 0
+lda 0 5
+movs 7
+lda 0 5
+dpl
+movs 7
+cup 21 63
+ssp 28
+lda 0 26
+ldc 0
+sto
+lda 0 27
+ldc 1
+sto
+lda 0 28
+ldc 0
+sto
+lda 0 27
+ind
+ldc 10
+les
+fjp 140
+lda 0 26
+lda 0 5
+lda 0 27
+ind
+ixa 1
+ind
+sto
+lda 0 28
+lda 0 27
+ind
+ldc 1
+sub
+sto
+lda 0 5
+lda 0 28
+ind
+ixa 1
+ind
+lda 0 26
+ind
+grt
+lda 0 28
+ind
+ldc 0
+geq
+and
+fjp 124
+lda 0 5
+lda 0 28
+ind
+ldc 1
+add
+ixa 1
+lda 0 5
+lda 0 28
+ind
+ixa 1
+ind
+sto
+lda 0 28
+lda 0 28
+ind
+ldc 1
+sub
+sto
+ujp 91
+lda 0 5
+lda 0 28
+ind
+ldc 1
+add
+ixa 1
+lda 0 26
+ind
+sto
+lda 0 27
+lda 0 27
+ind
+ldc 1
+add
+sto
+ujp 73
+lda 0 15
+ind
+inc 9
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+ldo 0
+dec 1
+sro 0
+sro 1
+ldo 0
+ldo 1
+sto
+sro 1
+retp
+stp
