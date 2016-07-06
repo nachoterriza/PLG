@@ -114,6 +114,15 @@ public class RoVisitor extends VisitorHelper{
 		else
 			return ret;
 	}
+	
+	/**
+	 * Devuelve la longitud de la zona de organizacion,
+	 *  y variables (en todos los bloques) del Main
+	 * @return Tamaño de las variables en memoria
+	 */
+	public int lvarMain(){
+		return this.maxdir+1;
+	}
 
 	@Override
 	public void previsit(Declaracion node) {

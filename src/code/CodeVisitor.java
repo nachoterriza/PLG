@@ -101,8 +101,16 @@ public class CodeVisitor extends VisitorHelper {
 	public void postvisit(Codigo node) {
 		try {
 			LinkedList<String> main = this.codeStack.popCodeC();
+			//Añadimos la ultima instruccion y las 5 primeras
 			main.add(IR.stop());
+			main.addFirst(IR.startfun(ro.lvarMain()));
+			main.addFirst(IR.callj(0, 4));
+			main.addFirst(IR.store1());
+			main.addFirst(IR.startcall());
+			main.addFirst(IR.ldcInt(0));
+			//Guardamos el tamaño del main
 			this.mainsize = main.size();
+			
 			if (node.nFunciones()>0){
 				LinkedList<String> f, flist;
 				flist = this.codeStack.popCodeC();
@@ -154,6 +162,11 @@ public class CodeVisitor extends VisitorHelper {
 			node.getPrograma().accept(this);
 			code.addAll(this.codeStack.popCodeC());
 			
+			//Bajamos el SP hasta las variables de salida
+			int tvarlocal = ro.lvar(node)-ro.lparam(node)-5;
+			for(int i=0;i<tvarlocal;i++){
+				code.add(IR.store1());
+			}
 			
 			//Guardamos en su lugar las variables de salida
 			Iterator<Declaracion> it = node.getSalida().descendingIterator();

@@ -1,8 +1,8 @@
 method maximo
-takes input array of 10 int a;
-declares output int max = 0;
+takes input array of 10 int a; //16+5 = 21
+declares output int max = 0; //16+16 = 32 
 makes
-int i = 0;
+int i = 0; //16+17 = 33
 max = a @ 0;
 while i < 10 do
 	if max < a @ i then
@@ -13,7 +13,7 @@ done;
 returns output;
 
 main start
-array of 10 int a = {5,4,8,10,0,3,9,1,2,3};
-	int max = 0;
+array of 10 int a = {5,4,8,10,50,3,9,1,2,3}; //5
+	int max = 0; //15
 	call maximo with a receiving max;
 end;

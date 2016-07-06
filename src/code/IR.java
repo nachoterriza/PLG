@@ -138,13 +138,20 @@ public class IR {
 	
 	/**
 	 * Dado que el main en el codigo maquina va antes que las funciones,
-	 * añade el tamaño del main a los saltos a funciones
+	 * añade el tamaño del main a los saltos a funciones.
+	 * Las 5 primeras instrucciones (comunes a todos los programas)
+	 * no se modifican
 	 * @param code Bloque de codigo original
 	 * @param tam tamaño del main, a sumar a los saltos a funciones
 	 * @return Bloque de codigo transformado
 	 */
 	public static LinkedList<String> adjustFuncionJumps(LinkedList<String> code, int tam){
 		LinkedList<String> newcode= new LinkedList<String>();
+		newcode.add(code.removeFirst());
+		newcode.add(code.removeFirst());
+		newcode.add(code.removeFirst());
+		newcode.add(code.removeFirst());
+		newcode.add(code.removeFirst());
 		String s;
 		String[] param;
 		int dir, lparam;

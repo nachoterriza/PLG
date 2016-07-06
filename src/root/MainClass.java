@@ -20,7 +20,7 @@ import errors.GestionErroresTiny;
 
 public class MainClass {
 	
-	private static final String file = "ordenar"; 
+	private static final String file = "decl"; 
 
 	
 	public static void main(String[] args) throws Exception {
@@ -69,7 +69,7 @@ public class MainClass {
 			System.out.println("Abortando compilacion");
 			return;
 		}
-		//XXX TEST System.out.print(ro);
+		/*XXX TEST*/ System.out.print(ro);
 		System.out.println("Localizacion de variables completada (RO)");
 		
 		System.out.println("Iniciando compilacion...");
@@ -77,9 +77,9 @@ public class MainClass {
 		codetree.accept(compiler);
 		System.out.println("Compilacion completada");
 		
-		printCode(compiler);
+		printCode2(compiler);
 	}
-	
+	/*
 	private static void printCode(CodeVisitor compiler){
 		LinkedList<String> newcode;
 		PrintWriter cout,cout2;
@@ -103,9 +103,29 @@ public class MainClass {
 			e.printStackTrace();
 		}
 	}
-	
+	*/
+	private static void printCode2(CodeVisitor compiler){
+		LinkedList<String> newcode;
+		PrintWriter cout;
+		try {
+			cout = new PrintWriter(file+".mach");
+			newcode = compiler.getResult();
+			int i=0;
+			for(String instr: newcode){
+				   cout.println("{"+i+"} "+instr);
+				   i++;
+			}
+			cout.close();
+			System.out.println("Codigo maquina en "+file+".mach");
+		} catch (CompilingException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	/*
 	private static void printTree(Codigo codetree, boolean printDeclaraciones) {
 		PrettyPrinter pp = new PrettyPrinter(printDeclaraciones);
 		codetree.accept(pp);
-	}
+	}*/
 }
